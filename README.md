@@ -224,3 +224,25 @@ public static void logEvent(String eventName) {
 From this simple change, binding project requires no updates to the `Transforms/Metadata.xml` or other files.  You can simply rebuild the Binding project, and the new API will be ready to use from your .NET MAUI project.
 
 > NOTE: Binding projects for Android are not using source generators, and so the project system and inteillisense may not know about the new API's until you've rebuilt the binding project, and reload the solution so that the project reference picks up the newer assembly which was built.  Your app project should still compile regardless of intellisense errors.
+
+### Using this with your own .NET App/Project
+
+There are several ways you can use these samples in your own project.
+
+1. Submodule or otherwise clone this repo into your project, and reference the projects directly
+2. Build the binding projects and consume the .dll assembly artifacts
+
+> NOTE: Getting this repository building in CI and producing assembly and/or nuget artifacts is a near term goal but not available currently.
+
+
+## Contributing
+
+There are a number of ways you might consider contributing back to this project.
+
+### Expanding Slim Wrapper API Surface
+
+If you feel your modifications to expose more functionality for an existing slim binding project in this repository would be generic and useful enough to the majority of developers, pull requests are welcome!  Please keep in mind that for a contribution to be considered, it needs to be broadly applicable to .NET developers and it may require some collaboration with maintainers to refine the API surface changes.
+
+### Adding new Slim Wrappers
+
+The goal of this repository is to provide a solid foundation of starting points for interop with native SDKs.  Given the most challenging part of creating a slim binding is generally the boilerplate setup and figuring out the native dependency chain and acquisition, we welcome contributions of new libraries as long as they follow the repository conventions and can be considered useful to a wide enough audience (eg: an internal company's native SDK would not be a good candidate).
