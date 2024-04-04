@@ -84,11 +84,12 @@ If the existing API surface in a given sample doesn't expose the functionality y
 
 #### Mac/iOS Native Project
 
-Inside the Xcode project you will find one or more .swift files which define the public API surface for the Slim Binding.  For example, the register method for Firebase Messaging is defined as below:
+Inside the Xcode project you will find one or more .swift files which define the public API surface for the Slim Binding.  For example, the `register` method for Firebase Messaging is defined as below:
 
 ```swift
 @objc(FirebaseMessaging)
 public class FirebaseMessaging : NSObject {
+
     @objc(register:completion:)
     public static func register(apnsToken: NSData, completion: @escaping (String?, NSError?) -> Void) {
         let data = Data(referencing: apnsToken);
@@ -100,6 +101,8 @@ public class FirebaseMessaging : NSObject {
     // ...
 }
 ```
+
+> NOTE: Slim wrapper API types which will be used by the .NET Binding must be declared as `public` and need to be annoted with `@objc(NameOfType)` and methods also need to be `public`, and can also benefit from similar annotations `@objc(methodName:parameter1:)` where the name and parameters are specified which help influence the binding which objective sharpie will generate.
 
 
 #### Mac/iOS Binding Project
