@@ -17,7 +17,7 @@ Get started with slim bindings using the Facebook, Firebase Analytics, Firebase 
 2. Navigate to the appropriate folder for the binding you're interested in using or building from <br>
 e.g. For Firebase Messaging, navigate to `firebase/macios/FirebaseMessaging.Binding`
 
-3. run `dotnet build`
+3. Run `dotnet build`
 
 4. Navigate to your .NET MAUI, .NET iOS, or .NET Android app
 
@@ -37,7 +37,7 @@ e.g. For Firebase Messaging, navigate to `firebase/macios/sample` and ensure You
     ```
     ```xaml
     <ItemGroup>
-    <CustomEntitlements Include="aps-environment" Type="string" Value="development" Condition="'$(Configuration)' == 'Debug'" />
+        <CustomEntitlements Include="aps-environment" Type="string" Value="development" Condition="'$(Configuration)' == 'Debug'" />
         <CustomEntitlements Include="aps-environment" Type="string" Value="production" Condition="'$(Configuration)' == 'Release'" />
     </ItemGroup>
     ```
