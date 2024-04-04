@@ -58,6 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\FirebaseAuth.Binding\FirebaseAuth.Binding.csproj" />
         <ProjectReference Include="..\FirebaseMessaging.Binding\FirebaseMessaging.Binding.csproj" />
         <ProjectReference Include="..\FirebaseAnalytics.Binding\FirebaseAnalytics.Binding.csproj" />
     </ItemGroup>

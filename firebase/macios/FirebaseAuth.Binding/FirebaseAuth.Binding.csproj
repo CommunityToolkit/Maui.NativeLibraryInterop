@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>true</ImplicitUsings>
+        <IsBindingProject>true</IsBindingProject>
+
+        <XcodeProject>$(MSBuildThisFileDirectory)../native/auth/FirebaseAuth.xcodeproj</XcodeProject>
+        <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
+        <ObjSharpieBind>True</ObjSharpieBind>
+        <ObjSharpieBindNamespace>Firebase</ObjSharpieBindNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
+        <NativeReference Include="../native/auth/.build/FirebaseAuth.xcframework">
+            <Kind>Framework</Kind>
+            <SmartLink>True</SmartLink>
+        </NativeReference>
+    </ItemGroup>
+
+    <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
+</Project>
