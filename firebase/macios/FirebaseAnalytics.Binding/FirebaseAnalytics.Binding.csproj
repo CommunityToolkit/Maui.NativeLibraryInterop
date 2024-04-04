@@ -4,6 +4,11 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
         <IsBindingProject>true</IsBindingProject>
+
+        <XcodeProject>$(MSBuildThisFileDirectory)../native/analytics/MauiFirebaseAnalytics.xcodeproj</XcodeProject>
+        <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
+        <ObjSharpieBind>False</ObjSharpieBind>
+        <ObjSharpieBindNamespace>Firebase</ObjSharpieBindNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,11 +18,6 @@
             <SmartLink>True</SmartLink>
         </NativeReference>
     </ItemGroup>
-
-    <PropertyGroup>
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/analytics/MauiFirebaseAnalytics.xcodeproj</XcodeProject>
-        <ObjSharpieBindNamespace>Firebase</ObjSharpieBindNamespace>
-    </PropertyGroup>
 
     <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>
