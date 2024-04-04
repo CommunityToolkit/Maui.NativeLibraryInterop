@@ -1,10 +1,52 @@
-# Community Slim Bindings for .NET iOS/Android & .NET MAUI
+# Slim Bindings for .NET MAUI
 
-This repository contains samples and starting points demonstrating how to use the [slim binding approach](#slim-binding-approach) to interop with native iOS and Android SDKs from your .NET iOS/Android and .NET MAUI iOS/Android apps.
+This repository provides a starting point for developers looking to get started with slim bindings. The samples and starting points in this repository demonstrate how to use the [slim binding approach](#slim-binding-approach) to interop with native iOS and Android SDKs from your .NET MAUI apps for iOS and Android, including your .NET iOS apps and .NET Android apps.
 
 ## Community Maintained
 
-The long term goal is to move this repository into a community maintained space, (eg: potentially the CommunityToolkit org) and work with community owners/maintainers to add more samples and expan the slim/wrapper API surface for existing samples.
+The long term goal is to move this repository into a community maintained space, (eg: potentially the CommunityToolkit org) and work with community owners/maintainers to add more samples and expand the slim/wrapper API surface for existing samples based on the community's needs.
+
+## Quick Start
+
+Get started with slim bindings using the Facebook, Firebase Analytics, Firebase Messaging, and Google Cast samples in this repository:
+
+0. Ensure your [environment is set up](#environment-setup).
+
+1. Submodule or clone this repo
+
+2. Navigate to the appropriate folder for the binding you're interested in using or building from <br>
+e.g. For Firebase Messaging, navigate to `firebase/macios/FirebaseMessaging.Binding`
+
+3. run `dotnet build`
+
+4. Navigate to your .NET MAUI, .NET iOS, or .NET Android app
+
+5. Add a project reference to your MAUI app pointing to the path where you have cloned the repo <br>
+e.g. For Firebase Messaging, add to your csproj:
+    ```xaml
+    <ProjectReference Include="<YourPathToClonedSlimBindingsRepo>\FirebaseMessaging.Binding\FirebaseMessaging.Binding.csproj" />
+    ```
+
+6. Cross-reference the sample and add the necessary code into your own project. <br>
+e.g. For Firebase Messaging, navigate to `firebase/macios/sample` and ensure YourMauiApp.csproj reflects the unique contents in `firebase/macios/sample/Sample.csproj` such as the following:
+
+    ```xaml
+    <BundleResource Include="Platforms\iOS\GoogleService-Info.plist">
+        <Link>GoogleService-Info.plist</Link>
+    </BundleResource>
+    ```
+    ```xaml
+    <ItemGroup>
+    <CustomEntitlements Include="aps-environment" Type="string" Value="development" Condition="'$(Configuration)' == 'Debug'" />
+        <CustomEntitlements Include="aps-environment" Type="string" Value="production" Condition="'$(Configuration)' == 'Release'" />
+    </ItemGroup>
+    ```
+
+7. Ensure YourMauiApp/Platforms files reflects the contents of the files in `firebase/macios/sample/Platforms` such as in the AppDelegate.cs, Info.plist, and GoogleService-Info.plist files.
+
+8. Use the slim binding in your .NET MAUI app! See sample usage in the `Sample` .NET MAUI apps included in each of the subfolders.
+
+Keep reading for more context on [Building](#building). Guidance will continue to be updated in this repository.
 
 ## Slim Binding Approach
 
@@ -12,9 +54,9 @@ Slim binding refers to a pattern for accessing native SDKs in .NET apps indirect
 
 The idea is to create your own abstraction or 'wrapper' API to the native SDK's you're interested in calling from .NET. The native 'wrapper' library/framework projects get created in Android Studio and/or Xcode using Java/Kotlin and/or Objective-C/Swift. The implementation of this wrapper API would typically follow the SDK documentation which is likely easier to follow and apply when using the same language as the documentation. It may even be possible to copy and paste code from the vendor documentation directly. 
 
-A key benefits of the pattern is based on the premise that **.NET Android and iOS binding tools work great with simple API surfaces**. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings. 
+A key benefit of slim bindings is based on the premise that **.NET Android and iOS binding tools work great with simple API surfaces**. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings. 
 
-While the initial setup may take some time, it's possible to script the building and preparation of the native components (and binding definitions) to reduce the overhead of future updates. For example, updating the underlying SDKs may need only involve updating the version and rebuilding. If there's breaking changes to the API surfaces being used, or to how SDKs work in general, then native code may need changing. However, there's a greater chance that the wrapper API surface (and the usage in the .NET app) can remain unchanged compared to traditional bindings.
+While the initial setup may take some time, it's possible to script the building and preparation of the native components (and binding definitions) to reduce the overhead of future updates. For example, updating the underlying SDKs may only involve updating the version and rebuilding. If there's breaking changes to the API surfaces being used, or to how SDKs work in general, then native code may need changing. However, there's a greater chance that the wrapper API surface (and the usage in the .NET app) can remain unchanged compared to traditional bindings. The hardest part of creating a slim binding is setting up the native projects, getting the correct native dependencies referenced in those projects, and then referencing the output of those native projects from a .NET Binding library project and .NET MAUI app. This repository helps you get jumpstarted to building from and customizing slim bindings for your own app's needs.
 
 ### Resources
 
@@ -33,21 +75,9 @@ While the initial setup may take some time, it's possible to script the building
 - Requires the same effort as traditional bindings to resolve dependency chains (notably on Android)
 - When using Swift, the ```@objc``` attribute is required to generate Objective-C compatible headers
 
-### When to choose Slim Bindings vs Full Bindings
+### Slim Bindings vs. Full Bindings
 
-While slim bindings are a very effective approach to interop with native libraries, they may not always be the best fit for your project.  Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches.  It may also be worth considering a full binding if the library you are needing to interop with has a large API surface and you need to use the majority of those APIs, or if you are a vendor of a library/SDK and you are wanting to support .NET Mobile/MAUI developers in consuming your library.  The existing tools and methods for traditional full bindings aren't going away, this is simply another alternative technique which is in some cases much easier to understand, implement, and maintain.
-
-
-## Goals / Samples
-
-As previously mentioned, the hardest part in creating a Slim binding is setting up the native projects, getting the correct native dependencies referenced in those projects, and then referencing the output of those native projects from a .NET Binding library project and .NET MAUI app.
-
-The goal of this repository is first to help provide an easier to use starting point for developers to build from and customize for their own app's needs.
-
-### Where are the NuGet Packages?
-
-Initially the goal is to provide a foundation to build off of, as the API's everyone needs from a given native library may vary.  However we also recognize that there may be cases where most developers do need the same set of API's and we will monitor feedback in this area and may eventually decide there's enough value to a group of developers to warrant publishing packages to consume.  Stay tuned!
-
+Should you use a slim binding or a full binding? Slim bindings are a very effective approach to interop with native libraries, but they may not always be the best fit for your project.  Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches. It may also be worth considering a full binding if the library you are needing to interop with has a large API surface and you need to use the majority of those APIs, or if you are a vendor of a library/SDK and you are wanting to support .NET MAUI developers in consuming your library.  The existing tools and methods for traditional full bindings aren't going away; this is simply an alternative technique which is in some cases much easier to understand, implement, and maintain.
 
 ## Environment setup
 
@@ -233,7 +263,7 @@ From this simple change, binding project requires no updates to the `Transforms/
 
 There are several ways you can use these samples in your own project.
 
-1. Submodule or otherwise clone this repo into your project, and reference the projects directly
+1. Submodule or otherwise clone this repo into your project, and reference the projects directly as outlined above in the [Get Started section](#get-started)
 2. Build the binding projects and consume the .dll assembly artifacts
 
 > NOTE: Getting this repository building in CI and producing assembly and/or nuget artifacts is a near term goal but not available currently.
