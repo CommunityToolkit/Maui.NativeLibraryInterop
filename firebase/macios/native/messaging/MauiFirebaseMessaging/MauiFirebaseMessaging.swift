@@ -12,11 +12,10 @@ public class FirebaseMessaging : NSObject {
         Messaging.messaging().isAutoInitEnabled = enabled
     }
     
-//    @objc
-//    public static func getIsAutoInitEnabled() -> Bool {
-//        return Messaging.messaging().isAutoInitEnabled
-//    }
-    
+   @objc
+   public static func getIsAutoInitEnabled() -> Bool {
+       return Messaging.messaging().isAutoInitEnabled
+   }
     
     @objc(register:completion:)
     public static func register(apnsToken: NSData, completion: @escaping (String?, NSError?) -> Void) {
@@ -25,7 +24,6 @@ public class FirebaseMessaging : NSObject {
         Messaging.messaging().apnsToken = data
         
         Messaging.messaging().token(completion: { fid, error in
-//        Installations.installations().installationID(completion: { fid, error in
             completion(fid, error as NSError?)
         })
     }
@@ -34,7 +32,6 @@ public class FirebaseMessaging : NSObject {
     public static func unregister(completion: @escaping (NSError?) -> Void) {
         // need delegate to watch for fcmToken updates
         Messaging.messaging().deleteToken(completion: { error in
-//        Installations.installations().delete(completion: { error in
             completion(error as NSError?)
         })
     }

@@ -8,10 +8,9 @@ namespace Firebase
     interface FirebaseMessaging
     {
         [Static]
-        [Export("setIsAutoInitEnabled:")]
-        void EnableAutoInit(bool enabled);
+        [Export("getIsAutoInitEnabled:")]
+        bool IsAutoInitEnabled { get; [Bind("setIsAutoInitEnabled:")] set; }
 
-        // TODO: getter/setter for setIsAutoInitEnabled/getIsAutoInitEnabled
         [Static]
         [Export("getFcmToken")]
         string FcmToken { get; }

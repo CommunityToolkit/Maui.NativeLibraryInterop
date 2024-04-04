@@ -22,7 +22,7 @@ public partial class MainPage : ContentPage
             {
                 configured = true;
                 FirebaseApplication.AutoConfigure();
-                FirebaseMessaging.EnableAutoInit(true);
+                FirebaseMessaging.IsAutoInitEnabled = true;
             }
             catch (Exception ex)
             {
