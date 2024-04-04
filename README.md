@@ -1,4 +1,4 @@
-# Slim Bindings for .NET MAUI iOS and Android
+# Slim Bindings for .NET MAUI (iOS and Android)
 
 This repository provides a starting point for developers looking to get started with slim bindings. The samples and starting points in this repository demonstrate how to use the [slim binding approach](#slim-binding-approach) to interop with native iOS and Android SDKs from your .NET MAUI apps for iOS and Android, including your .NET iOS apps and .NET Android apps.
 
