@@ -4,7 +4,7 @@ This repository provides a starting point for developers looking to get started 
 
 ## Community Maintained
 
-The long term goal is to move this repository into a community maintained space, (eg: potentially the CommunityToolkit org) and work with community owners/maintainers to add more samples and expand the slim/wrapper API surface for existing samples based on the community's needs.
+The long term goal is to move this repository into a community maintained space, (e.g. potentially the CommunityToolkit org) and work with community owners/maintainers to add more samples and expand the slim/wrapper API surface for existing samples based on the community's needs.
 
 ## Quick Start
 
@@ -50,13 +50,13 @@ Keep reading for more context on [Building](#building). Guidance will continue t
 
 ## Slim Binding Approach
 
-Slim binding refers to a pattern for accessing native SDKs in .NET apps indirectly via a 'thin' wrapper with a simplified API surface. This approach is especially beneficial when you only need a small slice of the API surface of the SDK, though it also works well for larger API surface usage all the same.
+Slim binding refers to a pattern for accessing native SDKs in .NET apps indirectly via a "thin" wrapper with a simplified API surface. This approach is especially beneficial when you only need a small slice of the API surface of the SDK, though it also works well for larger API surface usage all the same.
 
-The idea is to create your own abstraction or 'wrapper' API to the native SDK's you're interested in calling from .NET. The native 'wrapper' library/framework projects get created in Android Studio and/or Xcode using Java/Kotlin and/or Objective-C/Swift. The implementation of this wrapper API would typically follow the SDK documentation which is likely easier to follow and apply when using the same language as the documentation. It may even be possible to copy and paste code from the vendor documentation directly. 
+The idea is to create your own abstraction or "wrapper" API to the native SDK's you're interested in calling from .NET. The native "wrapper" library/framework projects get created in Android Studio using Java/Kotlin and/or Xcode Objective-C/Swift. The implementation of this wrapper API would typically follow the SDK documentation which is likely easier to follow and apply when using the same language as the documentation. It may even be possible to copy and paste code from the vendor documentation directly. 
 
-A key benefit of slim bindings is based on the premise that **.NET Android and iOS binding tools work great with simple API surfaces**. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings. 
+A key benefit of slim bindings is based on the premise that **.NET Android and iOS binding tools work great with simple API surfaces**. Assuming the wrapper contains only primitive types which .NET already knows about and has bindings for, the existing binding tools are able to more reliably generate working binding definitions without the amount of manual intervention often required for traditional bindings.
 
-While the initial setup may take some time, it's possible to script the building and preparation of the native components (and binding definitions) to reduce the overhead of future updates. For example, updating the underlying SDKs may only involve updating the version and rebuilding. If there's breaking changes to the API surfaces being used, or to how SDKs work in general, then native code may need changing. However, there's a greater chance that the wrapper API surface (and the usage in the .NET app) can remain unchanged compared to traditional bindings. The hardest part of creating a slim binding is setting up the native projects, getting the correct native dependencies referenced in those projects, and then referencing the output of those native projects from a .NET Binding library project and .NET MAUI app. This repository helps you get jumpstarted to building from and customizing slim bindings for your own app's needs.
+While the initial setup may take some time, it's possible to script the building and preparation of the native components (and binding definitions) to reduce the overhead of future updates. For example, updating the underlying SDKs may only involve updating the version and rebuilding. If there's breaking changes to the API surfaces being used, or to how SDKs work in general, then native code may need changing. However, there's a greater chance that the wrapper API surface (and the usage in the .NET app) can remain unchanged compared to traditional full bindings. The hardest part of creating a slim binding is setting up the native projects, getting the correct native dependencies referenced in those projects, and then referencing the output of those native projects from a .NET Binding library project and .NET MAUI app. This repository helps you jumpstart the process by building from and customizing slim bindings for your own app's needs.
 
 ### Resources
 
@@ -106,11 +106,11 @@ In the `eng/` folder you will find `Common.android.targets` and `Common.macios.t
 
 ### Repository Conventions
 
-Top level folders in the repository generally represent a slim binding around a single native SDK, or in some cases (eg: Firebase) a related group/set of native SDKs.
+Top level folders in the repository generally represent a slim binding around a single native SDK, or in some cases (e.g. Firebase) a related group/set of native SDKs.
 
 Under this top level folder you will find one or both of `android` and `macios` folders, which contain native projects defining the slim wrapper API, .NET binding projects to bind the slim wrapper API, and optionally a platform specific sample showing how to reference the binding in a .NET MAUI app.
 
-Inside of each platform folder will be a `native` folder containing the Xcode or Android Studio Project which references the native SDK dependencies and contains java or swift code defining the slim wrapper API.
+Inside of each platform folder will be a `native` folder containing the Xcode or Android Studio Project which references the native SDK dependencies and contains java or Swift code defining the slim wrapper API.
 
 ### Modifying the Slim Wrapper API
 
@@ -118,9 +118,9 @@ If the existing API surface in a given sample doesn't expose the functionality y
 
 #### Mac/iOS Native Project
 
-Inside the Xcode project you will find one or more .swift files which define the public API surface for the Slim Binding.  For example, the `register` method for Firebase Messaging is defined as below:
+Inside the Xcode project you will find one or more .Swift files which define the public API surface for the Slim Binding.  For example, the `register` method for Firebase Messaging is defined as below:
 
-```swift
+```Swift
 @objc(FirebaseMessaging)
 public class FirebaseMessaging : NSObject {
 
@@ -166,9 +166,9 @@ namespace Firebase
 
 #### Modifying Mac/iOS
 
-Let's say you want to add a method for unregistering.  The swift code would look something like this:
+Let's say you want to add a method for unregistering.  The Swift code would look something like this:
 
-```swift
+```Swift
 @objc(unregister:)
 public static func unregister(completion: @escaping (NSError?) -> Void) {
     // need delegate to watch for fcmToken updates
@@ -266,7 +266,7 @@ There are several ways you can use these samples in your own project.
 1. Submodule or otherwise clone this repo into your project, and reference the projects directly as outlined above in the [Get Started section](#get-started)
 2. Build the binding projects and consume the .dll assembly artifacts
 
-> NOTE: Getting this repository building in CI and producing assembly and/or nuget artifacts is a near term goal but not available currently.
+> NOTE: Getting this repository building in CI and producing assembly and/or NuGet artifacts is a near term goal but is not currently available.
 
 
 ## Contributing
@@ -279,4 +279,4 @@ If you feel your modifications to expose more functionality for an existing slim
 
 ### Adding new Slim Wrappers
 
-The goal of this repository is to provide a solid foundation of starting points for interop with native SDKs.  Given the most challenging part of creating a slim binding is generally the boilerplate setup and figuring out the native dependency chain and acquisition, we welcome contributions of new libraries as long as they follow the repository conventions and can be considered useful to a wide enough audience (eg: an internal company's native SDK would not be a good candidate).
+The goal of this repository is to provide a solid foundation of starting points for interop with native SDKs.  Given the most challenging part of creating a slim binding is generally the boilerplate setup and figuring out the native dependency chain and acquisition, we welcome contributions of new libraries as long as they follow the repository conventions and can be considered useful to a wide enough audience (e.g. an internal company's native SDK would not be a good candidate).
