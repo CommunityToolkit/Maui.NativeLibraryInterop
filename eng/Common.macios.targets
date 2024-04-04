@@ -1,41 +1,40 @@
 <Project>
 
-	<Target Condition=" '$(XcodeBuildXCFramework)' == 'true' " DependsOnTargets="$(BuildXCFrameworkDependsOnTargets)" BeforeTargets="ProcessFrameworkReferences" Name="BuildXCFramework" Inputs="@(_XcodeProjectInputs)" Outputs="$(_XcFrameworkFullPath)/Info.plist">
+	<PropertyGroup>
+		<XcodeDefaultBuildDir>.build</XcodeDefaultBuildDir>
+		<XcodeBuildDirName Condition=" '$(XcodeBuildDirName)' == '' ">$(XcodeDefaultBuildDir)</XcodeBuildDirName>
 
-		<PropertyGroup>
+		<_XcodeProjectFullPath>$([System.IO.Path]::GetFullPath($(XcodeProject)))</_XcodeProjectFullPath>
 
-			<XcodeDefaultBuildDir>.build</XcodeDefaultBuildDir>
-			<XcodeBuildDirName Condition=" '$(XcodeBuildDirName)' == '' ">$(XcodeDefaultBuildDir)</XcodeBuildDirName>
+		<XcodeScheme Condition=" '$(XcodeScheme)' == '' ">$([System.IO.Path]::GetFilenameWithoutExtension($(XcodeProject)))</XcodeScheme>
 
-			<_XcodeProjectFullPath>$([System.IO.Path]::GetFullPath($(XcodeProject)))</_XcodeProjectFullPath>
+		<XcodeProjectDir Condition=" '$(XcodeProjectDir)' == '' ">$([System.IO.Path]::GetDirectoryName($(_XcodeProjectFullPath)))</XcodeProjectDir>
+		<XcodeBuildDir Condition=" '$(XcodeBuildDir)' == '' ">$([System.IO.Path]::Combine($(XcodeProjectDir), $(XcodeBuildDirName)))</XcodeBuildDir>
 
-			<XcodeScheme Condition=" '$(XcodeScheme)' == '' ">$([System.IO.Path]::GetFilenameWithoutExtension($(XcodeProject)))</XcodeScheme>
-
-			<XcodeProjectDir Condition=" '$(XcodeProjectDir)' == '' ">$([System.IO.Path]::GetDirectoryName($(_XcodeProjectFullPath)))</XcodeProjectDir>
-			<XcodeBuildDir Condition=" '$(XcodeBuildDir)' == '' ">$([System.IO.Path]::Combine($(XcodeProjectDir), $(XcodeBuildDirName)))</XcodeBuildDir>
-
-			<XcodeBuildXCFramework Condition=" '$(XcodeBuildXCFramework)' == '' ">True</XcodeBuildXCFramework>
+		<XcodeBuildXCFramework Condition=" '$(XcodeBuildXCFramework)' == '' ">True</XcodeBuildXCFramework>
 		
-			<XcodeBuildiOS Condition=" '$(XcodeBuildiOS)' == '' ">True</XcodeBuildiOS>
-			<XcodeBuildiOSSimulator Condition=" '$(XcodeBuildiOSSimulator)' == '' ">True</XcodeBuildiOSSimulator>
-			<XcodeBuildMacCatalyst Condition=" '$(XcodeBuildMacCatalyst)' == '' ">True</XcodeBuildMacCatalyst>
+		<XcodeBuildiOS Condition=" '$(XcodeBuildiOS)' == '' ">True</XcodeBuildiOS>
+		<XcodeBuildiOSSimulator Condition=" '$(XcodeBuildiOSSimulator)' == '' ">True</XcodeBuildiOSSimulator>
+		<XcodeBuildMacCatalyst Condition=" '$(XcodeBuildMacCatalyst)' == '' ">True</XcodeBuildMacCatalyst>
 
-			<_XcodeBuildDirFullPath>$([System.IO.Path]::GetFullPath($(XcodeBuildDir)))</_XcodeBuildDirFullPath>
-			<_XcodeProjectDirFullPath>$([System.IO.Path]::GetFullPath($(XcodeProjectDir)))</_XcodeProjectDirFullPath>
+		<_XcodeBuildDirFullPath>$([System.IO.Path]::GetFullPath($(XcodeBuildDir)))</_XcodeBuildDirFullPath>
+		<_XcodeProjectDirFullPath>$([System.IO.Path]::GetFullPath($(XcodeProjectDir)))</_XcodeProjectDirFullPath>
 
-			<_XcArchiveiOSFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme)-ios.xcarchive))</_XcArchiveiOSFullPath>
-			<_XcArchiveiOSSimulatorFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme)-iossimulator.xcarchive))</_XcArchiveiOSSimulatorFullPath>
-			<_XcArchiveMacCatalystFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme)-maccatalyst.xcarchive))</_XcArchiveMacCatalystFullPath>
+		<_XcArchiveiOSFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme)-ios.xcarchive))</_XcArchiveiOSFullPath>
+		<_XcArchiveiOSSimulatorFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme)-iossimulator.xcarchive))</_XcArchiveiOSSimulatorFullPath>
+		<_XcArchiveMacCatalystFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme)-maccatalyst.xcarchive))</_XcArchiveMacCatalystFullPath>
 
-			<_XcFrameworkFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme).xcframework))</_XcFrameworkFullPath>
-		</PropertyGroup>
+		<_XcFrameworkFullPath>$([System.IO.Path]::Combine($(_XcodeBuildDirFullPath), $(XcodeScheme).xcframework))</_XcFrameworkFullPath>
+	</PropertyGroup>
 
-		<ItemGroup>
-			<_XcodeProjectInputs Include="$(_XcodeProjectDirFullPath)/**/*.swift" Exclude="$(_XcodeBuildDirFullPath)/**" />
-			<_XcodeProjectInputs Include="$(_XcodeProjectDirFullPath)/**/*.h" Exclude="$(_XcodeBuildDirFullPath)/**" />
-			<_XcodeProjectInputs Include="$(_XcodeProjectFullPath)/*.pbxproj" />
-			<_XcodeProjectInputs Include="$(_XcodeProjectFullPath)/*.xcworkspace" />
-		</ItemGroup>
+	<ItemGroup>
+		<_XcodeProjectInputs Include="$(_XcodeProjectDirFullPath)/**/*.swift" Exclude="$(_XcodeBuildDirFullPath)/**" />
+		<_XcodeProjectInputs Include="$(_XcodeProjectDirFullPath)/**/*.h" Exclude="$(_XcodeBuildDirFullPath)/**" />
+		<_XcodeProjectInputs Include="$(_XcodeProjectFullPath)/*.pbxproj" />
+		<_XcodeProjectInputs Include="$(_XcodeProjectFullPath)/*.xcworkspace" />
+	</ItemGroup>
+
+	<Target Condition=" '$(XcodeBuildXCFramework)' == 'true' " DependsOnTargets="$(BuildXCFrameworkDependsOnTargets)" BeforeTargets="ProcessFrameworkReferences" Name="BuildXCFramework" Inputs="@(_XcodeProjectInputs)" Outputs="$(_XcFrameworkFullPath)/Info.plist">
 		<Error Condition=" !Exists('$(_XcodeProjectFullPath)') " Text="Xcode project '$(_XcodeProjectFullPath)' not found." />
 
 		<Exec Condition=" '$(XcodeBuildiOS)' == 'True' " Command="xcodebuild -project $(_XcodeProjectFullPath) archive -scheme $(XcodeScheme) -configuration Release -archivePath $(_XcArchiveiOSFullPath) -destination 'generic/platform=iOS'  -derivedDataPath $(_XcodeBuildDirFullPath) -IDECustomBuildProductsPath='' -IDECustomBuildIntermediatesPath='' ENABLE_BITCODE=NO SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES OTHER_SWIFT_FLAGS='-no-verify-emitted-module-interface' OBJC_CFLAGS='-fno-objc-msgsend-selector-stubs -ObjC'" />

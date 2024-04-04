@@ -5,6 +5,9 @@
         <ImplicitUsings>true</ImplicitUsings>
         <IsBindingProject>true</IsBindingProject>
         <NoBindingEmbedding>true</NoBindingEmbedding>
+        
+        <XcodeProject>$(MSBuildThisFileDirectory)../native/messaging/MauiFirebaseMessaging.xcodeproj</XcodeProject>
+        <ObjSharpieBind>False</ObjSharpieBind>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,11 +22,6 @@
     <ItemGroup>
         <ProjectReference Include="..\FirebaseAnalytics.Binding\FirebaseAnalytics.Binding.csproj" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/messaging/MauiFirebaseMessaging.xcodeproj</XcodeProject>
-        <ObjSharpieBindNamespace>Firebase</ObjSharpieBindNamespace>
-    </PropertyGroup>
 
     <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>
