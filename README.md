@@ -33,6 +33,10 @@ While the initial setup may take some time, it's possible to script the building
 - Requires the same effort as traditional bindings to resolve dependency chains (notably on Android)
 - When using Swift, the ```@objc``` attribute is required to generate Objective-C compatible headers
 
+### When to choose Slim Bindings vs Full Bindings
+
+While slim bindings are a very effective approach to interop with native libraries, they may not always be the best fit for your project.  Generally, if you are already maintaining bindings and are comfortable continuing to do so, there's no need to change approaches.  It may also be worth considering a full binding if the library you are needing to interop with has a large API surface and you need to use the majority of those APIs, or if you are a vendor of a library/SDK and you are wanting to support .NET Mobile/MAUI developers in consuming your library.  The existing tools and methods for traditional full bindings aren't going away, this is simply another alternative technique which is in some cases much easier to understand, implement, and maintain.
+
 
 ## Goals / Samples
 
