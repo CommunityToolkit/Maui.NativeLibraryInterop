@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Facebook</RootNamespace>
+    <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
+  </PropertyGroup>
+  <ItemGroup>
+    <AndroidLibrary Include="../native/mauifacebook/build/outputs/aar/mauifacebook.aar">
+      <Link>mauifacebook.aar</Link>
+      <Bind>True</Bind>
+      <Pack>True</Pack>
+      <Visible>False</Visible>
+    </AndroidLibrary>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AndroidProjectDir>$(MSBuildThisFileDirectory)../native</AndroidProjectDir>
+    <AndroidProjectModule>mauifacebook</AndroidProjectModule>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.android.targets" />
+</Project>

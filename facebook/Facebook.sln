@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "sample\Sample.csproj", "{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook.MaciOS.Binding", "macios\Facebook.MaciOS.Binding\Facebook.MaciOS.Binding.csproj", "{4C2D0CB1-B015-43EB-AEB7-260456FE210E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook.Android.Binding", "android\Facebook.Android.Binding\Facebook.Android.Binding.csproj", "{456F0650-232A-4A74-B1F6-A34D271596C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C2D0CB1-B015-43EB-AEB7-260456FE210E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2D0CB1-B015-43EB-AEB7-260456FE210E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C2D0CB1-B015-43EB-AEB7-260456FE210E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C2D0CB1-B015-43EB-AEB7-260456FE210E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{456F0650-232A-4A74-B1F6-A34D271596C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456F0650-232A-4A74-B1F6-A34D271596C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456F0650-232A-4A74-B1F6-A34D271596C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456F0650-232A-4A74-B1F6-A34D271596C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

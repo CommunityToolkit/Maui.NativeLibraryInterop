@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCast.Binding", "GoogleCast.Binding\GoogleCast.Binding.csproj", "{CFD5EC5E-32F0-4AFE-9884-CB7C44C1EE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleCast.Sample", "sample\GoogleCast.Sample.csproj", "{850ACD96-1E97-4AAB-A6E7-E775A80676F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{000AA626-261B-409E-90FF-9273E8FFA2AC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\eng\Common.macios.targets = ..\..\eng\Common.macios.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFD5EC5E-32F0-4AFE-9884-CB7C44C1EE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFD5EC5E-32F0-4AFE-9884-CB7C44C1EE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFD5EC5E-32F0-4AFE-9884-CB7C44C1EE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFD5EC5E-32F0-4AFE-9884-CB7C44C1EE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850ACD96-1E97-4AAB-A6E7-E775A80676F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850ACD96-1E97-4AAB-A6E7-E775A80676F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850ACD96-1E97-4AAB-A6E7-E775A80676F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850ACD96-1E97-4AAB-A6E7-E775A80676F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

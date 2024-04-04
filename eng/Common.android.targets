@@ -1,0 +1,36 @@
+<Project>
+
+	<Target Condition=" '$(AndroidBuildAar)' == 'true' " DependsOnTargets="$(BuildAarDependsOnTargets)" BeforeTargets="ProcessFrameworkReferences" Name="BuildAar" Inputs="@(_AndroidGradleInputs)" Outputs="$(_AndroidAarOutputPath)">
+
+		<PropertyGroup>
+			<_AndroidProjectDirFullPath>$([System.IO.Path]::GetFullPath($(AndroidProjectDir)))</_AndroidProjectDirFullPath>
+
+			<_AndroidProjectModuleBuildPath>$(_AndroidProjectDirFullPath)/$(AndroidProjectModule)/build</_AndroidProjectModuleBuildPath>
+			<_AndroidAarOutputPath>$(_AndroidProjectModuleBuildPath)/outputs/aar/$(AndroidProjectModule).aar</_AndroidAarOutputPath>
+			<AndroidBuildAar Condition=" '$(AndroidBuildAar)' == '' ">True</AndroidBuildAar>
+		
+			<_AndroidGradleW>gradlew</_AndroidGradleW>
+			<_AndroidGradleW Condition="$([MSBuild]::IsOSPlatform('windows'))">$(_AndroidGradleW).exe</_AndroidGradleW>
+			<_AndroidGradleWFullPath>$([System.IO.Path]::Combine($(_AndroidProjectDirFullPath), $(_AndroidGradleW)))</_AndroidGradleWFullPath>
+
+			<_AndroidHome>$([System.Environment]::GetEnvironmentVariable('ANDROID_HOME'))</_AndroidHome>
+			<_AndroidHome Condition=" '$(_AndroidHome)' == '' ">$(HOME)/Library/Developer/Xamarin/android-sdk-macosx</_AndroidHome>
+		</PropertyGroup>
+
+		<ItemGroup>
+			<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.java" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
+			<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.gradle" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
+			<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.xml" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
+			<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.properties" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
+		</ItemGroup>
+
+		<Error Condition=" '$(AndroidProjectDir)' == '' " Text="The AndroidProjectDir property must be set." />
+		<Error Condition=" '$(AndroidProjectModule)' == '' " Text="The AndroidProjectModule property must be set." />
+
+		<Exec
+			Command="$(_AndroidGradleWFullPath) $(AndroidProjectModule):assembleRelease"
+			EnvironmentVariables="ANDROID_HOME=$(_AndroidHome)"
+			WorkingDirectory="$(_AndroidProjectDirFullPath)" />
+	</Target>
+
+</Project>

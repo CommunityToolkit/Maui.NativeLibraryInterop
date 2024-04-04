@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseAnalytics.Binding", "FirebaseAnalytics.Binding\FirebaseAnalytics.Binding.csproj", "{3ED9CE50-B781-4DDB-831E-36544D8F9C87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseMessaging.Binding", "FirebaseMessaging.Binding\FirebaseMessaging.Binding.csproj", "{53C8A442-72AB-4AD2-A188-B30E07160FEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "sample\Sample.csproj", "{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{592F232C-CD90-49AF-A432-A164C9DD0141}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		..\..\eng\Common.macios.targets = ..\..\eng\Common.macios.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ED9CE50-B781-4DDB-831E-36544D8F9C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED9CE50-B781-4DDB-831E-36544D8F9C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED9CE50-B781-4DDB-831E-36544D8F9C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED9CE50-B781-4DDB-831E-36544D8F9C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C8A442-72AB-4AD2-A188-B30E07160FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C8A442-72AB-4AD2-A188-B30E07160FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C8A442-72AB-4AD2-A188-B30E07160FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C8A442-72AB-4AD2-A188-B30E07160FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
