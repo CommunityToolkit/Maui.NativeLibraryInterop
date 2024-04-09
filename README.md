@@ -100,9 +100,15 @@ Install prerequisites:
 
 The goal is to have bindings and samples building 100% through normal MSBuild invocations.
 
-Each .NET Binding project contains some additional MSBuild logic to help obtain and build the native SDK dependencies along with the native slim binding project.  In some cases this means the target will download native SDKs if they are not already present.
+Each .NET Binding project contains some additional MSBuild logic to help obtain and build the native SDK dependencies along with the native slim binding project. In some cases, the target may also download native SDKs if they are not already present. In this way, the expected native artefacts are available in the expected working directories.
 
-In the `eng/` folder you will find `Common.android.targets` and `Common.macios.targets` files which contain some custom build targets to help with this, and are imported into the binding projects.
+In the [```eng/```](/eng/) folder you will find [```Common.android.targets```](/eng/Common.android.targets) and [```Common.macios.targets```](/eng/Common.macios.targets) files which contain some custom build targets to help with this, and are imported into the binding projects.
+
+Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemneted via the [```Metadata.xml```](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file. 
+
+For iOS, binding projects must include an explicitly defined API. To help with this, [Objective-Sharpie](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) is automatically run on the resulting native framework to produce an [API definition file](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (```ApiDefinition.cs```) alongside it. This can serve as a helpful reference when creating and maintaining the ```ApiDefintion.cs``` file used by the iOS binding project.
+
+The requisite native dependencies are embedded into the binding assembly. When a .NET Android/iOS (or .NET MAUI) project adds a reference to that project, the native dependencies are included in the app automatically.
 
 ### Repository Conventions
 
