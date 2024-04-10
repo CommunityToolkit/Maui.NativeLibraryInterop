@@ -1,0 +1,20 @@
+name: build validation
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use .NET 8.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
