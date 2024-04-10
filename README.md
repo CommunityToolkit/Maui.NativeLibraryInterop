@@ -104,9 +104,13 @@ Each .NET Binding project contains some additional MSBuild logic to help obtain 
 
 In the [```eng/```](/eng/) folder you will find [```Common.android.targets```](/eng/Common.android.targets) and [```Common.macios.targets```](/eng/Common.macios.targets) files which contain some custom build targets to help with this, and are imported into the binding projects.
 
-Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemneted via the [```Metadata.xml```](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file. 
+Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemented via the [```Metadata.xml```](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file. 
+
+![Android slim binding conceptual overview](docs/assets/slim_bindings_conceptual_overview_android.png)
 
 For iOS, binding projects must include an explicitly defined API. To help with this, [Objective-Sharpie](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/#overview) is automatically run on the resulting native framework to produce an [API definition file](https://learn.microsoft.com/xamarin/cross-platform/macios/binding/objective-c-libraries?tabs=macos#The_API_definition_file) (```ApiDefinition.cs```) alongside it. This can serve as a helpful reference when creating and maintaining the ```ApiDefintion.cs``` file used by the iOS binding project.
+
+![iOS slim binding conceptual overview](docs/assets/slim_bindings_conceptual_overview_ios.png)
 
 The requisite native dependencies are embedded into the binding assembly. When a .NET Android/iOS (or .NET MAUI) project adds a reference to that project, the native dependencies are included in the app automatically.
 
