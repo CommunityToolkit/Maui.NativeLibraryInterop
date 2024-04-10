@@ -9,10 +9,15 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Use .NET 8.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
 
       - name: Install JDK 17
         uses: actions/setup-java@v4
@@ -20,10 +25,8 @@ jobs:
           distribution: microsoft
           java-version: 17
 
-      - name: Use .NET 8.x
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
+      - name: Use Xcode 15.3
+        run: sudo xcode-select -s /Applications/Xcode_15.3.app/Contents/Developer
 
       - name: Install MAUI
         run: dotnet workload install maui
