@@ -1,0 +1,49 @@
+name: validation
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+    name: build
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use .NET 8.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Install JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: microsoft
+          java-version: 17
+
+      - name: Use Xcode 15.3
+        run: sudo xcode-select -s /Applications/Xcode_15.3.app/Contents/Developer
+
+      - name: Install MAUI
+        run: dotnet workload install maui
+
+      - name: Install objectivesharpie
+        run: brew install objectivesharpie
+
+      - name: Create logs dir
+        run: mkdir -p ${{ runner.temp }}/logs/
+
+      - name: Build facebook
+        working-directory: ./facebook
+        run: dotnet build -bl:${{ runner.temp }}/logs/facebook.binlog
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-logs
+          path: ${{ runner.temp }}/logs/
