@@ -20,7 +20,7 @@
         <ApplicationTitle>Firebase Sample</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>org.shiny.pushsample</ApplicationId>
+        <ApplicationId>com.companyname.firebase.sample</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
