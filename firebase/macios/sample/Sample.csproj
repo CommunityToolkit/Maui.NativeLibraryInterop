@@ -62,8 +62,10 @@
         <ProjectReference Include="..\FirebaseAnalytics.Binding\FirebaseAnalytics.Binding.csproj" />
     </ItemGroup>
 
-	<ItemGroup>
-		<CustomEntitlements Include="aps-environment" Type="string" Value="development" Condition="'$(Configuration)' == 'Debug'" />
-		<CustomEntitlements Include="aps-environment" Type="string" Value="production" Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <!-- Exclude when running a generic build in CI where provisioning profiles aren't configured -->
+        <CustomEntitlements Include="aps-environment" Type="string" Value="development" Condition="'$(Configuration)' == 'Debug' and '$(CI)' != 'true'" />
+        <CustomEntitlements Include="aps-environment" Type="string" Value="production" Condition="'$(Configuration)' == 'Release' and '$(CI)' != 'true'" />
     </ItemGroup>
+
 </Project>
