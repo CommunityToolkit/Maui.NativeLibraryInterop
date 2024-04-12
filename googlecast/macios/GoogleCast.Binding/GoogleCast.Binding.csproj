@@ -18,6 +18,8 @@
     <PropertyGroup>
         <XcodeBuildMacCatalyst>False</XcodeBuildMacCatalyst>
         <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiGoogleCast.xcodeproj</XcodeProject>
+        <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
+        <ObjSharpieBind>False</ObjSharpieBind>
         <ObjSharpieBindNamespace>GoogleCast</ObjSharpieBindNamespace>
         <BuildXCFrameworkDependsOnTargets>$(BuildXCFrameworkDependsOnTargets);NativeDependencies</BuildXCFrameworkDependsOnTargets>
     </PropertyGroup>
