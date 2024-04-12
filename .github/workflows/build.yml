@@ -40,7 +40,7 @@ jobs:
 
       - name: Build facebook
         working-directory: ./facebook
-        run: dotnet build -bl:${{ runner.temp }}/logs/facebook.binlog
+        run: dotnet build -m:1 -bl:${{ runner.temp }}/logs/facebook.binlog
 
       - name: Build firebase
         working-directory: ./firebase/macios
@@ -48,7 +48,7 @@ jobs:
 
       - name: Build googlecast
         working-directory: ./googlecast/macios
-        run: dotnet build -bl:${{ runner.temp }}/logs/googlecast-macios.binlog
+        run: dotnet build -m:1 -bl:${{ runner.temp }}/logs/googlecast-macios.binlog
 
       - name: Upload logs
         uses: actions/upload-artifact@v4
