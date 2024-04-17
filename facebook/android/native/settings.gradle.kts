@@ -14,4 +14,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MauiFacebook"
-include ':mauifacebook'
+include(":mauifacebook")

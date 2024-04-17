@@ -276,6 +276,25 @@ There are several ways you can use these samples in your own project.
 1. Submodule or otherwise clone this repo into your project, and reference the projects directly as outlined above in the [Get Started section](#get-started)
 2. Build the binding projects and consume the .dll assembly artifacts
 
+When packaging a native Android library (.aar) file, gradle/maven dependencies are _not_ automatically bundled into your library. This is important to note, as the application project will often need to explicitly reference these dependencies in order to run successfully. While this approach can work on an individual application basis, it is *not* recommended for library projects. Including specific versions of dependencies in a library can lead to version conflicts when the library is consumed by an application that also uses the same dependencies.
+
+The `facebook/android/native/mauifacebook/build.gradle.kts` file is configured to copy facebook dependencies into a `build/outputs/deps` folder. Some of this content is then referenced by the .NET MAUI sample project:
+
+```xml
+<ItemGroup>
+  <AndroidLibrary Include="..\android\native\mauifacebook\build\outputs\deps\facebook-common*.aar">
+    <Bind>false</Bind>
+    <Visible>false</Visible>
+  </AndroidLibrary>
+  <AndroidLibrary Include="..\android\native\mauifacebook\build\outputs\deps\facebook-core*.aar">
+    <Bind>false</Bind>
+    <Visible>false</Visible>
+  </AndroidLibrary>
+</ItemGroup>
+```
+
+In some cases first party NuGet packages will exist for missing dependencies. In other cases, you may need to manually include the dependencies in the project as demonstrated in the sample. We hope to improve this type of dependency inclusion guess work in the future by introducing support for `@(AndroidMavenPackage)` references in Android projects.
+
 > NOTE: Getting this repository building in CI and producing assembly and/or NuGet artifacts is a near term goal but is not currently available.
 
 

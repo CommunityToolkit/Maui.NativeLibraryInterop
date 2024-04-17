@@ -8,11 +8,11 @@
     <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
   </PropertyGroup>
   <ItemGroup>
-    <AndroidLibrary Include="../native/mauifacebook/build/outputs/aar/mauifacebook.aar">
+    <AndroidLibrary Include="../native/mauifacebook/build/outputs/aar/mauifacebook-release.aar">
       <Link>mauifacebook.aar</Link>
-      <Bind>True</Bind>
-      <Pack>True</Pack>
-      <Visible>False</Visible>
+      <Bind>true</Bind>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
     </AndroidLibrary>
   </ItemGroup>
 

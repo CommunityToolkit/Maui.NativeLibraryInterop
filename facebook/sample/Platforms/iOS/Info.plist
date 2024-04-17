@@ -28,5 +28,20 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>fbAPP-ID</string>
+		</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>YOUR_APP_ID</string>
+	<key>FacebookClientToken</key>
+	<string>YOUR_CLIENT_TOKEN</string>
+	<key>FacebookDisplayName</key>
+	<string>Facebook.Sample</string>
 </dict>
 </plist>

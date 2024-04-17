@@ -2,11 +2,6 @@
 
     <PropertyGroup>
         <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
-<!--        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>-->
-<!--        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>-->
-        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-        <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
-
         <!-- Note for MacCatalyst:
         The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
         When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
@@ -68,6 +63,15 @@
 
     <ItemGroup Condition="$(TargetFramework.Contains('android'))">
         <ProjectReference Include="..\android\Facebook.Android.Binding\Facebook.Android.Binding.csproj" />
+        <!-- Include core facebook dependencies. Starting in .NET 9 these can potentially be replaced with @(AndroidMavenPackage) -->
+        <AndroidLibrary Include="..\android\native\mauifacebook\build\outputs\deps\facebook-common*.aar">
+            <Bind>false</Bind>
+            <Visible>false</Visible>
+        </AndroidLibrary>
+        <AndroidLibrary Include="..\android\native\mauifacebook\build\outputs\deps\facebook-core*.aar">
+            <Bind>false</Bind>
+            <Visible>false</Visible>
+        </AndroidLibrary>
     </ItemGroup>
 
 </Project>
