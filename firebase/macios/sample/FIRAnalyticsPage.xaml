@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiFirebaseMessagingSample.FIRAnalyticsPage">
+
+   <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0">
+
+            <Label
+                Text="Firebase"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"
+                Padding="100,0" />
+
+            <Label
+                Text="Analytics Demo"
+                Style="{StaticResource SubHeadline}"
+                VerticalOptions="Center" />
+
+            <Button
+                x:Name="btnAnalytics"
+                Text="Log Analytics Event"
+                FontSize="18"
+                Clicked="OnAnalyticsClicked"
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+   </ScrollView>
+
+</ContentPage>

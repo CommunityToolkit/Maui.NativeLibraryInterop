@@ -1,8 +1,13 @@
+//
+//  MauiFIRAnalytics.swift
+//  MauiFirebase
+//
+
 import Foundation
 import FirebaseAnalytics
 
-@objc(FirebaseAnalytics)
-public class FirebaseAnalytics : NSObject {
+@objc(MauiFIRAnalytics)
+public class MauiFIRAnalytics : NSObject {
     
     @objc
     public static func logEvent(eventName: String, parameters: Dictionary<String, Any>) {
