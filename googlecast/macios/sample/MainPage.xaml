@@ -15,6 +15,11 @@
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
             <Label
+                Text="Google Cast Demo"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
                 Text="Click the icon below to start Google Cast"
                 Style="{StaticResource SubHeadline}"/>
 
