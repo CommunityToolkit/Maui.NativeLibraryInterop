@@ -38,6 +38,13 @@ jobs:
       - name: Create logs dir
         run: mkdir -p ${{ runner.temp }}/logs/
 
+      - name: Build and test build tasks
+        working-directory: ./eng
+        run: >-
+          dotnet test Microsoft.Maui.BindingExtensions.Build.Tasks.sln
+          --logger trx --results-directory ${{ runner.temp }}/logs/TestResults-build-tasks
+          -bl:${{ runner.temp }}/logs/build-tasks.binlog
+
       - name: Build facebook
         working-directory: ./facebook
         run: dotnet build -m:1 -bl:${{ runner.temp }}/logs/facebook.binlog
