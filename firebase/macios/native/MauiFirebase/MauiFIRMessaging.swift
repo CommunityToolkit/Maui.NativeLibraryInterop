@@ -1,11 +1,16 @@
+//
+//  MauiFIRMessaging.swift
+//  MauiFirebase
+//
+
 import Foundation
 import Combine
 import FirebaseMessaging
 import FirebaseInstallations
 import UIKit
 
-@objc(FirebaseMessaging)
-public class FirebaseMessaging : NSObject {
+@objc(MauiFIRMessaging)
+public class MauiFIRMessaging : NSObject {
     
     @objc(setIsAutoInitEnabled:)
     public static func setIsAutoInitEnabled(enabled: Bool) {

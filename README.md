@@ -15,7 +15,7 @@ Get started with slim bindings using the Facebook, Firebase Analytics, Firebase 
 1. Submodule or clone this repo
 
 2. Navigate to the appropriate folder for the binding you're interested in using or building from <br>
-e.g. For Firebase Messaging, navigate to `firebase/macios/FirebaseMessaging.Binding`
+e.g. For Firebase Messaging, navigate to `firebase/macios/Firebase.MaciOS.Binding`
 
 3. Run `dotnet build`
 
@@ -24,7 +24,7 @@ e.g. For Firebase Messaging, navigate to `firebase/macios/FirebaseMessaging.Bind
 5. Add a project reference to your MAUI app pointing to the path where you have cloned the repo <br>
 e.g. For Firebase Messaging, add to your csproj:
     ```xaml
-    <ProjectReference Include="<YourPathToClonedSlimBindingsRepo>\FirebaseMessaging.Binding\FirebaseMessaging.Binding.csproj" />
+    <ProjectReference Include="<YourPathToClonedSlimBindingsRepo>\Firebase.MaciOS.Binding\Firebase.MaciOS.Binding.csproj" />
     ```
 
 6. Cross-reference the sample and add the necessary code into your own project. <br>
@@ -131,8 +131,8 @@ If the existing API surface in a given sample doesn't expose the functionality y
 Inside the Xcode project you will find one or more .Swift files which define the public API surface for the Slim Binding.  For example, the `register` method for Firebase Messaging is defined as below:
 
 ```Swift
-@objc(FirebaseMessaging)
-public class FirebaseMessaging : NSObject {
+@objc(MauiFIRMessaging)
+public class MauiFIRMessaging : NSObject {
 
     @objc(register:completion:)
     public static func register(apnsToken: NSData, completion: @escaping (String?, NSError?) -> Void) {
@@ -153,7 +153,7 @@ public class FirebaseMessaging : NSObject {
 
 You can see in this method that the public API surface only uses types which iOS for .NET already is aware of: `NSData`, `String`, `NSError` and a callback.
 
-In the `FirebaseMessaging.Binding` project, the `ApiDefinitions.cs` file contains the binding definition for this slim wrapper API:
+In the `Firebase.MaciOS.Binding` project, the `ApiDefinitions.cs` file contains the binding definition for this slim wrapper API:
 
 ```csharp
 using System;
@@ -161,17 +161,16 @@ using Foundation;
 
 namespace Firebase
 {
-    [BaseType(typeof(NSObject))]
-    interface FirebaseMessaging
+    // @interface MauiFIRMessaging : NSObject
+    [BaseType (typeof(NSObject))]
+    interface MauiFIRMessaging
     {
         [Static]
-        [Export("register:completion:")]
+        [Export ("register:completion:")]
         [Async]
-        void Register(NSData nativePush, Action<string?, NSError?> completion);
-
+        void Register (NSData apnsToken, Action<string?, NSError?> completion);
         // ...
     }
-}
 ```
 
 #### Modifying Mac/iOS
@@ -191,7 +190,7 @@ public static func unregister(completion: @escaping (NSError?) -> Void) {
 The other half will be to update the `ApiDefinitions.cs` file in the binding project to expose this new method.  There are two ways you can go about this:
 
 1. You can manually add the required code
-2. When the binding project builds, objective sharpie is run and an `ApiDefinitions.cs` file is generated inside of the `native/macios/messaging/.build/Binding` folder (this path will vary based on the project you are working on of course).  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
+2. When the binding project builds, objective sharpie is run and an `ApiDefinitions.cs` file is generated inside of the `native/macios/.build/Binding` folder (this path will vary based on the project you are working on of course).  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
 
 In this case, the changes to `ApiDefinitions.cs` would be:
 

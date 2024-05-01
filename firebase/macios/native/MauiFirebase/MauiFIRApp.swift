@@ -1,8 +1,13 @@
+//
+//  MauiFIRApp.swift
+//  MauiFirebase
+//
+
 import Foundation
 import FirebaseCore
 
-@objc(FirebaseApplication)
-public class FirebaseApplication : NSObject {
+@objc(MauiFIRApp)
+public class MauiFIRApp : NSObject {
     
     @objc
     public static func autoConfigure() {

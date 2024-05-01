@@ -7,56 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64B992DD2B966E8400BAFB55 /* MauiFirebaseMessaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B992DC2B966E8400BAFB55 /* MauiFirebaseMessaging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64B992E42B966F2D00BAFB55 /* MauiFirebaseMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B992E32B966F2D00BAFB55 /* MauiFirebaseMessaging.swift */; };
-		E5A6E48D2B9C04EF00B955ED /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E5A6E48C2B9C04EF00B955ED /* FirebaseMessaging */; };
+		D051A4BC2BD33D4600EC7F28 /* MauiFirebase.h in Headers */ = {isa = PBXBuildFile; fileRef = D051A4BB2BD33D4600EC7F28 /* MauiFirebase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D051A4C32BD33D9100EC7F28 /* MauiFIRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051A4C22BD33D9100EC7F28 /* MauiFIRApp.swift */; };
+		D051A4C52BD33DB100EC7F28 /* MauiFIRMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051A4C42BD33DB100EC7F28 /* MauiFIRMessaging.swift */; };
+		D051A4C72BD33DBB00EC7F28 /* MauiFIRAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051A4C62BD33DBB00EC7F28 /* MauiFIRAnalytics.swift */; };
+		D0BECB2A2BD833BA00CDDD0A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0BECB292BD833BA00CDDD0A /* FirebaseAnalytics */; };
+		D0BECB2C2BD833BA00CDDD0A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D0BECB2B2BD833BA00CDDD0A /* FirebaseMessaging */; };
+		D0BECB2E2BD8381100CDDD0A /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = D0BECB2D2BD8381100CDDD0A /* FirebaseInstallations */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		64B992D92B966E8400BAFB55 /* MauiFirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MauiFirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64B992DC2B966E8400BAFB55 /* MauiFirebaseMessaging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MauiFirebaseMessaging.h; sourceTree = "<group>"; };
-		64B992E32B966F2D00BAFB55 /* MauiFirebaseMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFirebaseMessaging.swift; sourceTree = "<group>"; };
+		D051A4B82BD33D4600EC7F28 /* MauiFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MauiFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D051A4BB2BD33D4600EC7F28 /* MauiFirebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MauiFirebase.h; sourceTree = "<group>"; };
+		D051A4C22BD33D9100EC7F28 /* MauiFIRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRApp.swift; sourceTree = "<group>"; };
+		D051A4C42BD33DB100EC7F28 /* MauiFIRMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRMessaging.swift; sourceTree = "<group>"; };
+		D051A4C62BD33DBB00EC7F28 /* MauiFIRAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRAnalytics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		64B992D62B966E8400BAFB55 /* Frameworks */ = {
+		D051A4B52BD33D4600EC7F28 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5A6E48D2B9C04EF00B955ED /* FirebaseMessaging in Frameworks */,
+				D0BECB2E2BD8381100CDDD0A /* FirebaseInstallations in Frameworks */,
+				D0BECB2C2BD833BA00CDDD0A /* FirebaseMessaging in Frameworks */,
+				D0BECB2A2BD833BA00CDDD0A /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		64B992CF2B966E8400BAFB55 = {
+		D051A4AE2BD33D4600EC7F28 = {
 			isa = PBXGroup;
 			children = (
-				64B992DB2B966E8400BAFB55 /* MauiFirebaseMessaging */,
-				64B992DA2B966E8400BAFB55 /* Products */,
-				64B993072B979E9C00BAFB55 /* Frameworks */,
+				D051A4BA2BD33D4600EC7F28 /* MauiFirebase */,
+				D051A4B92BD33D4600EC7F28 /* Products */,
+				D051A4C82BD33DED00EC7F28 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		64B992DA2B966E8400BAFB55 /* Products */ = {
+		D051A4B92BD33D4600EC7F28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64B992D92B966E8400BAFB55 /* MauiFirebaseMessaging.framework */,
+				D051A4B82BD33D4600EC7F28 /* MauiFirebase.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		64B992DB2B966E8400BAFB55 /* MauiFirebaseMessaging */ = {
+		D051A4BA2BD33D4600EC7F28 /* MauiFirebase */ = {
 			isa = PBXGroup;
 			children = (
-				64B992DC2B966E8400BAFB55 /* MauiFirebaseMessaging.h */,
-				64B992E32B966F2D00BAFB55 /* MauiFirebaseMessaging.swift */,
+				D051A4BB2BD33D4600EC7F28 /* MauiFirebase.h */,
+				D051A4C22BD33D9100EC7F28 /* MauiFIRApp.swift */,
+				D051A4C42BD33DB100EC7F28 /* MauiFIRMessaging.swift */,
+				D051A4C62BD33DBB00EC7F28 /* MauiFIRAnalytics.swift */,
 			);
-			path = MauiFirebaseMessaging;
+			path = MauiFirebase;
 			sourceTree = "<group>";
 		};
-		64B993072B979E9C00BAFB55 /* Frameworks */ = {
+		D051A4C82BD33DED00EC7F28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -66,54 +76,56 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		64B992D42B966E8400BAFB55 /* Headers */ = {
+		D051A4B32BD33D4600EC7F28 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B992DD2B966E8400BAFB55 /* MauiFirebaseMessaging.h in Headers */,
+				D051A4BC2BD33D4600EC7F28 /* MauiFirebase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		64B992D82B966E8400BAFB55 /* MauiFirebaseMessaging */ = {
+		D051A4B72BD33D4600EC7F28 /* MauiFirebase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64B992E02B966E8400BAFB55 /* Build configuration list for PBXNativeTarget "MauiFirebaseMessaging" */;
+			buildConfigurationList = D051A4BF2BD33D4600EC7F28 /* Build configuration list for PBXNativeTarget "MauiFirebase" */;
 			buildPhases = (
-				64B992D42B966E8400BAFB55 /* Headers */,
-				64B992D52B966E8400BAFB55 /* Sources */,
-				64B992D62B966E8400BAFB55 /* Frameworks */,
-				64B992D72B966E8400BAFB55 /* Resources */,
+				D051A4B32BD33D4600EC7F28 /* Headers */,
+				D051A4B42BD33D4600EC7F28 /* Sources */,
+				D051A4B52BD33D4600EC7F28 /* Frameworks */,
+				D051A4B62BD33D4600EC7F28 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MauiFirebaseMessaging;
+			name = MauiFirebase;
 			packageProductDependencies = (
-				E5A6E48C2B9C04EF00B955ED /* FirebaseMessaging */,
+				D0BECB292BD833BA00CDDD0A /* FirebaseAnalytics */,
+				D0BECB2B2BD833BA00CDDD0A /* FirebaseMessaging */,
+				D0BECB2D2BD8381100CDDD0A /* FirebaseInstallations */,
 			);
-			productName = MauiFirebaseMessaging;
-			productReference = 64B992D92B966E8400BAFB55 /* MauiFirebaseMessaging.framework */;
+			productName = MauiFirebase;
+			productReference = D051A4B82BD33D4600EC7F28 /* MauiFirebase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		64B992D02B966E8400BAFB55 /* Project object */ = {
+		D051A4AF2BD33D4600EC7F28 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					64B992D82B966E8400BAFB55 = {
-						CreatedOnToolsVersion = 15.2;
-						LastSwiftMigration = 1520;
+					D051A4B72BD33D4600EC7F28 = {
+						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 				};
 			};
-			buildConfigurationList = 64B992D32B966E8400BAFB55 /* Build configuration list for PBXProject "MauiFirebaseMessaging" */;
+			buildConfigurationList = D051A4B22BD33D4600EC7F28 /* Build configuration list for PBXProject "MauiFirebase" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,21 +133,21 @@
 				en,
 				Base,
 			);
-			mainGroup = 64B992CF2B966E8400BAFB55;
+			mainGroup = D051A4AE2BD33D4600EC7F28;
 			packageReferences = (
-				E5A6E47F2B9C04EF00B955ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
-			productRefGroup = 64B992DA2B966E8400BAFB55 /* Products */;
+			productRefGroup = D051A4B92BD33D4600EC7F28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64B992D82B966E8400BAFB55 /* MauiFirebaseMessaging */,
+				D051A4B72BD33D4600EC7F28 /* MauiFirebase */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		64B992D72B966E8400BAFB55 /* Resources */ = {
+		D051A4B62BD33D4600EC7F28 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -145,18 +157,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		64B992D52B966E8400BAFB55 /* Sources */ = {
+		D051A4B42BD33D4600EC7F28 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B992E42B966F2D00BAFB55 /* MauiFirebaseMessaging.swift in Sources */,
+				D051A4C72BD33DBB00EC7F28 /* MauiFIRAnalytics.swift in Sources */,
+				D051A4C52BD33DB100EC7F28 /* MauiFIRMessaging.swift in Sources */,
+				D051A4C32BD33D9100EC7F28 /* MauiFIRApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		64B992DE2B966E8400BAFB55 /* Debug */ = {
+		D051A4BD2BD33D4600EC7F28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -209,10 +223,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -220,7 +237,7 @@
 			};
 			name = Debug;
 		};
-		64B992DF2B966E8400BAFB55 /* Release */ = {
+		D051A4BE2BD33D4600EC7F28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -267,18 +284,23 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		64B992E12B966E8400BAFB55 /* Debug */ = {
+		D051A4C02BD33D4600EC7F28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -290,35 +312,34 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.MauiFirebaseMessaging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.MauiFirebase;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = auto;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		64B992E22B966E8400BAFB55 /* Release */ = {
+		D051A4C12BD33D4600EC7F28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -330,26 +351,24 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.MauiFirebaseMessaging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.companyname.MauiFirebase;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = auto;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -358,20 +377,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64B992D32B966E8400BAFB55 /* Build configuration list for PBXProject "MauiFirebaseMessaging" */ = {
+		D051A4B22BD33D4600EC7F28 /* Build configuration list for PBXProject "MauiFirebase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				64B992DE2B966E8400BAFB55 /* Debug */,
-				64B992DF2B966E8400BAFB55 /* Release */,
+				D051A4BD2BD33D4600EC7F28 /* Debug */,
+				D051A4BE2BD33D4600EC7F28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64B992E02B966E8400BAFB55 /* Build configuration list for PBXNativeTarget "MauiFirebaseMessaging" */ = {
+		D051A4BF2BD33D4600EC7F28 /* Build configuration list for PBXNativeTarget "MauiFirebase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				64B992E12B966E8400BAFB55 /* Debug */,
-				64B992E22B966E8400BAFB55 /* Release */,
+				D051A4C02BD33D4600EC7F28 /* Debug */,
+				D051A4C12BD33D4600EC7F28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -379,23 +398,33 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E5A6E47F2B9C04EF00B955ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.22.1;
+				minimumVersion = 10.24.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E5A6E48C2B9C04EF00B955ED /* FirebaseMessaging */ = {
+		D0BECB292BD833BA00CDDD0A /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E5A6E47F2B9C04EF00B955ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		D0BECB2B2BD833BA00CDDD0A /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		D0BECB2D2BD8381100CDDD0A /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 64B992D02B966E8400BAFB55 /* Project object */;
+	rootObject = D051A4AF2BD33D4600EC7F28 /* Project object */;
 }

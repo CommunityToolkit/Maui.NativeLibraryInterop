@@ -4,18 +4,19 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
         <IsBindingProject>true</IsBindingProject>
+        <NoBindingEmbedding>true</NoBindingEmbedding>
 
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/analytics/MauiFirebaseAnalytics.xcodeproj</XcodeProject>
+        <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiFirebase.xcodeproj</XcodeProject>
         <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
-        <ObjSharpieBind>False</ObjSharpieBind>
+        <ObjSharpieBind>true</ObjSharpieBind>
         <ObjSharpieBindNamespace>Firebase</ObjSharpieBindNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
-        <NativeReference Include="../native/analytics/.build/MauiFirebaseAnalytics.xcframework">
+        <NativeReference Include="../native/.build/MauiFirebase.xcframework">
             <Kind>Framework</Kind>
-            <SmartLink>True</SmartLink>
+            <SmartLink>true</SmartLink>
         </NativeReference>
     </ItemGroup>
 
