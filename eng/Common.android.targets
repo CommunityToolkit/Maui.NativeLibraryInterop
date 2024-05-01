@@ -22,7 +22,7 @@
 		<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.properties" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
 	</ItemGroup>
 
-	<Target Condition=" '$(AndroidBuildAar)' == 'true' " DependsOnTargets="$(BuildAarDependsOnTargets)" BeforeTargets="ProcessFrameworkReferences" Name="BuildAar" Inputs="@(_AndroidGradleInputs)" Outputs="$(_AndroidAarOutputPath)">
+	<Target Name="BuildAar" Condition=" '$(AndroidBuildAar)' == 'true' " DependsOnTargets="$(BuildAarDependsOnTargets)" BeforeTargets="$(CoreResolveReferencesDependsOn)" Inputs="@(_AndroidGradleInputs)" Outputs="$(_AndroidAarOutputPath)">
 
 		<Error Condition=" '$(AndroidProjectDir)' == '' " Text="The AndroidProjectDir property must be set." />
 		<Error Condition=" '$(AndroidProjectModule)' == '' " Text="The AndroidProjectModule property must be set." />

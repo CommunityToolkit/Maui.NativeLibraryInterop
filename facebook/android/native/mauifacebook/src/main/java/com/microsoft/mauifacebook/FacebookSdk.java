@@ -14,8 +14,9 @@ public class FacebookSdk {
 
     static AppEventsLogger _logger;
 
-    public static void initialize(Activity activity, Boolean isDebug) {
+    public static void initializeSDK(Activity activity, Boolean isDebug) {
         Application application = activity.getApplication();
+        com.facebook.FacebookSdk.sdkInitialize(application);
 
         if (isDebug) {
             com.facebook.FacebookSdk.setIsDebugEnabled(true);
@@ -26,6 +27,10 @@ public class FacebookSdk {
         AppEventsLogger.activateApp(application);
 
         _logger = AppEventsLogger.newLogger(activity);
+    }
+
+    public static void enableAutoLogAppEvents(Boolean enabled) {
+        com.facebook.FacebookSdk.setAutoLogAppEventsEnabled(enabled);
     }
 
     public static void logEvent(String eventName) {
