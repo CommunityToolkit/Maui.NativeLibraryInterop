@@ -8,13 +8,12 @@ namespace Microsoft.Maui.BindingExtensions.Build.Tasks
     {
         public abstract string TaskPrefix { get; }
 
-        protected string WorkingDirectory { get; private set; }
+        public string WorkingDirectory { get; set; } = Directory.GetCurrentDirectory();
 
         StringBuilder toolOutput = new StringBuilder();
 
         public BindingToolTask()
         {
-            WorkingDirectory = Directory.GetCurrentDirectory();
         }
 
         public override bool Execute()
@@ -41,6 +40,11 @@ namespace Microsoft.Maui.BindingExtensions.Build.Tasks
         {
             base.LogEventsFromTextOutput(singleLine, messageImportance);
             toolOutput.AppendLine(singleLine);
+        }
+
+        protected override string GetWorkingDirectory()
+        {
+            return WorkingDirectory;
         }
 
         public virtual bool RunTask() => base.Execute();

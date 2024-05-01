@@ -7,19 +7,15 @@
     <RootNamespace>Facebook</RootNamespace>
     <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
   </PropertyGroup>
+
+  <!-- Metadata applicable to @(AndroidLibrary) will be used if set -->
   <ItemGroup>
-    <AndroidLibrary Include="../native/mauifacebook/build/outputs/aar/mauifacebook-release.aar">
-      <Link>mauifacebook.aar</Link>
+    <GradleProjectReference Include="../native" >
+      <ModuleName>mauifacebook</ModuleName>
       <Bind>true</Bind>
       <Pack>true</Pack>
-      <Visible>false</Visible>
-    </AndroidLibrary>
+    </GradleProjectReference>
   </ItemGroup>
-
-  <PropertyGroup>
-    <AndroidProjectDir>$(MSBuildThisFileDirectory)../native</AndroidProjectDir>
-    <AndroidProjectModule>mauifacebook</AndroidProjectModule>
-  </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.android.targets" />
 </Project>

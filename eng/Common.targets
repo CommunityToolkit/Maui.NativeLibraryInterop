@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <CommonTargetsImported>true</CommonTargetsImported>
+    <BindingExtBuildTasksAssembly>$(MSBuildThisFileDirectory)src\Microsoft.Maui.BindingExtensions.Build.Tasks\bin\Debug\netstandard2.0\Microsoft.Maui.BindingExtensions.Build.Tasks.dll</BindingExtBuildTasksAssembly>
+    <HOME Condition=" '$(HOME)' == '' ">$(USERPROFILE)</HOME>
+  </PropertyGroup>
+
+  <!-- Disply an error if the build task project is not yet built before any of the samples-->
+  <Target Name="_EnsureBuildTasksAssembly" >
+    <Exec Command="dotnet build -p:Configuration=$(Configuration) $(MSBuildThisFileDirectory)src/Microsoft.Maui.BindingExtensions.Build.Tasks/Microsoft.Maui.BindingExtensions.Build.Tasks.csproj" />
+    <Error
+        Text="Unable to locate build tasks assembly, please build Microsoft.Maui.BindingExtensions.Build.Tasks.sln"
+        Condition=" !Exists('$(BindingExtBuildTasksAssembly)') " >
+    </Error>
+  </Target>
+
+</Project>
