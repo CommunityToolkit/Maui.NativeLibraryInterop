@@ -2,25 +2,51 @@
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    bool facebookSdkIntialized = false;
 
     public MainPage()
     {
         InitializeComponent();
-
-        var fb = new Facebook.FacebookSdk();
-        
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    async Task InitializeFacebookSdk()
     {
-        count++;
+        try
+        {
+#if ANDROID
+            Facebook.FacebookSdk.InitializeSDK(Microsoft.Maui.ApplicationModel.Platform.CurrentActivity, Java.Lang.Boolean.True);
+#elif IOS
+            string appId = Foundation.NSBundle.MainBundle.ObjectForInfoDictionary("FacebookAppID").ToString();
+            string clientToken = Foundation.NSBundle.MainBundle.ObjectForInfoDictionary("FacebookClientToken").ToString();
+            Facebook.FacebookSdk.SetupWithAppId(appId, clientToken);
+#endif
+            facebookSdkIntialized = true;
+        }
+        catch (Exception ex)
+        {
+           await DisplayAlert("Unable to initialize Facebook SDK!", ex.ToString(), "OK");
+        }
+    }
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
+    async void OnAppEventClicked(object sender, EventArgs e)
+    {
+        if (!facebookSdkIntialized)
+        {
+            await InitializeFacebookSdk();
+        }
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        try
+        {
+#if ANDROID
+            Facebook.FacebookSdk.LogEvent("OnAppEventClicked");
+#elif IOS
+            Facebook.FacebookSdk.LogEventWithEventName("OnAppEventClicked");
+#endif
+            await DisplayAlert("Attempted to send App Event", "", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Failed to send App Event!", ex.ToString(), "OK");
+        }
     }
 }

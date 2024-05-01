@@ -3,24 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6425FFBD2BBE067500F9DAB3 /* FBSDKCoreKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFB72BBE067500F9DAB3 /* FBSDKCoreKit.xcframework */; };
-		6425FFBE2BBE067500F9DAB3 /* FBSDKCoreKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFB72BBE067500F9DAB3 /* FBSDKCoreKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6425FFBF2BBE067500F9DAB3 /* FBSDKLoginKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFB82BBE067500F9DAB3 /* FBSDKLoginKit.xcframework */; };
-		6425FFC02BBE067500F9DAB3 /* FBSDKLoginKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFB82BBE067500F9DAB3 /* FBSDKLoginKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6425FFC12BBE067500F9DAB3 /* FBSDKShareKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFB92BBE067500F9DAB3 /* FBSDKShareKit.xcframework */; };
-		6425FFC22BBE067500F9DAB3 /* FBSDKShareKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFB92BBE067500F9DAB3 /* FBSDKShareKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6425FFC32BBE067600F9DAB3 /* FBSDKCoreKit_Basics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFBA2BBE067500F9DAB3 /* FBSDKCoreKit_Basics.xcframework */; };
-		6425FFC42BBE067600F9DAB3 /* FBSDKCoreKit_Basics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFBA2BBE067500F9DAB3 /* FBSDKCoreKit_Basics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6425FFC52BBE067600F9DAB3 /* FBSDKGamingServicesKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFBB2BBE067500F9DAB3 /* FBSDKGamingServicesKit.xcframework */; };
-		6425FFC62BBE067600F9DAB3 /* FBSDKGamingServicesKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFBB2BBE067500F9DAB3 /* FBSDKGamingServicesKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6425FFC72BBE067600F9DAB3 /* FBAEMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFBC2BBE067500F9DAB3 /* FBAEMKit.xcframework */; };
-		6425FFC82BBE067600F9DAB3 /* FBAEMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6425FFBC2BBE067500F9DAB3 /* FBAEMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		643C24B32B99104200C2A6AA /* MauiFacebook.h in Headers */ = {isa = PBXBuildFile; fileRef = 643C24B22B99104200C2A6AA /* MauiFacebook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		646787CA2B99125200677775 /* MauiFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646787C92B99125200677775 /* MauiFacebook.swift */; };
+		D0AF2A9B2BDC4E5B002AA03E /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = D0AF2A9A2BDC4E5B002AA03E /* FacebookBasics */; };
+		D0AF2A9D2BDC4E5B002AA03E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = D0AF2A9C2BDC4E5B002AA03E /* FacebookCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,12 +20,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6425FFC82BBE067600F9DAB3 /* FBAEMKit.xcframework in Embed Frameworks */,
-				6425FFC22BBE067500F9DAB3 /* FBSDKShareKit.xcframework in Embed Frameworks */,
-				6425FFC42BBE067600F9DAB3 /* FBSDKCoreKit_Basics.xcframework in Embed Frameworks */,
-				6425FFC62BBE067600F9DAB3 /* FBSDKGamingServicesKit.xcframework in Embed Frameworks */,
-				6425FFBE2BBE067500F9DAB3 /* FBSDKCoreKit.xcframework in Embed Frameworks */,
-				6425FFC02BBE067500F9DAB3 /* FBSDKLoginKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,12 +27,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6425FFB72BBE067500F9DAB3 /* FBSDKCoreKit.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit.xcframework; path = .build/XCFrameworks/FBSDKCoreKit.xcframework; sourceTree = "<group>"; };
-		6425FFB82BBE067500F9DAB3 /* FBSDKLoginKit.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBSDKLoginKit.xcframework; path = .build/XCFrameworks/FBSDKLoginKit.xcframework; sourceTree = "<group>"; };
-		6425FFB92BBE067500F9DAB3 /* FBSDKShareKit.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBSDKShareKit.xcframework; path = .build/XCFrameworks/FBSDKShareKit.xcframework; sourceTree = "<group>"; };
-		6425FFBA2BBE067500F9DAB3 /* FBSDKCoreKit_Basics.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBSDKCoreKit_Basics.xcframework; path = .build/XCFrameworks/FBSDKCoreKit_Basics.xcframework; sourceTree = "<group>"; };
-		6425FFBB2BBE067500F9DAB3 /* FBSDKGamingServicesKit.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBSDKGamingServicesKit.xcframework; path = .build/XCFrameworks/FBSDKGamingServicesKit.xcframework; sourceTree = "<group>"; };
-		6425FFBC2BBE067500F9DAB3 /* FBAEMKit.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBAEMKit.xcframework; path = .build/XCFrameworks/FBAEMKit.xcframework; sourceTree = "<group>"; };
 		643C24AF2B99104200C2A6AA /* MauiFacebook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MauiFacebook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		643C24B22B99104200C2A6AA /* MauiFacebook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MauiFacebook.h; sourceTree = "<group>"; };
 		646787C92B99125200677775 /* MauiFacebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFacebook.swift; sourceTree = "<group>"; };
@@ -59,12 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6425FFC72BBE067600F9DAB3 /* FBAEMKit.xcframework in Frameworks */,
-				6425FFC12BBE067500F9DAB3 /* FBSDKShareKit.xcframework in Frameworks */,
-				6425FFC32BBE067600F9DAB3 /* FBSDKCoreKit_Basics.xcframework in Frameworks */,
-				6425FFC52BBE067600F9DAB3 /* FBSDKGamingServicesKit.xcframework in Frameworks */,
-				6425FFBD2BBE067500F9DAB3 /* FBSDKCoreKit.xcframework in Frameworks */,
-				6425FFBF2BBE067500F9DAB3 /* FBSDKLoginKit.xcframework in Frameworks */,
+				D0AF2A9B2BDC4E5B002AA03E /* FacebookBasics in Frameworks */,
+				D0AF2A9D2BDC4E5B002AA03E /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,12 +74,6 @@
 		643C24B92B99121700C2A6AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6425FFBC2BBE067500F9DAB3 /* FBAEMKit.xcframework */,
-				6425FFBA2BBE067500F9DAB3 /* FBSDKCoreKit_Basics.xcframework */,
-				6425FFB72BBE067500F9DAB3 /* FBSDKCoreKit.xcframework */,
-				6425FFBB2BBE067500F9DAB3 /* FBSDKGamingServicesKit.xcframework */,
-				6425FFB82BBE067500F9DAB3 /* FBSDKLoginKit.xcframework */,
-				6425FFB92BBE067500F9DAB3 /* FBSDKShareKit.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -139,6 +107,10 @@
 			dependencies = (
 			);
 			name = MauiFacebook;
+			packageProductDependencies = (
+				D0AF2A9A2BDC4E5B002AA03E /* FacebookBasics */,
+				D0AF2A9C2BDC4E5B002AA03E /* FacebookCore */,
+			);
 			productName = MauiFacebook;
 			productReference = 643C24AF2B99104200C2A6AA /* MauiFacebook.framework */;
 			productType = "com.apple.product-type.framework";
@@ -167,6 +139,9 @@
 				Base,
 			);
 			mainGroup = 643C24A52B99104200C2A6AA;
+			packageReferences = (
+				D0AF2A992BDC4E5B002AA03E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 643C24B02B99104200C2A6AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +296,7 @@
 		643C24B72B99104200C2A6AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -345,10 +321,11 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.MauiFacebook;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -361,6 +338,7 @@
 		643C24B82B99104200C2A6AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -385,10 +363,11 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.MauiFacebook;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -419,6 +398,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D0AF2A992BDC4E5B002AA03E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D0AF2A9A2BDC4E5B002AA03E /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0AF2A992BDC4E5B002AA03E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		D0AF2A9C2BDC4E5B002AA03E /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0AF2A992BDC4E5B002AA03E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 643C24A62B99104200C2A6AA /* Project object */;
 }

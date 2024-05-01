@@ -4,6 +4,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>true</ImplicitUsings>
         <IsBindingProject>true</IsBindingProject>
+
+        <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiFacebook.xcodeproj</XcodeProject>
+        <ObjSharpieBindNamespace>Facebook</ObjSharpieBindNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,31 +14,9 @@
         <!-- <ObjcBindingCoreSource Include="StructsAndEnums.cs"/> -->
         <NativeReference Include="../native/.build/MauiFacebook.xcframework">
             <Kind>Framework</Kind>
-            <SmartLink>True</SmartLink>
+            <SmartLink>true</SmartLink>
         </NativeReference>
     </ItemGroup>
-
-    <PropertyGroup>
-        <XcodeBuildMacCatalyst>True</XcodeBuildMacCatalyst>
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiFacebook.xcodeproj</XcodeProject>
-        <ObjSharpieBindNamespace>Facebook</ObjSharpieBindNamespace>
-        <BuildXCFrameworkDependsOnTargets>$(BuildXCFrameworkDependsOnTargets);NativeDependencies</BuildXCFrameworkDependsOnTargets>
-    </PropertyGroup>
-
-
-    <Target Name="NativeDependencies">
-        <PropertyGroup>
-            <FacebookiOSSdkVersion>17.0.0</FacebookiOSSdkVersion>
-            <FacebookiOSSdkUrl>https://github.com/facebook/facebook-ios-sdk/releases/download/v$(FacebookiOSSdkVersion)/FacebookSDK_Dynamic.xcframework.zip</FacebookiOSSdkUrl>
-        </PropertyGroup>
-
-        <DownloadFile SourceUrl="$(FacebookiOSSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/.build))">
-            <Output TaskParameter="DownloadedFile" ItemName="FacebookiOSSdkArchives" />
-        </DownloadFile>
-
-        <Exec Command="unzip -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/.build)) @(FacebookiOSSdkArchives)" />
-
-    </Target>
 
     <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>
