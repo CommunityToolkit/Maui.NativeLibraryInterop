@@ -1,36 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project>
+  <Import Project="$(MSBuildThisFileDirectory)Common.targets" Condition=" '$(CommonTargetsImported)' != 'true' " />
 
-	<PropertyGroup>
-		<_AndroidProjectDirFullPath>$([System.IO.Path]::GetFullPath($(AndroidProjectDir)))</_AndroidProjectDirFullPath>
+  <UsingTask TaskName="Gradle" AssemblyFile="$(BindingExtBuildTasksAssembly)"/>
 
-		<_AndroidProjectModuleBuildPath>$(_AndroidProjectDirFullPath)/$(AndroidProjectModule)/build</_AndroidProjectModuleBuildPath>
-		<_AndroidAarOutputPath>$(_AndroidProjectModuleBuildPath)/outputs/aar/$(AndroidProjectModule).aar</_AndroidAarOutputPath>
-		<AndroidBuildAar Condition=" '$(AndroidBuildAar)' == '' ">True</AndroidBuildAar>
+  <PropertyGroup>
+    <GradleProjectConfiguration Condition=" '$(GradleProjectConfiguration)' == '' ">Release</GradleProjectConfiguration>
+  </PropertyGroup>
 
-		<_AndroidGradleW>gradlew</_AndroidGradleW>
-		<_AndroidGradleW Condition="$([MSBuild]::IsOSPlatform('windows'))">$(_AndroidGradleW).exe</_AndroidGradleW>
-		<_AndroidGradleWFullPath>$([System.IO.Path]::Combine($(_AndroidProjectDirFullPath), $(_AndroidGradleW)))</_AndroidGradleWFullPath>
+  <ItemDefinitionGroup>
+    <GradleProjectReference>
+      <Bind>true</Bind>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </GradleProjectReference>
+  </ItemDefinitionGroup>
 
-		<_AndroidHome>$([System.Environment]::GetEnvironmentVariable('ANDROID_HOME'))</_AndroidHome>
-		<_AndroidHome Condition=" '$(_AndroidHome)' == '' ">$(HOME)/Library/Developer/Xamarin/android-sdk-macosx</_AndroidHome>
-	</PropertyGroup>
+  <Target Name="_GetBuildGradleProjectsInputs">
+    <ItemGroup>
+      <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.java" />
+      <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.gradle" />
+      <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.xml" />
+      <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.properties"/>
+      <_GradleInputs Remove="%(GradleProjectReference.FullPath)/%(GradleProjectReference.ModuleName)/build/**/*" />
+    </ItemGroup>
+  </Target>
 
-	<ItemGroup>
-		<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.java" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
-		<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.gradle" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
-		<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.xml" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
-		<_AndroidGradleInputs Include="$(_AndroidProjectDirFullPath)/**/*.properties" Exclude="$(_AndroidProjectModuleBuildPath)/**/*" />
-	</ItemGroup>
+  <!-- TODO: Improve BeforeTargets to instead use tbd *DependsOn extension point-->
+  <Target Name="_BuildGradleProjects"
+      Condition=" '@(GradleProjectReference->Count())' != '0' and $(TargetFramework.Contains('android')) "
+      DependsOnTargets="_ResolveMonoAndroidSdks;_EnsureBuildTasksAssembly;_GetBuildGradleProjectsInputs"
+      BeforeTargets="$(CompileDependsOn)"
+      Inputs="@(_GradleInputs)"
+      Outputs="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')" >
 
-	<Target Name="BuildAar" Condition=" '$(AndroidBuildAar)' == 'true' " DependsOnTargets="$(BuildAarDependsOnTargets)" BeforeTargets="$(CoreResolveReferencesDependsOn)" Inputs="@(_AndroidGradleInputs)" Outputs="$(_AndroidAarOutputPath)">
+    <Gradle ToolPath="%(GradleProjectReference.FullPath)"
+        AndroidSdkDirectory="$(AndroidSdkDirectory)"
+        JavaSdkDirectory="$(JavaSdkDirectory)"
+        Arguments="%(GradleProjectReference.ModuleName):assemble$(GradleProjectConfiguration)"
+        WorkingDirectory="%(GradleProjectReference.FullPath)" >
+    </Gradle>
 
-		<Error Condition=" '$(AndroidProjectDir)' == '' " Text="The AndroidProjectDir property must be set." />
-		<Error Condition=" '$(AndroidProjectModule)' == '' " Text="The AndroidProjectModule property must be set." />
+    <ItemGroup>
+      <AndroidLibrary Include="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')">
+        <Bind>%(GradleProjectReference.Bind)</Bind>
+        <Pack>%(GradleProjectReference.Pack)</Pack>
+        <Visible>%(GradleProjectReference.Visible)</Visible>
+      </AndroidLibrary>
+    </ItemGroup>
 
-		<Exec
-			Command="$(_AndroidGradleWFullPath) $(AndroidProjectModule):assembleRelease"
-			EnvironmentVariables="ANDROID_HOME=$(_AndroidHome)"
-			WorkingDirectory="$(_AndroidProjectDirFullPath)" />
-	</Target>
+    <Error Condition=" !Exists('@(AndroidLibrary)') " Text="Gradle project built successfully but did not produce expected output file: '@(AndroidLibrary)'" />
+    <Message Text="Adding reference to gradle project output: @(AndroidLibrary)" />
+  </Target>
 
 </Project>
