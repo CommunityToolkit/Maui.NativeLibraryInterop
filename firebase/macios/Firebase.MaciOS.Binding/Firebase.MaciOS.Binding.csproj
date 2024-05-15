@@ -1,24 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>true</ImplicitUsings>
-        <IsBindingProject>true</IsBindingProject>
-        <NoBindingEmbedding>true</NoBindingEmbedding>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+    <NoBindingEmbedding>true</NoBindingEmbedding>
+  </PropertyGroup>
 
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiFirebase.xcodeproj</XcodeProject>
-        <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
-        <ObjSharpieBind>true</ObjSharpieBind>
-        <ObjSharpieBindNamespace>Firebase</ObjSharpieBindNamespace>
-    </PropertyGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
-        <NativeReference Include="../native/.build/MauiFirebase.xcframework">
-            <Kind>Framework</Kind>
-            <SmartLink>true</SmartLink>
-        </NativeReference>
-    </ItemGroup>
+  <ItemGroup>
+    <XcodeProjectReference Include="../native/MauiFirebase.xcodeproj">
+      <SchemeName>MauiFirebase</SchemeName>
+      <SharpieNamespace>Firebase</SharpieNamespace>
+      <SharpieBind>true</SharpieBind>
+      <!-- Metadata applicable to @(NativeReference) will be used if set -->
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+    </XcodeProjectReference>
+  </ItemGroup>
 
-    <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>
