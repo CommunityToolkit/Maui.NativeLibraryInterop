@@ -1,4 +1,5 @@
 ﻿using System.Text;
+
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
@@ -31,7 +32,7 @@ namespace Microsoft.Maui.BindingExtensions.Build.Tasks
             }
             catch (Exception ex)
             {
-                Log.LogCodedError($"{TaskPrefix}0001", ex.ToString());
+                Log.LogCodedError($"{TaskPrefix}0100", ex.ToString());
                 return false;
             }
         }

@@ -1,22 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net8.0-ios</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>true</ImplicitUsings>
-        <IsBindingProject>true</IsBindingProject>
+  <PropertyGroup>
+    <TargetFramework>net8.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+  </PropertyGroup>
 
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiFacebook.xcodeproj</XcodeProject>
-        <ObjSharpieBindNamespace>Facebook</ObjSharpieBindNamespace>
-    </PropertyGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <ObjcBindingApiDefinition Include="ApiDefinitions.cs"/>
-        <!-- <ObjcBindingCoreSource Include="StructsAndEnums.cs"/> -->
-        <NativeReference Include="../native/.build/MauiFacebook.xcframework">
-            <Kind>Framework</Kind>
-            <SmartLink>true</SmartLink>
-        </NativeReference>
-    </ItemGroup>
+  <ItemGroup>
+    <XcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
+      <SchemeName>MauiFacebook</SchemeName>
+      <SharpieNamespace>Facebook</SharpieNamespace>
+      <SharpieBind>true</SharpieBind>
+      <!-- Metadata applicable to @(NativeReference) will be used if set -->
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+    </XcodeProjectReference>
+  </ItemGroup>
 
-    <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>

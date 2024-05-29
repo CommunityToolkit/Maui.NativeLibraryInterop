@@ -1,41 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+
+    <XcodeBuildMacCatalyst>False</XcodeBuildMacCatalyst>
+    <BuildXcodeProjectsDependsOnTargets>$(BuildXcodeProjectsDependsOnTargets);NativeDependencies</BuildXcodeProjectsDependsOnTargets>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <XcodeProjectReference Include="../native/MauiGoogleCast.xcodeproj">
+      <SchemeName>MauiGoogleCast</SchemeName>
+      <SharpieNamespace>GoogleCast</SharpieNamespace>
+      <SharpieBind>false</SharpieBind>
+      <!-- Metadata applicable to @(NativeReference) will be used if set -->
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+    </XcodeProjectReference>
+  </ItemGroup>
+
+  <Target Name="NativeDependencies">
     <PropertyGroup>
-        <TargetFramework>net8.0-ios</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>true</ImplicitUsings>
-        <IsBindingProject>true</IsBindingProject>
+      <GoogleCastiOSSdkVersion>4.8.0</GoogleCastiOSSdkVersion>
+      <GoogleCastiOSSdkUrl>https://dl.google.com/dl/chromecast/sdk/ios/GoogleCastSDK-ios-$(GoogleCastiOSSdkVersion)_dynamic_xcframework.zip</GoogleCastiOSSdkUrl>
     </PropertyGroup>
 
-    <ItemGroup>
-        <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
-        <!-- <ObjcBindingCoreSource Include="StructsAndEnums.cs"/> -->
-        <NativeReference Include="../native/.build/MauiGoogleCast.xcframework">
-            <Kind>Framework</Kind>
-            <SmartLink>True</SmartLink>
-        </NativeReference>
-    </ItemGroup>
+    <DownloadFile SourceUrl="$(GoogleCastiOSSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps))">
+      <Output TaskParameter="DownloadedFile" ItemName="GoogleCastiOSSdkArchives" />
+    </DownloadFile>
 
-    <PropertyGroup>
-        <XcodeBuildMacCatalyst>False</XcodeBuildMacCatalyst>
-        <XcodeProject>$(MSBuildThisFileDirectory)../native/MauiGoogleCast.xcodeproj</XcodeProject>
-        <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
-        <ObjSharpieBind>False</ObjSharpieBind>
-        <ObjSharpieBindNamespace>GoogleCast</ObjSharpieBindNamespace>
-        <BuildXCFrameworkDependsOnTargets>$(BuildXCFrameworkDependsOnTargets);NativeDependencies</BuildXCFrameworkDependsOnTargets>
-    </PropertyGroup>
+    <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps)) @(GoogleCastiOSSdkArchives)" />
+  </Target>
 
-    <Target Name="NativeDependencies">
-        <PropertyGroup>
-            <GoogleCastiOSSdkVersion>4.8.0</GoogleCastiOSSdkVersion>
-            <GoogleCastiOSSdkUrl>https://dl.google.com/dl/chromecast/sdk/ios/GoogleCastSDK-ios-$(GoogleCastiOSSdkVersion)_dynamic_xcframework.zip</GoogleCastiOSSdkUrl>
-        </PropertyGroup>
-
-        <DownloadFile SourceUrl="$(GoogleCastiOSSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/.build))">
-            <Output TaskParameter="DownloadedFile" ItemName="GoogleCastiOSSdkArchives" />
-        </DownloadFile>
-
-        <Exec Command="unzip -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/.build)) @(GoogleCastiOSSdkArchives)" />
-    </Target>
-
-    <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>

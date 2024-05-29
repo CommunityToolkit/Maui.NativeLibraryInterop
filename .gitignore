@@ -403,6 +403,7 @@ FodyWeavers.xsd
 
 xcuserdata/
 
+build/
 .build/
 *.xcframework
 Pods/

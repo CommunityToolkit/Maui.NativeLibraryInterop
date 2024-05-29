@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		640AD22E2BBE1D02005FB56B /* GoogleCast.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640AD22D2BBE1D02005FB56B /* GoogleCast.xcframework */; };
-		640AD22F2BBE1D02005FB56B /* GoogleCast.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 640AD22D2BBE1D02005FB56B /* GoogleCast.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64B9934B2B97A71D00BAFB55 /* MauiGoogleCast.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B9934A2B97A71D00BAFB55 /* MauiGoogleCast.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B993572B97A7B300BAFB55 /* MauiGoogleCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B993562B97A7B300BAFB55 /* MauiGoogleCast.swift */; };
+		D0D666252C06BE5F005451D1 /* GoogleCast.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D666232C06BD7B005451D1 /* GoogleCast.xcframework */; };
+		D0D666262C06BE5F005451D1 /* GoogleCast.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D666232C06BD7B005451D1 /* GoogleCast.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		640AD2302BBE1D02005FB56B /* Embed Frameworks */ = {
+		D0D666272C06BE5F005451D1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				640AD22F2BBE1D02005FB56B /* GoogleCast.xcframework in Embed Frameworks */,
+				D0D666262C06BE5F005451D1 /* GoogleCast.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -28,10 +28,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		640AD22D2BBE1D02005FB56B /* GoogleCast.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleCast.xcframework; path = ".build/GoogleCastSDK-ios-4.8.0_dynamic_xcframework/GoogleCast.xcframework"; sourceTree = "<group>"; };
 		64B993472B97A71D00BAFB55 /* MauiGoogleCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MauiGoogleCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B9934A2B97A71D00BAFB55 /* MauiGoogleCast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MauiGoogleCast.h; sourceTree = "<group>"; };
 		64B993562B97A7B300BAFB55 /* MauiGoogleCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiGoogleCast.swift; sourceTree = "<group>"; };
+		D0D666232C06BD7B005451D1 /* GoogleCast.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleCast.xcframework; path = "build/deps/GoogleCastSDK-ios-4.8.0_dynamic_xcframework/GoogleCast.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				640AD22E2BBE1D02005FB56B /* GoogleCast.xcframework in Frameworks */,
+				D0D666252C06BE5F005451D1 /* GoogleCast.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 		64B993512B97A7A200BAFB55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				640AD22D2BBE1D02005FB56B /* GoogleCast.xcframework */,
+				D0D666232C06BD7B005451D1 /* GoogleCast.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 				64B993432B97A71D00BAFB55 /* Sources */,
 				64B993442B97A71D00BAFB55 /* Frameworks */,
 				64B993452B97A71D00BAFB55 /* Resources */,
-				640AD2302BBE1D02005FB56B /* Embed Frameworks */,
+				D0D666272C06BE5F005451D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
