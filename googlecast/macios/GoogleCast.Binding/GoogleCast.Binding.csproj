@@ -10,10 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
+    <PackageReference Include="Microsoft.Maui.BindingExtensions" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
     <XcodeProjectReference Include="../native/MauiGoogleCast.xcodeproj">
       <SchemeName>MauiGoogleCast</SchemeName>
       <SharpieNamespace>GoogleCast</SharpieNamespace>
@@ -37,5 +38,4 @@
     <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps)) @(GoogleCastiOSSdkArchives)" />
   </Target>
 
-  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>

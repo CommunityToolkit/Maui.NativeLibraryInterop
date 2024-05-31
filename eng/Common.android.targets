@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <Import Project="$(MSBuildThisFileDirectory)Common.targets" Condition=" '$(CommonTargetsImported)' != 'true' " />
 
   <UsingTask TaskName="Gradle" AssemblyFile="$(BindingExtBuildTasksAssembly)"/>
 
   <PropertyGroup>
+    <CommonAndroidTargetsImported>true</CommonAndroidTargetsImported>
     <GradleProjectConfiguration Condition=" '$(GradleProjectConfiguration)' == '' ">Release</GradleProjectConfiguration>
   </PropertyGroup>
 
@@ -29,7 +29,7 @@
   <!-- TODO: Improve BeforeTargets to instead use tbd *DependsOn extension point-->
   <Target Name="_BuildGradleProjects"
       Condition=" '@(GradleProjectReference->Count())' != '0' and $(TargetFramework.Contains('android')) "
-      DependsOnTargets="_ResolveMonoAndroidSdks;_EnsureBuildTasksAssembly;_GetBuildGradleProjectsInputs"
+      DependsOnTargets="_ResolveMonoAndroidSdks;_GetBuildGradleProjectsInputs"
       BeforeTargets="$(CompileDependsOn)"
       Inputs="@(_GradleInputs)"
       Outputs="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')" >

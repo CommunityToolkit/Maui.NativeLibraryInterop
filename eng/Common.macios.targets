@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project>
-
-  <Import Project="$(MSBuildThisFileDirectory)Common.targets" Condition=" '$(CommonTargetsImported)' != 'true' " />
 
   <UsingTask TaskName="Sharpie" AssemblyFile="$(BindingExtBuildTasksAssembly)"/>
   <UsingTask TaskName="XcodeBuild" AssemblyFile="$(BindingExtBuildTasksAssembly)"/>
 
   <PropertyGroup>
+    <CommonMaciosTargetsImported>true</CommonMaciosTargetsImported>
     <XcodeProjectConfiguration Condition=" '$(XcodeProjectConfiguration)' == '' ">Release</XcodeProjectConfiguration>
     <XcodeBuildiOS Condition=" '$(XcodeBuildiOS)' == '' ">true</XcodeBuildiOS>
     <XcodeBuildiOSSimulator Condition=" '$(XcodeBuildiOSSimulator)' == '' ">true</XcodeBuildiOSSimulator>
@@ -44,7 +44,7 @@
 
   <Target Name="_BuildXcodeProjects"
       Condition=" '@(XcodeProjectReference->Count())' != '0' "
-      DependsOnTargets="_EnsureBuildTasksAssembly;_GetBuildXcodeProjectsInputs;$(BuildXcodeProjectsDependsOnTargets)"
+      DependsOnTargets="_GetBuildXcodeProjectsInputs;$(BuildXcodeProjectsDependsOnTargets)"
       Inputs="@(_XcbInputs)"
       Outputs="@(XcodeProjectReference->'%(RootDir)%(Directory)build/%(SchemeName).xcframework/Info.plist')" >
 

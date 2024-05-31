@@ -1,0 +1,44 @@
+<!--
+***********************************************************************************************
+This project file is used to create the Microsoft.Maui.BindingExtensions NuGet.
+***********************************************************************************************
+-->
+<Project Sdk="Microsoft.Build.NoTargets/3.7.56">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId> Microsoft.Maui.BindingExtensions</PackageId>
+    <Description>Build tasks and extensions for .NET MAUI, .NET for Android, and .NET for iOS binding projects</Description>
+    <PackageVersion>0.0.1</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BeforePack>
+      _GetPackItems;
+      $(BeforePack);
+    </BeforePack>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference
+        Include="$(MSBuildThisFileDirectory)Microsoft.Maui.BindingExtensions.Build.Tasks.csproj"
+        ReferenceOutputAssembly="false"
+        Private="true" />
+  </ItemGroup>
+
+  <Target Name="_GetPackItems" >
+    <ItemGroup>
+      <_PackageFiles Include="$(MSBuildThisFileDirectory)../../Microsoft.Maui.BindingExtensions.targets" PackagePath="build" />
+      <_PackageFiles Include="$(MSBuildThisFileDirectory)../../Common.android.targets" PackagePath="build" />
+      <_PackageFiles Include="$(MSBuildThisFileDirectory)../../Common.macios.targets" PackagePath="build" />
+      <_PackageFiles Include="$(MSBuildThisFileDirectory)/bin/$(Configuration)/netstandard2.0/Microsoft.Maui.BindingExtensions.Build.Tasks.dll" PackagePath="build" />
+    </ItemGroup>
+  </Target>
+
+</Project>
