@@ -100,9 +100,9 @@ Install prerequisites:
 
 The goal is to have bindings and samples building 100% through normal MSBuild invocations.
 
-Each .NET Binding project contains some additional MSBuild logic to help obtain and build the native SDK dependencies along with the native slim binding project. In some cases, the target may also download native SDKs if they are not already present. In this way, the expected native artefacts are available in the expected working directories.
+Each .NET Binding project contains some additional MSBuild logic to help obtain and build the native SDK dependencies along with the native slim binding project. In some cases, the target may also download native SDKs if they are not already present. In this way, the expected native artifacts are available in the expected working directories.
 
-In the [```eng/```](/eng/) folder you will find [```Common.android.targets```](/eng/Common.android.targets) and [```Common.macios.targets```](/eng/Common.macios.targets) files which contain some custom build targets to help with this, and are imported into the binding projects.
+In the [```eng/```](/eng/) folder you will find a solution with custom build tasks/targets to help with this.  These build extensions are available in a Microsoft.Maui.BindingExtensions NuGet package that the binding projects reference.
 
 Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemented via the [```Metadata.xml```](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file. 
 
