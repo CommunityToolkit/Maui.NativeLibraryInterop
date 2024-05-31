@@ -9,7 +9,10 @@
 
   <!-- Disply an error if the build task project is not yet built before any of the samples-->
   <Target Name="_EnsureBuildTasksAssembly" >
-    <Exec Command="dotnet build -p:Configuration=$(Configuration) $(MSBuildThisFileDirectory)src/Microsoft.Maui.BindingExtensions.Build.Tasks/Microsoft.Maui.BindingExtensions.Build.Tasks.csproj" />
+    <MSBuild
+        Projects="$(MSBuildThisFileDirectory)src/Microsoft.Maui.BindingExtensions.Build.Tasks/Microsoft.Maui.BindingExtensions.Build.Tasks.csproj"
+        Properties="Configuration=$(Configuration)" >
+    </MSBuild>
     <Error
         Text="Unable to locate build tasks assembly, please build Microsoft.Maui.BindingExtensions.Build.Tasks.sln"
         Condition=" !Exists('$(BindingExtBuildTasksAssembly)') " >
