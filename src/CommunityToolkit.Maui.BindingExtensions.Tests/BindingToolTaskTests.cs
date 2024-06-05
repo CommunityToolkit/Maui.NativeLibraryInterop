@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using Microsoft.Maui.BindingExtensions.Build.Tasks;
+using CommunityToolkit.Maui.BindingExtensions;
 using NUnit.Framework;
 
-namespace Microsoft.Maui.BindingExtensions.Build.Tests
+namespace CommunityToolkit.Maui.BindingExtensions.Tests
 {
     [TestFixture]
     public class BindingToolTaskTests
