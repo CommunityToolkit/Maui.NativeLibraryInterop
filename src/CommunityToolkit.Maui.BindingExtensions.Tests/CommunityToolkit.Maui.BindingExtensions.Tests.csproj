@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Microsoft.Maui.BindingExtensions.Build.Tasks\Microsoft.Maui.BindingExtensions.Build.Tasks.csproj" />
+    <ProjectReference Include="..\CommunityToolkit.Maui.BindingExtensions\CommunityToolkit.Maui.BindingExtensions.csproj" />
   </ItemGroup>
 
 </Project>
