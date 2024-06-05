@@ -38,6 +38,9 @@ jobs:
       - name: Create logs dir
         run: mkdir -p ${{ runner.temp }}/logs/
 
+      - name: Create local nupkg dir
+        run: mkdir -p ./src/CommunityToolkit.Maui.BindingExtensions/bin/Release
+
       - name: Build and test build tasks
         working-directory: ./src
         run: >-
