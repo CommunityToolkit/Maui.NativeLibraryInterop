@@ -52,6 +52,12 @@ jobs:
         working-directory: ./src/CommunityToolkit.Maui.BindingExtensions
         run: dotnet pack CommunityToolkit.Maui.BindingExtensions.csproj -bl:${{ runner.temp }}/logs/build-tasks-pack.binlog
 
+      - name: Upload nupkg
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg
+          path: ./src/CommunityToolkit.Maui.BindingExtensions/bin/Release/*.nupkg
+
       - name: Build facebook
         working-directory: ./facebook
         run: dotnet build -bl:${{ runner.temp }}/logs/facebook.binlog
