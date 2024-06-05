@@ -4,7 +4,6 @@
   <UsingTask TaskName="Gradle" AssemblyFile="$(BindingExtBuildTasksAssembly)"/>
 
   <PropertyGroup>
-    <CommonAndroidTargetsImported>true</CommonAndroidTargetsImported>
     <GradleProjectConfiguration Condition=" '$(GradleProjectConfiguration)' == '' ">Release</GradleProjectConfiguration>
   </PropertyGroup>
 
@@ -16,23 +15,36 @@
     </GradleProjectReference>
   </ItemDefinitionGroup>
 
+  <PropertyGroup>
+    <_BuildGradleProjectsBeforeTargets Condition=" '$(IsRunningOuterBuild)' == 'true' ">
+      DispatchToInnerBuilds;
+    </_BuildGradleProjectsBeforeTargets>
+    <_BuildGradleProjectsDependsOn Condition=" '$(IsRunningOuterBuild)' != 'true' ">
+      _ResolveMonoAndroidSdks;
+    </_BuildGradleProjectsDependsOn>
+  </PropertyGroup>
+
+
   <Target Name="_GetBuildGradleProjectsInputs">
     <ItemGroup>
+      <_GradleInputs Include="$(MSBuildProjectFullPath)" />
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.java" />
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.gradle" />
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.xml" />
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.properties"/>
       <_GradleInputs Remove="%(GradleProjectReference.FullPath)/%(GradleProjectReference.ModuleName)/build/**/*" />
+      <_GradleOutputs Include="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')" />
     </ItemGroup>
   </Target>
 
-  <!-- TODO: Improve BeforeTargets to instead use tbd *DependsOn extension point-->
   <Target Name="_BuildGradleProjects"
-      Condition=" '@(GradleProjectReference->Count())' != '0' and $(TargetFramework.Contains('android')) "
-      DependsOnTargets="_ResolveMonoAndroidSdks;_GetBuildGradleProjectsInputs"
-      BeforeTargets="$(CompileDependsOn)"
+      Condition=" '@(GradleProjectReference->Count())' != '0' and $(OnlyBuildOuterIfMultiTargeting) "
+      DependsOnTargets="_GetBuildGradleProjectsInputs;$(_BuildGradleProjectsDependsOn)"
+      BeforeTargets="$(_BuildGradleProjectsBeforeTargets);$(CompileDependsOn)"
       Inputs="@(_GradleInputs)"
-      Outputs="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')" >
+      Outputs="@(_GradleOutputs)" >
+    
+    <RemoveDir Directories="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs')" />
 
     <Gradle ToolPath="%(GradleProjectReference.FullPath)"
         AndroidSdkDirectory="$(AndroidSdkDirectory)"
@@ -42,7 +54,7 @@
     </Gradle>
 
     <ItemGroup>
-      <AndroidLibrary Include="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')">
+      <AndroidLibrary Include="@(_GradleOutputs)">
         <Bind>%(GradleProjectReference.Bind)</Bind>
         <Pack>%(GradleProjectReference.Pack)</Pack>
         <Visible>%(GradleProjectReference.Visible)</Visible>

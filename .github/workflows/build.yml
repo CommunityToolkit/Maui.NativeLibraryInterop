@@ -39,23 +39,27 @@ jobs:
         run: mkdir -p ${{ runner.temp }}/logs/
 
       - name: Build and test build tasks
-        working-directory: ./eng
+        working-directory: ./src
         run: >-
-          dotnet test Microsoft.Maui.BindingExtensions.Build.Tasks.sln
+          dotnet test CommunityToolkit.Maui.BindingExtensions.sln
           --logger trx --results-directory ${{ runner.temp }}/logs/TestResults-build-tasks
           -bl:${{ runner.temp }}/logs/build-tasks.binlog
 
+      - name: Pack build tasks
+        working-directory: ./src/CommunityToolkit.Maui.BindingExtensions
+        run: dotnet pack CommunityToolkit.Maui.BindingExtensions.csproj -bl:${{ runner.temp }}/logs/build-tasks-pack.binlog
+
       - name: Build facebook
         working-directory: ./facebook
-        run: dotnet build -m:1 -bl:${{ runner.temp }}/logs/facebook.binlog
+        run: dotnet build -bl:${{ runner.temp }}/logs/facebook.binlog
 
       - name: Build firebase
         working-directory: ./firebase/macios
-        run: dotnet build -m:1 -bl:${{ runner.temp }}/logs/firebase-macios.binlog
+        run: dotnet build -bl:${{ runner.temp }}/logs/firebase-macios.binlog
 
       - name: Build googlecast
         working-directory: ./googlecast/macios
-        run: dotnet build -m:1 -bl:${{ runner.temp }}/logs/googlecast-macios.binlog
+        run: dotnet build -bl:${{ runner.temp }}/logs/googlecast-macios.binlog
 
       - name: Upload logs
         uses: actions/upload-artifact@v4

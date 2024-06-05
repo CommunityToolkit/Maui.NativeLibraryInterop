@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)..\tools\Common.props" />
+  <Import Project="$(MSBuildThisFileDirectory)..\tools\Common.android.targets" Condition=" $(TargetFrameworks.Contains('android')) or $(TargetFramework.Contains('android')) " />
+  <Import Project="$(MSBuildThisFileDirectory)..\tools\Common.macios.targets" Condition=" $(TargetFrameworks.Contains('ios')) or $(TargetFramework.Contains('ios')) or $(TargetFrameworks.Contains('maccatalyst')) or $(TargetFramework.Contains('maccatalyst')) " />
+
+</Project>

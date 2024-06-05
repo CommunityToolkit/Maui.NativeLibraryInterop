@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.BindingExtensions" Version="0.0.1" />
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
   </ItemGroup>
 
   <!-- Metadata applicable to @(AndroidLibrary) will be used if set -->

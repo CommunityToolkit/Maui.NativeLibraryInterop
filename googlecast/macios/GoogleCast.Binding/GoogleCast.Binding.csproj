@@ -5,12 +5,11 @@
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
 
-    <XcodeBuildMacCatalyst>False</XcodeBuildMacCatalyst>
     <BuildXcodeProjectsDependsOnTargets>$(BuildXcodeProjectsDependsOnTargets);NativeDependencies</BuildXcodeProjectsDependsOnTargets>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.BindingExtensions" Version="0.0.1" />
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
   </ItemGroup>
 
   <ItemGroup>
