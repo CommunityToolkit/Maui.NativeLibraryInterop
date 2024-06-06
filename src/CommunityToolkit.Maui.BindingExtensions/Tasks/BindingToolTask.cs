@@ -13,6 +13,9 @@ namespace CommunityToolkit.Maui.BindingExtensions
 
         StringBuilder toolOutput = new StringBuilder();
 
+        [Output]
+        public string ConsoleOutput { get; set; } = string.Empty;
+
         public BindingToolTask()
         {
         }
@@ -27,6 +30,7 @@ namespace CommunityToolkit.Maui.BindingExtensions
                     Log.LogCodedError($"{TaskPrefix}0000", toolOutput.ToString().Trim());
 
                 }
+                ConsoleOutput = toolOutput.ToString();
                 toolOutput.Clear();
                 return taskResult;
             }

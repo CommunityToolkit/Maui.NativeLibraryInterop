@@ -2,7 +2,7 @@
 <Project>
 
   <PropertyGroup>
-    <IsRunningOuterBuild Condition="'$(IsRunningOuterBuild)' == ''">false</IsRunningOuterBuild>
+    <IsRunningOuterBuild Condition=" '$(IsRunningOuterBuild)' == '' ">false</IsRunningOuterBuild>
     <OnlyBuildOuterIfMultiTargeting>false</OnlyBuildOuterIfMultiTargeting>
     <OnlyBuildOuterIfMultiTargeting Condition=" '$(TargetFrameworks)' == '' or $(IsRunningOuterBuild) ">true</OnlyBuildOuterIfMultiTargeting>
     <BindingExtBuildTasksAssembly Condition= " !Exists('$(BindingExtBuildTasksAssembly)') ">CommunityToolkit.Maui.BindingExtensions.dll</BindingExtBuildTasksAssembly>

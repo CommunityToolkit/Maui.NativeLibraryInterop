@@ -3,7 +3,8 @@
 
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <MSBuildPackageReferenceVersion>17.9.5</MSBuildPackageReferenceVersion>
+    <MSBuildPackageVersion>17.9.5</MSBuildPackageVersion>
+    <BindingExtPackageVersion>0.0.1-pre1</BindingExtPackageVersion>
   </PropertyGroup>
 
 </Project>
