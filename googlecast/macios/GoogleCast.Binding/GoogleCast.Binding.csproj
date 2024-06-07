@@ -5,15 +5,15 @@
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
 
-    <XcodeBuildMacCatalyst>False</XcodeBuildMacCatalyst>
     <BuildXcodeProjectsDependsOnTargets>$(BuildXcodeProjectsDependsOnTargets);NativeDependencies</BuildXcodeProjectsDependsOnTargets>
   </PropertyGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(BindingExtPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
     <XcodeProjectReference Include="../native/MauiGoogleCast.xcodeproj">
       <SchemeName>MauiGoogleCast</SchemeName>
       <SharpieNamespace>GoogleCast</SharpieNamespace>
@@ -37,5 +37,4 @@
     <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps)) @(GoogleCastiOSSdkArchives)" />
   </Target>
 
-  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>

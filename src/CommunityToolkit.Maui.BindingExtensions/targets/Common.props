@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <IsRunningOuterBuild Condition=" '$(IsRunningOuterBuild)' == '' ">false</IsRunningOuterBuild>
+    <OnlyBuildOuterIfMultiTargeting>false</OnlyBuildOuterIfMultiTargeting>
+    <OnlyBuildOuterIfMultiTargeting Condition=" '$(TargetFrameworks)' == '' or $(IsRunningOuterBuild) ">true</OnlyBuildOuterIfMultiTargeting>
+    <BindingExtBuildTasksAssembly Condition= " !Exists('$(BindingExtBuildTasksAssembly)') ">CommunityToolkit.Maui.BindingExtensions.dll</BindingExtBuildTasksAssembly>
+    <HOME Condition=" '$(HOME)' == '' ">$(USERPROFILE)</HOME>
+  </PropertyGroup>
+
+</Project>

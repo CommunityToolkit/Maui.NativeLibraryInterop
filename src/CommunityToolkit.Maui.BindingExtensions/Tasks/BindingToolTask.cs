@@ -3,7 +3,7 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace Microsoft.Maui.BindingExtensions.Build.Tasks
+namespace CommunityToolkit.Maui.BindingExtensions
 {
     public abstract class BindingToolTask : ToolTask
     {
@@ -12,6 +12,9 @@ namespace Microsoft.Maui.BindingExtensions.Build.Tasks
         public string WorkingDirectory { get; set; } = Directory.GetCurrentDirectory();
 
         StringBuilder toolOutput = new StringBuilder();
+
+        [Output]
+        public string ConsoleOutput { get; set; } = string.Empty;
 
         public BindingToolTask()
         {
@@ -27,6 +30,7 @@ namespace Microsoft.Maui.BindingExtensions.Build.Tasks
                     Log.LogCodedError($"{TaskPrefix}0000", toolOutput.ToString().Trim());
 
                 }
+                ConsoleOutput = toolOutput.ToString();
                 toolOutput.Clear();
                 return taskResult;
             }

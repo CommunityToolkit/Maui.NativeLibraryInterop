@@ -8,6 +8,10 @@
     <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(BindingExtPackageVersion)" />
+  </ItemGroup>
+
   <!-- Metadata applicable to @(AndroidLibrary) will be used if set -->
   <ItemGroup>
     <GradleProjectReference Include="../native" >
@@ -17,5 +21,4 @@
     </GradleProjectReference>
   </ItemGroup>
 
-  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.android.targets" />
 </Project>

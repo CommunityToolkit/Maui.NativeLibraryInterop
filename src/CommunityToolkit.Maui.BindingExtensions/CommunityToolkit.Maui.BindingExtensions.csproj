@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>CommunityToolkit.Maui.BindingExtensions</PackageId>
+    <Summary>Toolkit with build tasks and extensions that support .NET MAUI slim binding projects</Summary>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Redth/DotNet.Platform.SlimBindings</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Redth/DotNet.Platform.SlimBindings</RepositoryUrl>
+    <Title>CommunityToolkit.Maui.BindingExtensions</Title>
+    <Description>CommunityToolkit.Maui.BindingExtensions is a set of build tasks and extensions for .NET MAUI, .NET for Android, and .NET for iOS binding projects</Description>
+    <PackageIcon>nuget.png</PackageIcon>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>0.0.1-pre1</Version>
+    <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>net,maui,netmaui,toolkit,kit,communitytoolkit,netmauitoolkit,mauicommunitytoolkit,slimbinding,binding</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Framework" Version="$(MSBuildPackageVersion)" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="$(MSBuildPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)../../build/nuget.png" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)targets/CommunityToolkit.Maui.BindingExtensions.targets" Pack="true" PackagePath="build" />
+    <None Include="$(MSBuildThisFileDirectory)targets/CommunityToolkit.Maui.BindingExtensions.targets" Pack="true" PackagePath="buildMultiTargeting" />
+    <None Include="$(MSBuildThisFileDirectory)targets/CommunityToolkit.Maui.BindingExtensions.multitargeting.props" Pack="true" PackagePath="buildMultiTargeting/CommunityToolkit.Maui.BindingExtensions.props" />
+    <None Include="$(MSBuildThisFileDirectory)targets/Common.props" Pack="true" PackagePath="tools" />
+    <None Include="$(MSBuildThisFileDirectory)targets/Common.android.targets" Pack="true" PackagePath="tools" />
+    <None Include="$(MSBuildThisFileDirectory)targets/Common.macios.targets" Pack="true" PackagePath="tools" />
+    <None Include="$(MSBuildThisFileDirectory)/bin/$(Configuration)/netstandard2.0/CommunityToolkit.Maui.BindingExtensions.dll" Pack="true" PackagePath="tools" />
+  </ItemGroup>
+
+</Project>

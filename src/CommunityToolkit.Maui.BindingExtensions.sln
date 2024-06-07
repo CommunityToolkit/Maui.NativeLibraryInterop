@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.34809.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Maui.BindingExtensions.Build.Tasks", "src\Microsoft.Maui.BindingExtensions.Build.Tasks\Microsoft.Maui.BindingExtensions.Build.Tasks.csproj", "{D1497B0B-A62D-49AD-833B-EFE4F87B1BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityToolkit.Maui.BindingExtensions", "CommunityToolkit.Maui.BindingExtensions\CommunityToolkit.Maui.BindingExtensions.csproj", "{D1497B0B-A62D-49AD-833B-EFE4F87B1BEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Maui.BindingExtensions.Build.Tests", "test\Microsoft.Maui.BindingExtensions.Build.Tests\Microsoft.Maui.BindingExtensions.Build.Tests.csproj", "{7BF30708-BC47-4379-8DC0-E7093AC2FED6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityToolkit.Maui.BindingExtensions.Tests", "CommunityToolkit.Maui.BindingExtensions.Tests\CommunityToolkit.Maui.BindingExtensions.Tests.csproj", "{7BF30708-BC47-4379-8DC0-E7093AC2FED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

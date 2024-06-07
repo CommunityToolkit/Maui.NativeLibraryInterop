@@ -8,10 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(BindingExtPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
     <XcodeProjectReference Include="../native/MauiFirebase.xcodeproj">
       <SchemeName>MauiFirebase</SchemeName>
       <SharpieNamespace>Firebase</SharpieNamespace>
@@ -22,5 +23,4 @@
     </XcodeProjectReference>
   </ItemGroup>
 
-  <Import Project="$(MSBuildThisFileDirectory)..\..\..\eng\Common.macios.targets" />
 </Project>

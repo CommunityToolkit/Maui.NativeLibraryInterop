@@ -10,15 +10,15 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
-    <PackageReference Include="Microsoft.Build.Framework" Version="$(MSBuildPackageReferenceVersion)" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="$(MSBuildPackageReferenceVersion)" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="$(MSBuildPackageVersion)" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="$(MSBuildPackageVersion)" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="NUnit" Version="4.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Microsoft.Maui.BindingExtensions.Build.Tasks\Microsoft.Maui.BindingExtensions.Build.Tasks.csproj" />
+    <ProjectReference Include="..\CommunityToolkit.Maui.BindingExtensions\CommunityToolkit.Maui.BindingExtensions.csproj" />
   </ItemGroup>
 
 </Project>

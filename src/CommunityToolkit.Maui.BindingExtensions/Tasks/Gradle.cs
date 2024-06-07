@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 using Microsoft.Build.Framework;
 
-namespace Microsoft.Maui.BindingExtensions.Build.Tasks
+namespace CommunityToolkit.Maui.BindingExtensions
 {
     public class Gradle : BindingToolTask
     {
