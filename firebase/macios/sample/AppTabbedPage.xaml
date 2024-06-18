@@ -9,6 +9,11 @@
             <local:FIRAnalyticsPage Title="Analytics" />
         </x:Arguments>
     </NavigationPage>
+    <NavigationPage Title="Auth">
+        <x:Arguments>
+            <local:FIRAuthPage Title="Auth" />
+        </x:Arguments>
+    </NavigationPage>
     <NavigationPage Title="Messaging">
         <x:Arguments>
             <local:FIRMessagingPage Title="Messaging" />

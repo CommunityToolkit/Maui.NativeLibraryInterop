@@ -13,7 +13,8 @@ public partial class FIRAnalyticsPage : ContentPage
     {
         try
         {
-            await AppTabbedPage.ConfigureFirebase(this);
+            AppTabbedPage.ConfigureFirebase(this);
+
             MauiFIRAnalytics.LogEvent("OnAnalyticsClicked", new Foundation.NSDictionary("param1", "value1"));
             var appInstanceId = await MauiFIRAnalytics.GetAppInstanceIdAsync();
             await DisplayAlert($"Logged event to app ID {appInstanceId}", "", "OK");

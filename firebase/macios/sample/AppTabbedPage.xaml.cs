@@ -11,7 +11,7 @@ public partial class AppTabbedPage : TabbedPage
         InitializeComponent();
     }
 
-    public static async Task ConfigureFirebase(ContentPage page)
+    public static void ConfigureFirebase(ContentPage page)
     {
         if (!FirebaseConfigured)
         {
@@ -22,7 +22,7 @@ public partial class AppTabbedPage : TabbedPage
             }
             catch (Exception ex)
             {
-                await page.DisplayAlert("Unable to configure Firebase app!", ex.ToString(), "OK");
+                page.DisplayAlert("Unable to configure Firebase app!", ex.ToString(), "OK");
             }
         }
     }
