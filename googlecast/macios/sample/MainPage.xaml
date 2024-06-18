@@ -18,6 +18,13 @@
                 Style="{StaticResource SubHeadline}"/>
 
             <local:GoogleCastButtonView x:Name="GoogleCastButton" />
+
+            <Button
+                x:Name="LoadMediaBtn"
+                Text="Cast Media"
+                Clicked="OnLoadMediaBtnClicked"
+                HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 
