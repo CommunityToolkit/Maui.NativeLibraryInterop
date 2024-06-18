@@ -26,8 +26,14 @@
 
   <Target Name="NativeDependencies">
     <PropertyGroup>
-      <GoogleCastiOSSdkVersion>4.8.0</GoogleCastiOSSdkVersion>
-      <GoogleCastiOSSdkUrl>https://dl.google.com/dl/chromecast/sdk/ios/GoogleCastSDK-ios-$(GoogleCastiOSSdkVersion)_dynamic_xcframework.zip</GoogleCastiOSSdkUrl>
+      <!-- TODO: Update this URL once a new official cast SDK is released.
+            The 4.8.x versions of the Google Cast SDK contains a bug that breaks the cast button on physical iOS devices:
+            https://issuetracker.google.com/issues/298066142
+
+      <GoogleCastiOSSdkVersion>4.8.1</GoogleCastiOSSdkVersion>
+      <GoogleCastiOSSdkUrl>https://dl.google.com/dl/chromecast/sdk/ios/GoogleCastSDK-ios-$(GoogleCastiOSSdkVersion)_dynamic.zip</GoogleCastiOSSdkUrl>
+      -->
+      <GoogleCastiOSSdkUrl>https://github.com/react-native-google-cast/google-cast-sdk-dynamic-xcframework-no-bluetooth/archive/refs/tags/4.7.1.zip</GoogleCastiOSSdkUrl>
     </PropertyGroup>
 
     <DownloadFile SourceUrl="$(GoogleCastiOSSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps))">

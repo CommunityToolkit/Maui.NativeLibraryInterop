@@ -31,7 +31,7 @@ public partial class GoogleCastButtonHandler : ViewHandler<IGoogleCastButton, Na
 #if IOS
 		var b = new GoogleCastButton();
 		b.Frame = new CoreGraphics.CGRect(0, 0, 24, 24);
-		b.TintColor = UIKit.UIColor.Gray;
+		b.TintColor = UIKit.UIColor.Orange;
 		return b;
 #else
 		return null;

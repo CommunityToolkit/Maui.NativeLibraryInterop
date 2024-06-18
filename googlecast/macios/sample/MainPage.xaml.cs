@@ -4,8 +4,10 @@ public partial class MainPage : ContentPage
 {
 	public MainPage()
 	{
-		InitializeComponent();	
+		InitializeComponent();
 	}
+
+	GoogleCast.GoogleCastManager? googleCastManager;
 
 	protected override async void OnAppearing()
 	{
@@ -22,9 +24,7 @@ public partial class MainPage : ContentPage
 		}
 	}
 
-	GoogleCast.GoogleCastManager? googleCastManager;
-
-	private void OnCounterClicked(object sender, EventArgs e)
+	void OnLoadMediaBtnClicked(object sender, EventArgs e)
 	{
 		googleCastManager?.LoadMedia("https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
 			"video/mp4",
@@ -35,4 +35,3 @@ public partial class MainPage : ContentPage
 			100);
 	}
 }
-
