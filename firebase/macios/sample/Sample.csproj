@@ -17,7 +17,7 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>Firebase Sample</ApplicationTitle>
+        <ApplicationTitle>Firebase.Sample</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.firebase.sample</ApplicationId>
