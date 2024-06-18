@@ -19,7 +19,7 @@ public partial class FIRMessagingPage : ContentPage
     {
         try
         {
-            await AppTabbedPage.ConfigureFirebase(this);
+            AppTabbedPage.ConfigureFirebase(this);
 
             if (MauiFIRMessaging.FcmToken == null)
             {

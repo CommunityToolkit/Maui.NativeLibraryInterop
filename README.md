@@ -88,6 +88,7 @@ Install prerequisites:
 - [Android SDK](https://developer.android.com/tools)
 - [Android Studio](https://developer.android.com/studio)
 - [Objective-Sharpie](https://aka.ms/objective-sharpie)
+    - [Xamarin.iOS](https://download.visualstudio.microsoft.com/download/pr/ceb0ea3f-4db8-46b4-8dc3-8049d27c0107/3960868aa9b1946a6c77668c3f3334ee/xamarin.ios-16.4.0.23.pkg)
 - [Visual Studio](https://visualstudio.microsoft.com/downloads/) or [Visual Studio Code](https://code.visualstudio.com/download)
 - [Xcode](https://developer.apple.com/xcode/)
 - [Xcode Command Line Tools](https://developer.apple.com/download/all/?q=command%20line%20tools) (```xcode-select --install```)
