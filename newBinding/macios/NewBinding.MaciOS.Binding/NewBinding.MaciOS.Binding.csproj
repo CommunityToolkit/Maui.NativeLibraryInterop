@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+
+    <!--
+      Enable trim analyzers for class libraries.
+      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
+    -->
+    <IsTrimmable>true</IsTrimmable>
+
+    <!-- Reference to Xcode project -->
+    <XcodeProject>$(MSBuildThisFileDirectory)../native/NewBinding/NewBinding.xcodeproj</XcodeProject>
+
+    <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
+
+    <!-- Namespace -->
+    <ObjSharpieBindNamespace>NewBinding</ObjSharpieBindNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+
+  <!-- Reference to Xcode project -->
+  <ItemGroup>
+    <XcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
+      <SchemeName>NewBinding</SchemeName>
+      <SharpieNamespace>NewBinding</SharpieNamespace>
+      <SharpieBind>true</SharpieBind>
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+    </XcodeProjectReference>
+  </ItemGroup>
+
+  <!-- Reference to NuGet for building bindings -->
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
+  </ItemGroup>
+</Project>

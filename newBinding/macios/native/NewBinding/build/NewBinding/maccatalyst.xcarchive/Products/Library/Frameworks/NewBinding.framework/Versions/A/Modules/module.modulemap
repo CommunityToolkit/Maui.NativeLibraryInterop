@@ -1,0 +1,11 @@
+framework module NewBinding {
+  umbrella header "NewBinding.h"
+  export *
+
+  module * { export * }
+}
+
+module NewBinding.Swift {
+  header "NewBinding-Swift.h"
+  requires objc
+}

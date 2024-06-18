@@ -1,0 +1,3 @@
+namespace NewBinding.MaciOS.Binding {
+
+}

@@ -1,0 +1,15 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/rachelkang/Library/Developer/Xcode/DerivedData/NewBinding-dbcyijbjicllcedqyhyhaqecqiwz/Build/Intermediates.noindex/ArchiveIntermediates/NewBinding/InstallationBuildProductsLocation/Library/Frameworks/NewBinding.framework/NewBinding'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x2E66D, size: 0x8, addend: 0x0, symName: _NewBindingVersionString, symObjAddr: 0x0, symBinAddr: 0x4160, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x2E6A2, size: 0x8, addend: 0x0, symName: _NewBindingVersionNumber, symObjAddr: 0x30, symBinAddr: 0x4190, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x2E6DF, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0C9getString02myE0So8NSStringCAG_tFZ', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x4 }
+  - { offsetInCU: 0x67, offset: 0x2E71F, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0C9getString02myE0So8NSStringCAG_tFZTo', symObjAddr: 0x4, symBinAddr: 0x4004, symSize: 0x8 }
+  - { offsetInCU: 0xCF, offset: 0x2E787, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0CACycfcTo', symObjAddr: 0x7C, symBinAddr: 0x407C, symSize: 0x3C }
+  - { offsetInCU: 0x121, offset: 0x2E7D9, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0CMa', symObjAddr: 0x5C, symBinAddr: 0x405C, symSize: 0x20 }
+  - { offsetInCU: 0x1C4, offset: 0x2E87C, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0C9getString02myE0So8NSStringCAG_tFZ', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x4 }
+  - { offsetInCU: 0x211, offset: 0x2E8C9, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0CACycfC', symObjAddr: 0xC, symBinAddr: 0x400C, symSize: 0x20 }
+  - { offsetInCU: 0x225, offset: 0x2E8DD, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0CACycfc', symObjAddr: 0x2C, symBinAddr: 0x402C, symSize: 0x30 }
+  - { offsetInCU: 0x261, offset: 0x2E919, size: 0x8, addend: 0x0, symName: '_$s10NewBinding06DotnetaB0CfD', symObjAddr: 0xB8, symBinAddr: 0x40B8, symSize: 0x30 }
+...
