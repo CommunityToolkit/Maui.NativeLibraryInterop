@@ -8,12 +8,6 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
-
             <Label
                 Text="Google Cast Demo"
                 Style="{StaticResource Headline}"
@@ -24,6 +18,13 @@
                 Style="{StaticResource SubHeadline}"/>
 
             <local:GoogleCastButtonView x:Name="GoogleCastButton" />
+
+            <Button
+                x:Name="LoadMediaBtn"
+                Text="Cast Media"
+                Clicked="OnLoadMediaBtnClicked"
+                HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 
