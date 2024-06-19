@@ -165,7 +165,7 @@
 
   <Target Name="_CleanXcodeProjects"
       Condition=" '@(XcodeProjectReference->Count())' != '0' ">
-    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)')" />
+    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)')" />
   </Target>
 
 </Project>
