@@ -37,11 +37,11 @@
       <GoogleCastiOSSdkUrl>https://github.com/react-native-google-cast/google-cast-sdk-dynamic-xcframework-no-bluetooth/archive/refs/tags/4.7.1.zip</GoogleCastiOSSdkUrl>
     </PropertyGroup>
 
-    <DownloadFile SourceUrl="$(GoogleCastiOSSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps))">
+    <DownloadFile SourceUrl="$(GoogleCastiOSSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps))">
       <Output TaskParameter="DownloadedFile" ItemName="GoogleCastiOSSdkArchives" />
     </DownloadFile>
 
-    <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/build/deps)) @(GoogleCastiOSSdkArchives)" />
+    <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps)) @(GoogleCastiOSSdkArchives)" />
   </Target>
 
 </Project>

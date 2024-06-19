@@ -31,7 +31,7 @@
 		64B993472B97A71D00BAFB55 /* MauiGoogleCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MauiGoogleCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B9934A2B97A71D00BAFB55 /* MauiGoogleCast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MauiGoogleCast.h; sourceTree = "<group>"; };
 		64B993562B97A7B300BAFB55 /* MauiGoogleCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiGoogleCast.swift; sourceTree = "<group>"; };
-		D0A597A42C211EE600C52635 /* GoogleCast.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleCast.xcframework; path = "build/deps/google-cast-sdk-dynamic-xcframework-no-bluetooth-4.7.1/GoogleCast.xcframework"; sourceTree = "<group>"; };
+		D0A597A42C211EE600C52635 /* GoogleCast.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleCast.xcframework; path = "bin/deps/google-cast-sdk-dynamic-xcframework-no-bluetooth-4.7.1/GoogleCast.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
