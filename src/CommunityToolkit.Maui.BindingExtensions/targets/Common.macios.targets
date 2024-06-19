@@ -46,7 +46,7 @@
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.pbxproj" />
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.xcworkspace"/>
       <_XcbInputs Remove="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)$(XcodeProjectBuildDirectory)/**/*')" />
-      <_XcbOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/BuildXcodeFramework.stamp')" />
+      <_XcbOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/_BuildXcodeProjects.stamp')" />
     </ItemGroup>
   </Target>
 
@@ -101,10 +101,7 @@
     <Error Condition=" !Exists('@(NativeReference)') " Text="Xcode project built successfully but did not produce expected output file: '@(NativeReference)'" />
     <Message Text="Adding reference to Xcode project output: @(NativeReference)" />
 
-    <ItemGroup>
-      <FileWrites Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)$(XcodeProjectBuildDirectory)/**/*" />
-    </ItemGroup>
-    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/BuildXcodeFramework.stamp')" AlwaysCreate="true" />
+    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/_BuildXcodeProjects.stamp')" AlwaysCreate="true" />
   </Target>
 
 
@@ -125,16 +122,27 @@
       Inputs="@(_SharpieInputs)"
       Outputs="@(_SharpieOutputs)">
 
-    <Sharpie Arguments="xcode -sdks" >
+    <Exec Command="xcode-select -p"
+        Condition="$([MSBuild]::IsOSPlatform('osx'))"
+        ConsoleToMSBuild="true"
+        StandardOutputImportance="low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="_XcodeSelectOutput" />
+    </Exec>
+
+    <PropertyGroup>
+      <SharpieXcodeFilter Condition=" '$(SharpieXcodeFilter)' == '' and '$(_XcodeSelectOutput)' != '' ">-x $(_XcodeSelectOutput.Replace(Contents/Developer, ''))</SharpieXcodeFilter>
+    </PropertyGroup>
+
+    <Sharpie Arguments="xcode -sdks $(SharpieXcodeFilter)" >
       <Output TaskParameter="ConsoleOutput" PropertyName="_SharpieXcodeSdksOutput" />
     </Sharpie>
 
     <PropertyGroup>
-      <_SharpieBindXcodeSdkName Condition=" '$(_SharpieBindXcodeSdkName)' == '' ">$([System.Text.RegularExpressions.Regex]::Match($(_SharpieXcodeSdksOutput), `iphoneos[^; \n\r\t]+`))</_SharpieBindXcodeSdkName>
+      <SharpieSdkName Condition=" '$(SharpieBindXcodeSdkName)' == '' ">$([System.Text.RegularExpressions.Regex]::Match($(_SharpieXcodeSdksOutput), `iphoneos[^; \n\r\t]+`))</SharpieSdkName>
     </PropertyGroup>
 
     <ItemGroup>
-      <_ObjSharpieArgs Include="@(XcodeProjectReference->'--output=&quot;%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/sharpie&quot; --namespace=%(SharpieNamespace) --sdk=$(_SharpieBindXcodeSdkName)')" />
+      <_ObjSharpieArgs Include="@(XcodeProjectReference->'--output=&quot;%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/sharpie&quot; --namespace=%(SharpieNamespace) --sdk=$(SharpieSdkName)')" />
       <_ObjSharpieArgs Condition=" '$(XcodeBuildiOS)' == 'true' "
           Include="@(XcodeProjectReference->'--scope=&quot;%(XCArchiveiOS)/Products/Library/Frameworks/%(SchemeName).framework/Headers&quot; &quot;%(XCArchiveiOS)/Products/Library/Frameworks/%(SchemeName).framework/Headers/%(SchemeName)-Swift.h&quot;')" />
       <_ObjSharpieArgs Condition=" '$(XcodeBuildiOS)' != 'true' and '$(XcodeBuildMacCatalyst)' == 'true' "
@@ -157,7 +165,7 @@
 
   <Target Name="_CleanXcodeProjects"
       Condition=" '@(XcodeProjectReference->Count())' != '0' ">
-    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)')" />
+    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)')" />
   </Target>
 
 </Project>
