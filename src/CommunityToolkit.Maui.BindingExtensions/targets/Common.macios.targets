@@ -6,6 +6,8 @@
 
   <PropertyGroup>
     <XcodeProjectConfiguration Condition=" '$(XcodeProjectConfiguration)' == '' ">Release</XcodeProjectConfiguration>
+    <XcodeProjectBuildDirectory Condition=" '$(XcodeProjectBuildDirectory)' == '' ">bin</XcodeProjectBuildDirectory>
+
     <XcodeBuildiOS Condition=" '$(XcodeBuildiOS)' == '' and ($(TargetFrameworks.Contains('ios')) or $(TargetFramework.Contains('ios'))) ">true</XcodeBuildiOS>
     <XcodeBuildiOSSimulator Condition=" '$(XcodeBuildiOSSimulator)' == '' and ($(TargetFrameworks.Contains('ios')) or $(TargetFramework.Contains('ios'))) ">true</XcodeBuildiOSSimulator>
     <XcodeBuildMacCatalyst Condition=" '$(XcodeBuildMacCatalyst)' == '' and ($(TargetFrameworks.Contains('maccatalyst')) or $(TargetFramework.Contains('maccatalyst'))) ">true</XcodeBuildMacCatalyst>
@@ -20,9 +22,9 @@
     <XcodeProjectReference>
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
-      <XCArchiveiOS>%(RootDir)%(Directory)build/%(Filename)/ios.xcarchive</XCArchiveiOS>
-      <XCArchiveiOSSimulator>%(RootDir)%(Directory)build/%(Filename)/iossimulator.xcarchive</XCArchiveiOSSimulator>
-      <XCArchiveMacCatalyst>%(RootDir)%(Directory)build/%(Filename)/maccatalyst.xcarchive</XCArchiveMacCatalyst>
+      <XCArchiveiOS>%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/ios.xcarchive</XCArchiveiOS>
+      <XCArchiveiOSSimulator>%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/iossimulator.xcarchive</XCArchiveiOSSimulator>
+      <XCArchiveMacCatalyst>%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/maccatalyst.xcarchive</XCArchiveMacCatalyst>
     </XcodeProjectReference>
   </ItemDefinitionGroup>
 
@@ -43,8 +45,8 @@
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.h" />
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.pbxproj" />
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.xcworkspace"/>
-      <_XcbInputs Remove="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)build/**/*')" />
-      <_XcbOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)build/%(Filename)/BuildXcodeFramework.stamp')" />
+      <_XcbInputs Remove="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)$(XcodeProjectBuildDirectory)/**/*')" />
+      <_XcbOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/BuildXcodeFramework.stamp')" />
     </ItemGroup>
   </Target>
 
@@ -55,7 +57,7 @@
       Inputs="@(_XcbInputs)"
       Outputs="@(_XcbOutputs)" >
 
-    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)build/%(Filename)')" />
+    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)')" />
 
     <!-- Create xcarchive files for configured platforms -->
     <XcodeBuild Condition=" '$(XcodeBuildiOS)' == 'true' "
@@ -82,7 +84,7 @@
           Include="@(XcodeProjectReference->'-archive %(XCArchiveiOSSimulator) -framework %(SchemeName).framework')" />
       <_CreateXcFxArgs Condition=" '$(XcodeBuildMacCatalyst)' == 'true' "
           Include="@(XcodeProjectReference->'-archive %(XCArchiveMacCatalyst) -framework %(SchemeName).framework')" />
-      <_CreateXcFxArgs Include="@(XcodeProjectReference->'-output %(RootDir)%(Directory)build/%(Filename)/%(SchemeName).xcframework')" />
+      <_CreateXcFxArgs Include="@(XcodeProjectReference->'-output %(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/%(SchemeName).xcframework')" />
     </ItemGroup>
 
     <XcodeBuild Arguments="@(_CreateXcFxArgs, ' ')"
@@ -90,7 +92,7 @@
     </XcodeBuild>
 
     <ItemGroup>
-      <NativeReference Include="@(XcodeProjectReference->'%(RootDir)%(Directory)build/%(Filename)/%(SchemeName).xcframework')">
+      <NativeReference Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/%(SchemeName).xcframework')">
         <Kind>%(XcodeProjectReference.Kind)</Kind>
         <SmartLink>%(XcodeProjectReference.SmartLink)</SmartLink>
       </NativeReference>
@@ -98,7 +100,11 @@
 
     <Error Condition=" !Exists('@(NativeReference)') " Text="Xcode project built successfully but did not produce expected output file: '@(NativeReference)'" />
     <Message Text="Adding reference to Xcode project output: @(NativeReference)" />
-    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)build/%(Filename)/BuildXcodeFramework.stamp')" AlwaysCreate="true" />
+
+    <ItemGroup>
+      <FileWrites Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)$(XcodeProjectBuildDirectory)/**/*" />
+    </ItemGroup>
+    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/BuildXcodeFramework.stamp')" AlwaysCreate="true" />
   </Target>
 
 
@@ -108,7 +114,7 @@
           Include="%(XcodeProjectReference.XCArchiveiOS)/**/*.*" />
       <_SharpieInputs Condition=" '$(XcodeBuildiOS)' != 'true' and '$(XcodeBuildMacCatalyst)' == 'true' "
           Include="%(XcodeProjectReference.XCArchiveMacCatalyst)/**/*.*" />
-      <_SharpieOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)build/sharpie/_SharpieBindXcodeProjects.stamp')" />
+      <_SharpieOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/sharpie/_SharpieBindXcodeProjects.stamp')" />
     </ItemGroup>
   </Target>
 
@@ -139,7 +145,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <_ObjSharpieArgs Include="@(XcodeProjectReference->'--output=&quot;%(RootDir)%(Directory)build/sharpie&quot; --namespace=%(SharpieNamespace) --sdk=$(SharpieSdkName)')" />
+      <_ObjSharpieArgs Include="@(XcodeProjectReference->'--output=&quot;%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/sharpie&quot; --namespace=%(SharpieNamespace) --sdk=$(SharpieSdkName)')" />
       <_ObjSharpieArgs Condition=" '$(XcodeBuildiOS)' == 'true' "
           Include="@(XcodeProjectReference->'--scope=&quot;%(XCArchiveiOS)/Products/Library/Frameworks/%(SchemeName).framework/Headers&quot; &quot;%(XCArchiveiOS)/Products/Library/Frameworks/%(SchemeName).framework/Headers/%(SchemeName)-Swift.h&quot;')" />
       <_ObjSharpieArgs Condition=" '$(XcodeBuildiOS)' != 'true' and '$(XcodeBuildMacCatalyst)' == 'true' "
@@ -148,7 +154,21 @@
 
     <Sharpie Arguments="bind @(_ObjSharpieArgs, ' ')" />
 
-    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)build/sharpie/_SharpieBindXcodeProjects.stamp')" AlwaysCreate="true" />
+    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/sharpie/_SharpieBindXcodeProjects.stamp')" AlwaysCreate="true" />
+  </Target>
+
+
+  <!-- Consider also moving native build outputs to $(IntermediateOutputDirectory) and using @(FileWrites) to clean -->
+  <PropertyGroup>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      _CleanXcodeProjects;
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_CleanXcodeProjects"
+      Condition=" '@(XcodeProjectReference->Count())' != '0' ">
+    <RemoveDir Directories="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)')" />
   </Target>
 
 </Project>
