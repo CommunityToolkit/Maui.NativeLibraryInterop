@@ -46,7 +46,7 @@
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.pbxproj" />
       <_XcbInputs Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)**/*.xcworkspace"/>
       <_XcbInputs Remove="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)$(XcodeProjectBuildDirectory)/**/*')" />
-      <_XcbOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/BuildXcodeFramework.stamp')" />
+      <_XcbOutputs Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/_BuildXcodeProjects.stamp')" />
     </ItemGroup>
   </Target>
 
@@ -101,10 +101,7 @@
     <Error Condition=" !Exists('@(NativeReference)') " Text="Xcode project built successfully but did not produce expected output file: '@(NativeReference)'" />
     <Message Text="Adding reference to Xcode project output: @(NativeReference)" />
 
-    <ItemGroup>
-      <FileWrites Include="%(XcodeProjectReference.RootDir)%(XcodeProjectReference.Directory)$(XcodeProjectBuildDirectory)/**/*" />
-    </ItemGroup>
-    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/BuildXcodeFramework.stamp')" AlwaysCreate="true" />
+    <Touch Files="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(Filename)/_BuildXcodeProjects.stamp')" AlwaysCreate="true" />
   </Target>
 
 
