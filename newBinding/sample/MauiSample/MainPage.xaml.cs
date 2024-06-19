@@ -12,7 +12,7 @@ public partial class MainPage : ContentPage
 		string labelText = NewBinding.DotnetNewBinding.GetStringWithMyString(new Foundation.NSString("Rachel"));
 #elif ANDROID
 		var dotnetNewBinding = new NewBinding.DotnetNewBinding();
-		string labelText = dotnetNewBinding.GetString("Rachel");
+		string labelText = dotnetNewBinding.GetString("Rachel") ?? string.Empty;
 #endif
 
 		newBindingSampleLabel.Text = "Hello, " + labelText;
