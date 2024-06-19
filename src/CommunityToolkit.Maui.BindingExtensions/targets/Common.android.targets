@@ -5,6 +5,7 @@
 
   <PropertyGroup>
     <GradleProjectConfiguration Condition=" '$(GradleProjectConfiguration)' == '' ">Release</GradleProjectConfiguration>
+    <GradleProjectBuildDirectory Condition=" '$(GradleProjectBuildDirectory)' == '' ">bin</GradleProjectBuildDirectory>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
@@ -32,8 +33,8 @@
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.gradle" />
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.xml" />
       <_GradleInputs Include="%(GradleProjectReference.FullPath)/**/*.properties"/>
-      <_GradleInputs Remove="%(GradleProjectReference.FullPath)/%(GradleProjectReference.ModuleName)/build/**/*" />
-      <_GradleOutputs Include="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')" />
+      <_GradleInputs Remove="%(GradleProjectReference.FullPath)/%(GradleProjectReference.ModuleName)/$(GradleProjectBuildDirectory)/**/*" />
+      <_GradleOutputs Include="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/$(GradleProjectBuildDirectory)/outputs/aar/%(ModuleName)-$(GradleProjectConfiguration).aar')" />
     </ItemGroup>
   </Target>
 
@@ -44,12 +45,12 @@
       Inputs="@(_GradleInputs)"
       Outputs="@(_GradleOutputs)" >
     
-    <RemoveDir Directories="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/build/outputs')" />
+    <RemoveDir Directories="@(GradleProjectReference->'%(FullPath)/%(ModuleName)/$(GradleProjectBuildDirectory)/outputs')" />
 
     <Gradle ToolPath="%(GradleProjectReference.FullPath)"
         AndroidSdkDirectory="$(AndroidSdkDirectory)"
         JavaSdkDirectory="$(JavaSdkDirectory)"
-        Arguments="%(GradleProjectReference.ModuleName):assemble$(GradleProjectConfiguration)"
+        Arguments="%(GradleProjectReference.ModuleName):assemble$(GradleProjectConfiguration) -Dorg.gradle.project.buildDir=$(GradleProjectBuildDirectory)"
         WorkingDirectory="%(GradleProjectReference.FullPath)" >
     </Gradle>
 
@@ -63,6 +64,23 @@
 
     <Error Condition=" !Exists('@(AndroidLibrary)') " Text="Gradle project built successfully but did not produce expected output file: '@(AndroidLibrary)'" />
     <Message Text="Adding reference to gradle project output: @(AndroidLibrary)" />
+  </Target>
+
+
+  <!-- Consider also moving native build outputs to $(IntermediateOutputDirectory) and using @(FileWrites) to clean -->
+  <PropertyGroup>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      _CleanGradleProjects;
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_CleanGradleProjects"
+      Condition=" '@(GradleProjectReference->Count())' != '0' " >
+    <Gradle ToolPath="%(GradleProjectReference.FullPath)"
+        Arguments="clean -Dorg.gradle.project.buildDir=$(GradleProjectBuildDirectory)"
+        WorkingDirectory="%(GradleProjectReference.FullPath)" >
+    </Gradle>
   </Target>
 
 </Project>
