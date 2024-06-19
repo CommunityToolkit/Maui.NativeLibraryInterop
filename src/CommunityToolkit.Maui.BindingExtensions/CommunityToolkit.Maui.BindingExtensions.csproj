@@ -21,7 +21,7 @@
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>0.0.1-pre1</Version>
+    <Version>0.0.1-pre2</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>net,maui,netmaui,toolkit,kit,communitytoolkit,netmauitoolkit,mauicommunitytoolkit,slimbinding,binding</PackageTags>
