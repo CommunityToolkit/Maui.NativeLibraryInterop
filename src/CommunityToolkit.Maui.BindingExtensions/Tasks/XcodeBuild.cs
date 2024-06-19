@@ -34,7 +34,7 @@ namespace CommunityToolkit.Maui.BindingExtensions
             }
             else
             {
-                Log.LogCodedWarning($"{TaskPrefix}1000", "xcodebuild is not currently supported on this platform. Please build this project on a macOS machine.");
+                Log.LogCodedError($"{TaskPrefix}1000", "xcodebuild is not currently supported on this platform. Please build this project on a macOS machine.");
                 return false;
             }
         }

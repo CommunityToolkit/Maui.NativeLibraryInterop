@@ -21,7 +21,7 @@ namespace CommunityToolkit.Maui.BindingExtensions.Tests
             var task = new Sharpie()
             {
                 BuildEngine = engine,
-                Arguments = "xcode -sdks",
+                Arguments = "xcode -sdks -x /Applications/Xcode.app",
             };
 
             var taskSucceeded = task.Execute();
