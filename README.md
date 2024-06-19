@@ -99,11 +99,35 @@ Install prerequisites:
 
 ## Building
 
-The goal is to have bindings and samples building 100% through normal MSBuild invocations.
+The binding build process is extended to obtain and build native SDK dependencies by adding the `CommunityToolkit.Maui.BindingExtensions` NuGet package to your binding project:
 
-Each .NET Binding project contains some additional MSBuild logic to help obtain and build the native SDK dependencies along with the native slim binding project. In some cases, the target may also download native SDKs if they are not already present. In this way, the expected native artifacts are available in the expected working directories.
+```xml
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
+  </ItemGroup>
+```
 
-In the [```src/```](/src/) folder you will find a solution with custom build tasks/targets to help with this.  These build extensions are available in a CommunityToolkit.Maui.BindingExtensions NuGet package that the binding projects reference.
+Android binding projects will also add a `@(GradleProjectReference)` item that points to the root folder that contains their gradle project:
+
+```xml
+  <ItemGroup>
+    <GradleProjectReference Include="../native" >
+      <ModuleName>mauifacebook</ModuleName>
+    </GradleProjectReference>
+  </ItemGroup>
+```
+
+iOS binding projects will also add a `@(XcodeProjectReference)` item that points to their Xcode project:
+
+```xml
+  <XcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
+    <SchemeName>MauiFacebook</SchemeName>
+    <SharpieNamespace>Facebook</SharpieNamespace>
+    <SharpieBind>true</SharpieBind>
+  </XcodeProjectReference>
+```
+
+In the [```src/```](/src/) folder you will find the sources for the NuGet and these custom build tasks/targets.
 
 Android binding projects generate the API definition automatically taking into account any optional manual modifications like those implemented via the [```Metadata.xml```](https://learn.microsoft.com/xamarin/android/platform/binding-java-library/customizing-bindings/java-bindings-metadata#metadataxml-transform-file) transform file. 
 
@@ -191,7 +215,7 @@ public static func unregister(completion: @escaping (NSError?) -> Void) {
 The other half will be to update the `ApiDefinitions.cs` file in the binding project to expose this new method.  There are two ways you can go about this:
 
 1. You can manually add the required code
-2. When the binding project builds, objective sharpie is run and an `ApiDefinitions.cs` file is generated inside of the `native/macios/.build/Binding` folder (this path will vary based on the project you are working on of course).  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
+2. When the binding project builds, objective sharpie is run and an `ApiDefinitions.cs` file is generated inside of the `native/macios/bin/sharpie` folder (this path will vary based on the project you are working on of course).  You can try to find the relevant changes from this file and copy them over manually, or try copying over the whole file and looking at the diff to find the part you need.
 
 In this case, the changes to `ApiDefinitions.cs` would be:
 
@@ -278,19 +302,21 @@ There are several ways you can use these samples in your own project.
 
 When packaging a native Android library (.aar) file, gradle/maven dependencies are _not_ automatically bundled into your library. This is important to note, as the application project will often need to explicitly reference these dependencies in order to run successfully. While this approach can work on an individual application basis, it is *not* recommended for library projects. Including specific versions of dependencies in a library can lead to version conflicts when the library is consumed by an application that also uses the same dependencies.
 
-The `facebook/android/native/mauifacebook/build.gradle.kts` file is configured to copy facebook dependencies into a `build/outputs/deps` folder. Some of this content is then referenced by the .NET MAUI sample project:
+The `facebook/android/native/mauifacebook/build.gradle.kts` file is configured to copy facebook dependencies into a `bin/outputs/deps` folder. Some of this content is then referenced by the .NET MAUI sample project:
 
 ```xml
-<ItemGroup>
-  <AndroidLibrary Include="..\android\native\mauifacebook\build\outputs\deps\facebook-common*.aar">
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-android-sdk-17.0.0.aar">
     <Bind>false</Bind>
     <Visible>false</Visible>
-  </AndroidLibrary>
-  <AndroidLibrary Include="..\android\native\mauifacebook\build\outputs\deps\facebook-core*.aar">
+</AndroidLibrary>
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-common-17.0.0.aar">
     <Bind>false</Bind>
     <Visible>false</Visible>
-  </AndroidLibrary>
-</ItemGroup>
+</AndroidLibrary>
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-core-17.0.0.aar">
+    <Bind>false</Bind>
+    <Visible>false</Visible>
+</AndroidLibrary>
 ```
 
 In some cases first party NuGet packages will exist for missing dependencies. In other cases, you may need to manually include the dependencies in the project as demonstrated in the sample. We hope to improve this type of dependency inclusion guess work in the future by introducing support for `@(AndroidMavenPackage)` references in Android projects.
