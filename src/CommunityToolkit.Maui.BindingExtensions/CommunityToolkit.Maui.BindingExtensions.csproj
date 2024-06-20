@@ -21,7 +21,7 @@
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>0.0.1-pre3</Version>
+    <Version>0.0.1-pre4</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>net,maui,netmaui,toolkit,kit,communitytoolkit,netmauitoolkit,mauicommunitytoolkit,slimbinding,binding</PackageTags>
@@ -39,8 +39,6 @@
     <None Include="$(MSBuildThisFileDirectory)../../build/nuget.png" Pack="true" PackagePath="/" />
     <None Include="$(MSBuildThisFileDirectory)../../README.md" Pack="true" PackagePath="/" />
     <None Include="$(MSBuildThisFileDirectory)targets/CommunityToolkit.Maui.BindingExtensions.targets" Pack="true" PackagePath="build" />
-    <None Include="$(MSBuildThisFileDirectory)targets/CommunityToolkit.Maui.BindingExtensions.targets" Pack="true" PackagePath="buildMultiTargeting" />
-    <None Include="$(MSBuildThisFileDirectory)targets/CommunityToolkit.Maui.BindingExtensions.multitargeting.props" Pack="true" PackagePath="buildMultiTargeting/CommunityToolkit.Maui.BindingExtensions.props" />
     <None Include="$(MSBuildThisFileDirectory)targets/Common.props" Pack="true" PackagePath="tools" />
     <None Include="$(MSBuildThisFileDirectory)targets/Common.android.targets" Pack="true" PackagePath="tools" />
     <None Include="$(MSBuildThisFileDirectory)targets/Common.macios.targets" Pack="true" PackagePath="tools" />

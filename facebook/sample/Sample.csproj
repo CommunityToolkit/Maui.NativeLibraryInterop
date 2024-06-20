@@ -64,15 +64,15 @@
     <ItemGroup Condition="$(TargetFramework.Contains('android'))">
         <ProjectReference Include="..\android\Facebook.Android.Binding\Facebook.Android.Binding.csproj" />
         <!-- Include core facebook dependencies. Starting in .NET 9 these can potentially be replaced with @(AndroidMavenPackage) -->
-        <AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-android-sdk-17.0.0.aar">
+        <AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\deps\facebook-android-sdk-17.0.0.aar">
             <Bind>false</Bind>
             <Visible>false</Visible>
         </AndroidLibrary>
-        <AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-common-17.0.0.aar">
+        <AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\depsfacebook-common-17.0.0.aar">
             <Bind>false</Bind>
             <Visible>false</Visible>
         </AndroidLibrary>
-        <AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-core-17.0.0.aar">
+        <AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\deps\facebook-core-17.0.0.aar">
             <Bind>false</Bind>
             <Visible>false</Visible>
         </AndroidLibrary>

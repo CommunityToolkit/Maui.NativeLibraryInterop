@@ -305,15 +305,15 @@ When packaging a native Android library (.aar) file, gradle/maven dependencies a
 The `facebook/android/native/mauifacebook/build.gradle.kts` file is configured to copy facebook dependencies into a `bin/outputs/deps` folder. Some of this content is then referenced by the .NET MAUI sample project:
 
 ```xml
-<AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-android-sdk-17.0.0.aar">
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\deps\facebook-android-sdk-17.0.0.aar">
     <Bind>false</Bind>
     <Visible>false</Visible>
 </AndroidLibrary>
-<AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-common-17.0.0.aar">
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\depsfacebook-common-17.0.0.aar">
     <Bind>false</Bind>
     <Visible>false</Visible>
 </AndroidLibrary>
-<AndroidLibrary Include="..\android\native\mauifacebook\bin\outputs\deps\facebook-core-17.0.0.aar">
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\deps\facebook-core-17.0.0.aar">
     <Bind>false</Bind>
     <Visible>false</Visible>
 </AndroidLibrary>
