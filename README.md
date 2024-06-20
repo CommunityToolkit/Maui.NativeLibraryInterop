@@ -309,7 +309,7 @@ The `facebook/android/native/mauifacebook/build.gradle.kts` file is configured t
     <Bind>false</Bind>
     <Visible>false</Visible>
 </AndroidLibrary>
-<AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\depsfacebook-common-17.0.0.aar">
+<AndroidLibrary Include="..\android\native\mauifacebook\bin\Release\$(TargetFramework)\outputs\deps\facebook-common-17.0.0.aar">
     <Bind>false</Bind>
     <Visible>false</Visible>
 </AndroidLibrary>
