@@ -22,7 +22,7 @@ public partial class AppTabbedPage : TabbedPage
             }
             catch (Exception ex)
             {
-                page.DisplayAlert("Unable to configure Firebase app!", ex.ToString(), "OK");
+                page.DisplayAlert("Unable to configure Firebase app!", ex.Message, "OK");
             }
         }
     }
