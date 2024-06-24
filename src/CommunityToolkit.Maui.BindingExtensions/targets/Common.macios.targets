@@ -112,8 +112,7 @@
 
   <Target Name="_BuildXcodeProjects"
       Condition=" '@(XcodeProjectReference->Count())' != '0' "
-      DependsOnTargets="$(BuildXcodeProjectsDependsOnTargets);_BuildXcodeProjectsForiOS;_BuildXcodeProjectsForMacCatalyst"
-      BeforeTargets="$(_BuildXcodeProjectsBeforeTargets)" >
+      DependsOnTargets="$(BuildXcodeProjectsDependsOnTargets);_BuildXcodeProjectsForiOS;_BuildXcodeProjectsForMacCatalyst" >
     <ItemGroup>
       <NativeReference Include="@(XcodeProjectReference->'%(RootDir)%(Directory)$(XcodeProjectBuildDirectory)/%(SchemeName)$(TargetPlatformIdentifier).xcframework')">
         <Kind>%(XcodeProjectReference.Kind)</Kind>
@@ -136,7 +135,6 @@
   <Target Name="_SharpieBindXcodeProjects"
       Condition=" '@(XcodeProjectReference->Count())' != '0' and '@(XcodeProjectReference->'%(SharpieBind)')' == 'true' "
       DependsOnTargets="_GetSharpieBindInputs;_BuildXcodeProjects"
-      BeforeTargets="$(_BuildXcodeProjectsBeforeTargets)"
       Inputs="@(_SharpieInputs)"
       Outputs="@(_SharpieOutputs)">
 
