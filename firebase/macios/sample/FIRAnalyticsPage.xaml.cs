@@ -21,7 +21,7 @@ public partial class FIRAnalyticsPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Unable to log event!", ex.ToString(), "OK");
+            await DisplayAlert("Unable to log event!", ex.Message, "OK");
         }
     }
 }

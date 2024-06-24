@@ -35,7 +35,7 @@ public partial class FIRMessagingPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Unable to fetch app token!", ex.ToString(), "OK");
+            await DisplayAlert("Unable to fetch app token!", ex.Message, "OK");
         }
     }
 }

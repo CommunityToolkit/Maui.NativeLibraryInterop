@@ -24,7 +24,7 @@ public partial class MainPage : ContentPage
         }
         catch (Exception ex)
         {
-           await DisplayAlert("Unable to initialize Facebook SDK!", ex.ToString(), "OK");
+            await DisplayAlert("Unable to initialize Facebook SDK!", ex.Message, "OK");
         }
     }
 
@@ -46,7 +46,7 @@ public partial class MainPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Failed to send App Event!", ex.ToString(), "OK");
+            await DisplayAlert("Failed to send App Event!", ex.Message, "OK");
         }
     }
 }

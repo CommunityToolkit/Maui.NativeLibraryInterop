@@ -33,7 +33,7 @@ public partial class FIRAuthPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Unable to create user!", ex.ToString(), "OK");
+            await DisplayAlert("Unable to create user!", ex.Message, "OK");
         }
     }
 }
