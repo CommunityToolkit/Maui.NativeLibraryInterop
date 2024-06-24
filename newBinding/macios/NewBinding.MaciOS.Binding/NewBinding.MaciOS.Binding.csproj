@@ -31,8 +31,10 @@
       <SchemeName>NewBinding</SchemeName>
       <SharpieNamespace>NewBinding</SharpieNamespace>
       <SharpieBind>true</SharpieBind>
+      <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
+      -->
     </XcodeProjectReference>
   </ItemGroup>
 

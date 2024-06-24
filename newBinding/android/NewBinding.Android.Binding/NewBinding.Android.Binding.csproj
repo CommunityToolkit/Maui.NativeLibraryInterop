@@ -19,8 +19,10 @@
   <ItemGroup>
     <GradleProjectReference Include="../native" >
       <ModuleName>newbinding</ModuleName>
+      <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
       <Bind>true</Bind>
       <Pack>true</Pack>
+      -->
     </GradleProjectReference>
   </ItemGroup>
 
