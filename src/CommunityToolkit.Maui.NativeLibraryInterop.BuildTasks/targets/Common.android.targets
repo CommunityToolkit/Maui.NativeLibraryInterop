@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <UsingTask TaskName="Gradle" AssemblyFile="$(NLIBuildTasksAssembly)"/>
+
+  <PropertyGroup>
+    <NLIGradleProjectConfiguration Condition=" '$(NLIGradleProjectConfiguration)' == '' ">Release</NLIGradleProjectConfiguration>
+    <NLIGradleProjectBuildDirectory Condition=" '$(NLIGradleProjectBuildDirectory)' == '' ">bin/$(NLIGradleProjectConfiguration)/$(TargetFramework)</NLIGradleProjectBuildDirectory>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <NLIGradleProjectReference>
+      <Bind>true</Bind>
+      <Pack>true</Pack>
+      <Visible>false</Visible>
+    </NLIGradleProjectReference>
+  </ItemDefinitionGroup>
+
+
+  <Target Name="_GetBuildGradleProjectsInputs">
+    <ItemGroup>
+      <_GradleInputs Include="$(MSBuildProjectFullPath)" />
+      <_GradleInputs Include="%(NLIGradleProjectReference.FullPath)/**/*.java" />
+      <_GradleInputs Include="%(NLIGradleProjectReference.FullPath)/**/*.gradle" />
+      <_GradleInputs Include="%(NLIGradleProjectReference.FullPath)/**/*.xml" />
+      <_GradleInputs Include="%(NLIGradleProjectReference.FullPath)/**/*.properties"/>
+      <_GradleInputs Remove="%(NLIGradleProjectReference.FullPath)/%(NLIGradleProjectReference.ModuleName)/$(NLIGradleProjectBuildDirectory)/**/*" />
+      <_GradleOutputs Include="@(NLIGradleProjectReference->'%(FullPath)/%(ModuleName)/$(NLIGradleProjectBuildDirectory)/outputs/aar/%(ModuleName)-$(NLIGradleProjectConfiguration).aar')" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_BuildGradleProjects"
+      Condition=" '@(NLIGradleProjectReference->Count())' != '0' "
+      DependsOnTargets="_GetBuildGradleProjectsInputs;_ResolveMonoAndroidSdks"
+      BeforeTargets="$(_BuildGradleProjectsBeforeTargets);$(CompileDependsOn)"
+      Inputs="@(_GradleInputs)"
+      Outputs="@(_GradleOutputs)" >
+    
+    <RemoveDir Directories="@(NLIGradleProjectReference->'%(FullPath)/%(ModuleName)/$(NLIGradleProjectBuildDirectory)/outputs')" />
+
+    <Gradle ToolPath="%(NLIGradleProjectReference.FullPath)"
+        AndroidSdkDirectory="$(AndroidSdkDirectory)"
+        JavaSdkDirectory="$(JavaSdkDirectory)"
+        Arguments="%(NLIGradleProjectReference.ModuleName):assemble$(NLIGradleProjectConfiguration) -Dorg.gradle.project.buildDir=$(NLIGradleProjectBuildDirectory)"
+        WorkingDirectory="%(NLIGradleProjectReference.FullPath)" >
+    </Gradle>
+
+    <ItemGroup>
+      <AndroidLibrary Include="@(_GradleOutputs)">
+        <Bind>%(NLIGradleProjectReference.Bind)</Bind>
+        <Pack>%(NLIGradleProjectReference.Pack)</Pack>
+        <Visible>%(NLIGradleProjectReference.Visible)</Visible>
+      </AndroidLibrary>
+    </ItemGroup>
+
+    <Error Condition=" !Exists('@(AndroidLibrary)') " Text="Gradle project built successfully but did not produce expected output file: '@(AndroidLibrary)'" />
+    <Message Text="Adding reference to gradle project output: @(AndroidLibrary)" />
+  </Target>
+
+
+  <!-- Consider also moving native build outputs to $(IntermediateOutputDirectory) and using @(FileWrites) to clean -->
+  <PropertyGroup>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      _CleanGradleProjects;
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_CleanGradleProjects"
+      Condition=" '@(NLIGradleProjectReference->Count())' != '0' " >
+    <Gradle ToolPath="%(NLIGradleProjectReference.FullPath)"
+        Arguments="clean -Dorg.gradle.project.buildDir=$(NLIGradleProjectBuildDirectory)"
+        WorkingDirectory="%(NLIGradleProjectReference.FullPath)" >
+    </Gradle>
+  </Target>
+
+</Project>

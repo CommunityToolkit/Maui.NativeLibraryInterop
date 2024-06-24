@@ -45,24 +45,24 @@ jobs:
         run: mkdir -p ${{ runner.temp }}/logs/
 
       - name: Create local nupkg dir
-        run: mkdir -p ./src/CommunityToolkit.Maui.BindingExtensions/bin/Release
+        run: mkdir -p ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release
 
       - name: Build and test build tasks
         working-directory: ./src
         run: >-
-          dotnet test CommunityToolkit.Maui.BindingExtensions.sln
+          dotnet test CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.sln
           --logger trx --results-directory ${{ runner.temp }}/logs/TestResults-build-tasks
           -bl:${{ runner.temp }}/logs/build-tasks.binlog
 
       - name: Pack build tasks
-        working-directory: ./src/CommunityToolkit.Maui.BindingExtensions
-        run: dotnet pack CommunityToolkit.Maui.BindingExtensions.csproj -bl:${{ runner.temp }}/logs/build-tasks-pack.binlog
+        working-directory: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks
+        run: dotnet pack CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.csproj -bl:${{ runner.temp }}/logs/build-tasks-pack.binlog
 
       - name: Upload nupkg
         uses: actions/upload-artifact@v4
         with:
           name: nupkg
-          path: ./src/CommunityToolkit.Maui.BindingExtensions/bin/Release/*.nupkg
+          path: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release/*.nupkg
 
       - name: Build facebook
         working-directory: ./facebook

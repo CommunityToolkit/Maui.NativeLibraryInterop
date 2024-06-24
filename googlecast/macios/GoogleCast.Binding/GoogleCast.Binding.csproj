@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(BindingExtPackageVersion)" />
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(NLIPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>

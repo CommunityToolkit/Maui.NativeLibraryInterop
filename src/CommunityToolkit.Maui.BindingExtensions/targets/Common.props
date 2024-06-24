@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project>
-
-  <PropertyGroup>
-    <BindingExtBuildTasksAssembly Condition= " !Exists('$(BindingExtBuildTasksAssembly)') ">CommunityToolkit.Maui.BindingExtensions.dll</BindingExtBuildTasksAssembly>
-    <HOME Condition=" '$(HOME)' == '' ">$(USERPROFILE)</HOME>
-  </PropertyGroup>
-
-</Project>
