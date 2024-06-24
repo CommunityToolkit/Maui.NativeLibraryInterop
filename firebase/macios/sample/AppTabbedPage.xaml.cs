@@ -20,7 +20,7 @@ public partial class AppTabbedPage : TabbedPage
                 MauiFIRApp.AutoConfigure();
                 FirebaseConfigured = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 page.DisplayAlert("Please configure your Firebase app.", "Possible missing or invalid GOOGLE_APP_ID in GoogleService-Info.plist.", "OK");
             }
