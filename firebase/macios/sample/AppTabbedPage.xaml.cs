@@ -22,7 +22,7 @@ public partial class AppTabbedPage : TabbedPage
             }
             catch (Exception ex)
             {
-                page.DisplayAlert("Unable to configure Firebase app!", ex.Message, "OK");
+                page.DisplayAlert("Please configure your Firebase app.", "Possible missing or invalid GOOGLE_APP_ID in GoogleService-Info.plist.", "OK");
             }
         }
     }
