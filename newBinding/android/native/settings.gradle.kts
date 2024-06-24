@@ -19,4 +19,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "NewBinding"
-include(":app")
+include(":newbinding")

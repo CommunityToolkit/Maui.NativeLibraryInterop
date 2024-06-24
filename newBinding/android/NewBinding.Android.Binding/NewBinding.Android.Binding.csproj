@@ -18,7 +18,7 @@
   <!-- Reference to Android project -->
   <ItemGroup>
     <GradleProjectReference Include="../native" >
-      <ModuleName>app</ModuleName>
+      <ModuleName>newbinding</ModuleName>
       <Bind>true</Bind>
       <Pack>true</Pack>
     </GradleProjectReference>
@@ -26,6 +26,6 @@
 
   <!-- Reference to NuGet for building bindings -->
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
+    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre5" />
   </ItemGroup>
 </Project>
