@@ -11,6 +11,8 @@
 		D051A4C32BD33D9100EC7F28 /* MauiFIRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051A4C22BD33D9100EC7F28 /* MauiFIRApp.swift */; };
 		D051A4C52BD33DB100EC7F28 /* MauiFIRMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051A4C42BD33DB100EC7F28 /* MauiFIRMessaging.swift */; };
 		D051A4C72BD33DBB00EC7F28 /* MauiFIRAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051A4C62BD33DBB00EC7F28 /* MauiFIRAnalytics.swift */; };
+		D0A597A92C22007900C52635 /* MauiFIRAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A597A82C22007900C52635 /* MauiFIRAuth.swift */; };
+		D0A597AB2C2200A800C52635 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0A597AA2C2200A800C52635 /* FirebaseAuth */; };
 		D0BECB2A2BD833BA00CDDD0A /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D0BECB292BD833BA00CDDD0A /* FirebaseAnalytics */; };
 		D0BECB2C2BD833BA00CDDD0A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D0BECB2B2BD833BA00CDDD0A /* FirebaseMessaging */; };
 		D0BECB2E2BD8381100CDDD0A /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = D0BECB2D2BD8381100CDDD0A /* FirebaseInstallations */; };
@@ -22,6 +24,7 @@
 		D051A4C22BD33D9100EC7F28 /* MauiFIRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRApp.swift; sourceTree = "<group>"; };
 		D051A4C42BD33DB100EC7F28 /* MauiFIRMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRMessaging.swift; sourceTree = "<group>"; };
 		D051A4C62BD33DBB00EC7F28 /* MauiFIRAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRAnalytics.swift; sourceTree = "<group>"; };
+		D0A597A82C22007900C52635 /* MauiFIRAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MauiFIRAuth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +35,7 @@
 				D0BECB2E2BD8381100CDDD0A /* FirebaseInstallations in Frameworks */,
 				D0BECB2C2BD833BA00CDDD0A /* FirebaseMessaging in Frameworks */,
 				D0BECB2A2BD833BA00CDDD0A /* FirebaseAnalytics in Frameworks */,
+				D0A597AB2C2200A800C52635 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +66,7 @@
 				D051A4C22BD33D9100EC7F28 /* MauiFIRApp.swift */,
 				D051A4C42BD33DB100EC7F28 /* MauiFIRMessaging.swift */,
 				D051A4C62BD33DBB00EC7F28 /* MauiFIRAnalytics.swift */,
+				D0A597A82C22007900C52635 /* MauiFIRAuth.swift */,
 			);
 			path = MauiFirebase;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 				D0BECB292BD833BA00CDDD0A /* FirebaseAnalytics */,
 				D0BECB2B2BD833BA00CDDD0A /* FirebaseMessaging */,
 				D0BECB2D2BD8381100CDDD0A /* FirebaseInstallations */,
+				D0A597AA2C2200A800C52635 /* FirebaseAuth */,
 			);
 			productName = MauiFirebase;
 			productReference = D051A4B82BD33D4600EC7F28 /* MauiFirebase.framework */;
@@ -164,6 +170,7 @@
 				D051A4C72BD33DBB00EC7F28 /* MauiFIRAnalytics.swift in Sources */,
 				D051A4C52BD33DB100EC7F28 /* MauiFIRMessaging.swift in Sources */,
 				D051A4C32BD33D9100EC7F28 /* MauiFIRApp.swift in Sources */,
+				D0A597A92C22007900C52635 /* MauiFIRAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,9 +309,11 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -312,7 +321,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,9 +350,11 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -351,7 +362,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,6 +420,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D0A597AA2C2200A800C52635 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		D0BECB292BD833BA00CDDD0A /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D0BECB282BD833BA00CDDD0A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

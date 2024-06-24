@@ -13,24 +13,28 @@ public class GoogleCastManager : NSObject, GCKLoggerDelegate, GCKRequestDelegate
     
     let kReceiverAppID = kGCKDefaultMediaReceiverApplicationID
     let kDebugLoggingEnabled = true
-
+    
     @objc
     public func configure() {
         let criteria = GCKDiscoveryCriteria(applicationID: kReceiverAppID)
-            let options = GCKCastOptions(discoveryCriteria: criteria)
-            GCKCastContext.setSharedInstanceWith(options)
-
-            // Enable logger.
-            GCKLogger.sharedInstance().delegate = self
-
+        let options = GCKCastOptions(discoveryCriteria: criteria)
+        GCKCastContext.setSharedInstanceWith(options)
+        
+        // Enable logger.
+        GCKLogger.sharedInstance().delegate = self
     }
     
     @objc
     public func loadMedia(url: String, contentType: String, title: String, subtitle: String, imageUrl: String, imageHeight: Int, imageWidth: Int) {
+        if !getIsCastSessionActive() {
+            logMessage("cast session not found, please start one", at: GCKLoggerLevel.error, fromFunction: "loadMedia", location: "line 31")
+            return
+        }
+        
         let url = URL.init(string: url)
         guard let mediaURL = url else {
-          print("invalid mediaURL")
-          return
+            logMessage("invalid mediaURL", at: GCKLoggerLevel.error, fromFunction: "loadMedia", location: "line 36")
+            return
         }
         
         let metadata = GCKMediaMetadata()
@@ -39,28 +43,31 @@ public class GoogleCastManager : NSObject, GCKLoggerDelegate, GCKRequestDelegate
         metadata.addImage(GCKImage(url: URL(string: imageUrl)!,
                                    width: imageHeight,
                                    height: imageWidth))
-
+        
         let mediaInfoBuilder = GCKMediaInformationBuilder.init(contentURL: mediaURL)
         mediaInfoBuilder.streamType = GCKMediaStreamType.none;
         mediaInfoBuilder.contentType = contentType //eg: video/mp4
         mediaInfoBuilder.metadata = metadata;
         let mediaInformation = mediaInfoBuilder.build()
-
-        let sessionManager = GCKCastContext.sharedInstance().sessionManager
-        if let request = sessionManager.currentSession?.remoteMediaClient?.loadMedia(mediaInformation) {
-          request.delegate = self
+        
+        if let request = GCKCastContext.sharedInstance().sessionManager.currentSession?.remoteMediaClient?.loadMedia(mediaInformation) {
+            request.delegate = self
         }
     }
     
+    @objc
+    public func getIsCastSessionActive() -> Bool {
+        return GCKCastContext.sharedInstance().sessionManager.currentSession != nil
+    }
     
     public func logMessage(_ message: String,
-                      at level: GCKLoggerLevel,
-                      fromFunction function: String,
-                      location: String) {
+                           at level: GCKLoggerLevel,
+                           fromFunction function: String,
+                           location: String) {
         if (kDebugLoggingEnabled) {
-          print(function + " - " + message)
+            print(function + " - " + message)
         }
-      }
+    }
 }
 
 

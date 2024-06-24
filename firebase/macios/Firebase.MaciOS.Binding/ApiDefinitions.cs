@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using Foundation;
+using ObjCRuntime;
 
 namespace Firebase
 {
@@ -53,6 +54,90 @@ namespace Firebase
 		[Static]
 		[Export ("configure:gcmSenderId:")]
 		void Configure (string googleAppId, string gcmSenderId);
+	}
+
+	// @interface MauiFIRAuth : NSObject
+	[BaseType (typeof(NSObject))]
+	interface MauiFIRAuth
+	{
+		// -(void)setAuthStateListener:(void (^ _Nonnull)(MauiFIRAuthUser * _Nullable))callback;
+		[Static]
+		[Export ("setAuthStateListener:")]
+		[Async]
+		void SetAuthStateListener (Action<MauiFIRAuthUser> callback);
+
+		// -(void)createUser:(NSString * _Nonnull)email password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(MauiFIRAuthResult * _Nullable, NSError * _Nullable))callback;
+		[Static]
+		[Export ("createUser:password:callback:")]
+		[Async]
+		void CreateUser (string email, string password, Action<MauiFIRAuthResult, NSError> callback);
+
+		// -(void)signIn:(NSString * _Nonnull)email password:(NSString * _Nonnull)password callback:(void (^ _Nonnull)(MauiFIRAuthResult * _Nullable, NSError * _Nullable))callback;
+		[Static]
+		[Export ("signIn:password:callback:")]
+		[Async]
+		void SignIn (string email, string password, Action<MauiFIRAuthResult, NSError> callback);
+
+		// -(NSError * _Nullable)signOut __attribute__((warn_unused_result("")));
+		[Static]
+		[Export ("signOut")]
+		NSError SignOut();
+	}
+
+	// @interface MauiFIRAuthResult : NSObject
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface MauiFIRAuthResult
+	{
+		// @property (readonly, nonatomic, strong) MauiFIRAuthUser * _Nullable user;
+		[NullAllowed, Export ("user", ArgumentSemantic.Strong)]
+		MauiFIRAuthUser User { get; }
+	}
+
+	// @interface MauiFIRAuthUser : NSObject
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface MauiFIRAuthUser
+	{
+		// @property (readonly, copy, nonatomic) NSString * _Nullable uid;
+		[NullAllowed, Export ("uid")]
+		string Uid { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable displayName;
+		[NullAllowed, Export ("displayName")]
+		string DisplayName { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable email;
+		[NullAllowed, Export ("email")]
+		string Email { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable refreshToken;
+		[NullAllowed, Export ("refreshToken")]
+		string RefreshToken { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable providerId;
+		[NullAllowed, Export ("providerId")]
+		string ProviderId { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable tenantId;
+		[NullAllowed, Export ("tenantId")]
+		string TenantId { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable phoneNumber;
+		[NullAllowed, Export ("phoneNumber")]
+		string PhoneNumber { get; }
+
+		// @property (readonly, nonatomic) BOOL isAnonymous;
+		[Export ("isAnonymous")]
+		bool IsAnonymous { get; }
+
+		// @property (readonly, nonatomic) BOOL isEmailVerified;
+		[Export ("isEmailVerified")]
+		bool IsEmailVerified { get; }
+
+		// @property (readonly, copy, nonatomic) NSURL * _Nullable photoUrl;
+		[NullAllowed, Export ("photoUrl", ArgumentSemantic.Copy)]
+		NSUrl PhotoUrl { get; }
 	}
 
 	// @interface MauiFIRMessaging : NSObject

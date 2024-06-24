@@ -39,7 +39,7 @@ dependencies {
 project.afterEvaluate {
     tasks.register<Copy>("copyDeps") {
         from(configurations["copyDependencies"])
-        into("${projectDir}/build/outputs/deps")
+        into("${buildDir}/outputs/deps")
     }
     tasks.named("preBuild") { finalizedBy("copyDeps") }
 }

@@ -11,7 +11,7 @@ public partial class AppTabbedPage : TabbedPage
         InitializeComponent();
     }
 
-    public static async Task ConfigureFirebase(ContentPage page)
+    public static void ConfigureFirebase(ContentPage page)
     {
         if (!FirebaseConfigured)
         {
@@ -20,9 +20,9 @@ public partial class AppTabbedPage : TabbedPage
                 MauiFIRApp.AutoConfigure();
                 FirebaseConfigured = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await page.DisplayAlert("Unable to configure Firebase app!", ex.ToString(), "OK");
+                page.DisplayAlert("Please configure your Firebase app.", "Possible missing or invalid GOOGLE_APP_ID in GoogleService-Info.plist.", "OK");
             }
         }
     }

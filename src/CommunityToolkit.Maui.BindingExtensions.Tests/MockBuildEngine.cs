@@ -28,7 +28,7 @@ namespace CommunityToolkit.Maui.BindingExtensions.Tests
 
         public bool IsRunningMultipleNodes => false;
 
-        public TextWriter Output { get; set; } = TestContext.Out;
+        public TextWriter Output { get; set; } = Console.Out;
 
         public void ClearEvents()
         {
