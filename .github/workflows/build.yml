@@ -58,6 +58,10 @@ jobs:
           name: nupkg
           path: ./src/CommunityToolkit.Maui.BindingExtensions/bin/Release/*.nupkg
 
+      - name: Build template
+        working-directory: ./newBinding
+        run: dotnet build -bl:${{ runner.temp }}/logs/newBinding.binlog
+
       - name: Build facebook
         working-directory: ./facebook
         run: dotnet build -bl:${{ runner.temp }}/logs/facebook.binlog
