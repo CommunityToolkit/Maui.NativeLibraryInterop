@@ -5,7 +5,7 @@
 
   <PropertyGroup>
     <GradleProjectConfiguration Condition=" '$(GradleProjectConfiguration)' == '' ">Release</GradleProjectConfiguration>
-    <GradleProjectBuildDirectory Condition=" '$(GradleProjectBuildDirectory)' == '' ">bin</GradleProjectBuildDirectory>
+    <GradleProjectBuildDirectory Condition=" '$(GradleProjectBuildDirectory)' == '' ">bin/$(GradleProjectConfiguration)/$(TargetFramework)</GradleProjectBuildDirectory>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
@@ -15,15 +15,6 @@
       <Visible>false</Visible>
     </GradleProjectReference>
   </ItemDefinitionGroup>
-
-  <PropertyGroup>
-    <_BuildGradleProjectsBeforeTargets Condition=" '$(IsRunningOuterBuild)' == 'true' ">
-      DispatchToInnerBuilds;
-    </_BuildGradleProjectsBeforeTargets>
-    <_BuildGradleProjectsDependsOn Condition=" '$(IsRunningOuterBuild)' != 'true' ">
-      _ResolveMonoAndroidSdks;
-    </_BuildGradleProjectsDependsOn>
-  </PropertyGroup>
 
 
   <Target Name="_GetBuildGradleProjectsInputs">
@@ -39,8 +30,8 @@
   </Target>
 
   <Target Name="_BuildGradleProjects"
-      Condition=" '@(GradleProjectReference->Count())' != '0' and $(OnlyBuildOuterIfMultiTargeting) "
-      DependsOnTargets="_GetBuildGradleProjectsInputs;$(_BuildGradleProjectsDependsOn)"
+      Condition=" '@(GradleProjectReference->Count())' != '0' "
+      DependsOnTargets="_GetBuildGradleProjectsInputs;_ResolveMonoAndroidSdks"
       BeforeTargets="$(_BuildGradleProjectsBeforeTargets);$(CompileDependsOn)"
       Inputs="@(_GradleInputs)"
       Outputs="@(_GradleOutputs)" >
