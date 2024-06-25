@@ -2,7 +2,7 @@
 using Microsoft.Build.Framework;
 using NUnit.Framework;
 
-namespace CommunityToolkit.Maui.BindingExtensions.Tests
+namespace CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.Tests
 {
     public class MockBuildEngine : IBuildEngine4
     {

@@ -3,7 +3,7 @@
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace CommunityToolkit.Maui.BindingExtensions
+namespace CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks
 {
     public abstract class BindingToolTask : ToolTask
     {

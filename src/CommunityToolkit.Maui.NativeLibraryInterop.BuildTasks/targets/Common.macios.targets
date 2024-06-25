@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <UsingTask TaskName="Sharpie" AssemblyFile="$(NLIBuildTasksAssembly)"/>
+  <UsingTask TaskName="XcodeBuild" AssemblyFile="$(NLIBuildTasksAssembly)"/>
+
+  <PropertyGroup>
+    <NLIXcodeProjectConfiguration Condition=" '$(NLIXcodeProjectConfiguration)' == '' ">Release</NLIXcodeProjectConfiguration>
+    <NLIXcodeProjectBuildDirectory Condition=" '$(NLIXcodeProjectBuildDirectory)' == '' ">bin/$(NLIXcodeProjectConfiguration)/$(TargetFramework)</NLIXcodeProjectBuildDirectory>
+    <NLIXcodeProjectCacheDirectory Condition=" '$(NLIXcodeProjectCacheDirectory)' == '' ">obj/$(NLIXcodeProjectConfiguration)/$(TargetFramework)</NLIXcodeProjectCacheDirectory>
+
+    <XcodeBuildiOS Condition=" '$(XcodeBuildiOS)' == '' and '$(TargetPlatformIdentifier)' == 'ios' ">true</XcodeBuildiOS>
+    <XcodeBuildMacCatalyst Condition=" '$(XcodeBuildMacCatalyst)' == '' and '$(TargetPlatformIdentifier)' == 'maccatalyst' ">true</XcodeBuildMacCatalyst>
+
+    <EnableDefaultSharpieiOSItems Condition=" '$(EnableDefaultSharpieiOSItems)' == '' ">false</EnableDefaultSharpieiOSItems>
+
+    <_XcArchiveExtraArgs>$(_XcArchiveExtraArgs) ENABLE_BITCODE=NO SKIP_INSTALL=NO SWIFT_INSTALL_OBJC_HEADER=YES BUILD_LIBRARY_FOR_DISTRIBUTION=YES</_XcArchiveExtraArgs>
+    <_XcArchiveExtraArgs>$(_XcArchiveExtraArgs) OTHER_LDFLAGS=&quot;-ObjC&quot; OTHER_SWIFT_FLAGS=&quot;-no-verify-emitted-module-interface&quot; OBJC_CFLAGS=&quot;-fno-objc-msgsend-selector-stubs -ObjC&quot;</_XcArchiveExtraArgs>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <NLIXcodeProjectReference>
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+      <XCArchiveiOS>%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(Filename)iOS.xcarchive</XCArchiveiOS>
+      <XCArchiveiOSSimulator>%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(Filename)iOSSimulator.xcarchive</XCArchiveiOSSimulator>
+      <XCArchiveMacCatalyst>%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(Filename)MacCatalyst.xcarchive</XCArchiveMacCatalyst>
+      <XCDerivedDataDir>%(RootDir)%(Directory)$(NLIXcodeProjectCacheDirectory)/DerivedData</XCDerivedDataDir>
+      <XCPackageCacheDir>%(RootDir)%(Directory)$(NLIXcodeProjectCacheDirectory)/Cache</XCPackageCacheDir>
+    </NLIXcodeProjectReference>
+  </ItemDefinitionGroup>
+
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      _BuildXcodeProjects;
+      _SharpieBindXcodeProjects;
+      $(CoreBuildDependsOn);
+    </CoreBuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_GetBuildXcodeProjectsInputs">
+    <ItemGroup>
+      <_XcbInputs Include="$(MSBuildProjectFullPath)" />
+      <_XcbInputs Include="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)**/*.swift" />
+      <_XcbInputs Include="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)**/*.h" />
+      <_XcbInputs Include="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)**/*.pbxproj" />
+      <_XcbInputs Include="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)**/*.xcworkspace"/>
+      <_XcbInputs Remove="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)bin/**/*" />
+      <_XcbInputs Remove="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)obj/**/*" />
+      <_XcbInputs Remove="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)$(NLIXcodeProjectBuildDirectory)/**/*" />
+      <_XcbInputs Remove="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)$(NLIXcodeProjectCacheDirectory)/**/*" />
+      <_XcbOutputs Include="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(Filename)_BuildXcodeProjects.stamp')" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_BuildXcodeProjectsForiOS"
+      Condition=" '@(NLIXcodeProjectReference->Count())' != '0' and '$(XcodeBuildiOS)' == 'true' "
+      DependsOnTargets="_GetBuildXcodeProjectsInputs"
+      Inputs="@(_XcbInputs)"
+      Outputs="@(_XcbOutputs)" >
+    <RemoveDir Directories="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)')" />
+
+    <XcodeBuild
+        Arguments="-project &quot;%(NLIXcodeProjectReference.FullPath)&quot; archive -scheme %(SchemeName) -configuration $(NLIXcodeProjectConfiguration) -archivePath &quot;%(NLIXcodeProjectReference.XCArchiveiOS)&quot; -destination &quot;generic/platform=iOS&quot; $(_XcArchiveExtraArgs)"
+        WorkingDirectory="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)" >
+    </XcodeBuild>
+    <XcodeBuild
+        Arguments="-project &quot;%(NLIXcodeProjectReference.FullPath)&quot; archive -scheme %(SchemeName) -configuration $(NLIXcodeProjectConfiguration) -archivePath &quot;%(NLIXcodeProjectReference.XCArchiveiOSSimulator)&quot; -destination &quot;generic/platform=iOS Simulator&quot; $(_XcArchiveExtraArgs)"
+        WorkingDirectory="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)" >
+    </XcodeBuild>
+
+    <ItemGroup>
+      <_CreateXcFxArgs Include="-create-xcframework" />
+      <_CreateXcFxArgs Include="@(NLIXcodeProjectReference->'-archive %(XCArchiveiOS) -framework %(SchemeName).framework')" />
+      <_CreateXcFxArgs Include="@(NLIXcodeProjectReference->'-archive %(XCArchiveiOSSimulator) -framework %(SchemeName).framework')" />
+      <_CreateXcFxArgs Include="@(NLIXcodeProjectReference->'-output %(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(SchemeName)$(TargetPlatformIdentifier).xcframework')" />
+    </ItemGroup>
+    <XcodeBuild
+        Arguments="@(_CreateXcFxArgs, ' ')"
+        WorkingDirectory="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)" >
+    </XcodeBuild>
+
+    <Touch Files="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(Filename)_BuildXcodeProjects.stamp')" AlwaysCreate="true" />
+  </Target>
+
+  <Target Name="_BuildXcodeProjectsForMacCatalyst"
+      Condition=" '@(NLIXcodeProjectReference->Count())' != '0' and  '$(XcodeBuildMacCatalyst)' == 'true' "
+      DependsOnTargets="_GetBuildXcodeProjectsInputs"
+      Inputs="@(_XcbInputs)"
+      Outputs="@(_XcbOutputs)" >
+    <RemoveDir Directories="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)')" />
+
+    <!-- Override derivedDataPath and packageCachePath to avoid conflicts with building in parallel -->
+    <XcodeBuild
+        Arguments="-project &quot;%(NLIXcodeProjectReference.FullPath)&quot; archive -scheme %(SchemeName) -configuration $(NLIXcodeProjectConfiguration) -archivePath &quot;%(NLIXcodeProjectReference.XCArchiveMacCatalyst)&quot; -destination &quot;generic/platform=macOS,variant=Mac Catalyst&quot; -derivedDataPath &quot;%(NLIXcodeProjectReference.XCDerivedDataDir)&quot; -packageCachePath &quot;%(NLIXcodeProjectReference.XCPackageCacheDir)&quot; $(_XcArchiveExtraArgs)"
+        WorkingDirectory="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)" >
+    </XcodeBuild>
+
+    <ItemGroup>
+      <_CreateXcFxArgs Include="-create-xcframework" />
+      <_CreateXcFxArgs Include="@(NLIXcodeProjectReference->'-archive %(XCArchiveMacCatalyst) -framework %(SchemeName).framework')" />
+      <_CreateXcFxArgs Include="@(NLIXcodeProjectReference->'-output %(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(SchemeName)$(TargetPlatformIdentifier).xcframework')" />
+    </ItemGroup>
+    <XcodeBuild
+        Arguments="@(_CreateXcFxArgs, ' ')"
+        WorkingDirectory="%(NLIXcodeProjectReference.RootDir)%(NLIXcodeProjectReference.Directory)" >
+    </XcodeBuild>
+
+    <Touch Files="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(Filename)_BuildXcodeProjects.stamp')" AlwaysCreate="true" />
+  </Target>
+
+  <Target Name="_BuildXcodeProjects"
+      Condition=" '@(NLIXcodeProjectReference->Count())' != '0' "
+      DependsOnTargets="$(BuildXcodeProjectsDependsOnTargets);_BuildXcodeProjectsForiOS;_BuildXcodeProjectsForMacCatalyst" >
+    <ItemGroup>
+      <NativeReference Include="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/%(SchemeName)$(TargetPlatformIdentifier).xcframework')">
+        <Kind>%(NLIXcodeProjectReference.Kind)</Kind>
+        <SmartLink>%(NLIXcodeProjectReference.SmartLink)</SmartLink>
+      </NativeReference>
+    </ItemGroup>
+    <Error Condition=" !Exists('@(NativeReference)') " Text="Xcode project built successfully but did not produce expected output file: '@(NativeReference)'" />
+    <Message Text="Adding reference to Xcode project output: @(NativeReference)" />
+  </Target>
+
+
+  <Target Name="_GetSharpieBindInputs">
+    <ItemGroup>
+      <_SharpieInputs Include="%(NLIXcodeProjectReference.XCArchiveiOS)/**/*" Condition=" '$(XcodeBuildiOS)' == 'true' " />
+      <_SharpieInputs Include="%(NLIXcodeProjectReference.XCArchiveMacCatalyst)/**/*" Condition=" '$(XcodeBuildiOS)' != 'true' and '$(XcodeBuildMacCatalyst)' == 'true' "/>
+      <_SharpieOutputs Include="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/sharpie/%(Filename)/_SharpieBindXcodeProjects.stamp')" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_SharpieBindXcodeProjects"
+      Condition=" '@(NLIXcodeProjectReference->Count())' != '0' and '@(NLIXcodeProjectReference->'%(SharpieBind)')' == 'true' "
+      DependsOnTargets="_GetSharpieBindInputs;_BuildXcodeProjects"
+      Inputs="@(_SharpieInputs)"
+      Outputs="@(_SharpieOutputs)">
+
+    <Exec Command="xcode-select -p"
+        Condition="$([MSBuild]::IsOSPlatform('osx'))"
+        ConsoleToMSBuild="true"
+        StandardOutputImportance="low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="_XcodeSelectOutput" />
+    </Exec>
+
+    <PropertyGroup>
+      <SharpieXcodeFilter Condition=" '$(SharpieXcodeFilter)' == '' and '$(_XcodeSelectOutput)' != '' ">-x $(_XcodeSelectOutput.Replace(Contents/Developer, ''))</SharpieXcodeFilter>
+    </PropertyGroup>
+
+    <Sharpie Arguments="xcode -sdks $(SharpieXcodeFilter)" >
+      <Output TaskParameter="ConsoleOutput" PropertyName="_SharpieXcodeSdksOutput" />
+    </Sharpie>
+
+    <PropertyGroup>
+      <SharpieSdkName Condition=" '$(SharpieBindXcodeSdkName)' == '' ">$([System.Text.RegularExpressions.Regex]::Match($(_SharpieXcodeSdksOutput), `iphoneos[^; \n\r\t]+`))</SharpieSdkName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_ObjSharpieArgs Include="@(NLIXcodeProjectReference->'--output=&quot;%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/sharpie/%(Filename)&quot; --namespace=%(SharpieNamespace) --sdk=$(SharpieSdkName)')" />
+      <_ObjSharpieArgs Condition=" '$(XcodeBuildiOS)' == 'true' "
+          Include="@(NLIXcodeProjectReference->'--scope=&quot;%(XCArchiveiOS)/Products/Library/Frameworks/%(SchemeName).framework/Headers&quot; &quot;%(XCArchiveiOS)/Products/Library/Frameworks/%(SchemeName).framework/Headers/%(SchemeName)-Swift.h&quot;')" />
+      <_ObjSharpieArgs Condition=" '$(XcodeBuildiOS)' != 'true' and '$(XcodeBuildMacCatalyst)' == 'true' "
+          Include="@(NLIXcodeProjectReference->'--scope=&quot;%(XCArchiveMacCatalyst)/Products/Library/Frameworks/%(SchemeName).framework/Headers&quot; &quot;%(XCArchiveMacCatalyst)/Products/Library/Frameworks/%(SchemeName).framework/Headers/%(SchemeName)-Swift.h&quot;')" />
+    </ItemGroup>
+
+    <Sharpie Arguments="bind @(_ObjSharpieArgs, ' ')" />
+
+    <Touch Files="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)/sharpie/%(Filename)/_SharpieBindXcodeProjects.stamp')" AlwaysCreate="true" />
+  </Target>
+
+
+  <!-- Consider also moving native build outputs to $(IntermediateOutputDirectory) and using @(FileWrites) to clean -->
+  <PropertyGroup>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      _CleanXcodeProjects;
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <Target Name="_CleanXcodeProjects"
+      Condition=" '@(NLIXcodeProjectReference->Count())' != '0' ">
+    <RemoveDir Directories="@(NLIXcodeProjectReference->'%(RootDir)%(Directory)$(NLIXcodeProjectBuildDirectory)')" />
+  </Target>
+
+</Project>

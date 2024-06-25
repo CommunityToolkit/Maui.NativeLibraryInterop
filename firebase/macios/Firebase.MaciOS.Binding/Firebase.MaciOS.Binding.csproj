@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(BindingExtPackageVersion)" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="$(NLIPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
-    <XcodeProjectReference Include="../native/MauiFirebase.xcodeproj">
+    <NLIXcodeProjectReference Include="../native/MauiFirebase.xcodeproj">
       <SchemeName>MauiFirebase</SchemeName>
       <SharpieNamespace>Firebase</SharpieNamespace>
       <SharpieBind>true</SharpieBind>
@@ -21,7 +21,7 @@
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </XcodeProjectReference>
+    </NLIXcodeProjectReference>
   </ItemGroup>
 
 </Project>

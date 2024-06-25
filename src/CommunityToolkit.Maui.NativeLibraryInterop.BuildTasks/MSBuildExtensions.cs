@@ -1,6 +1,6 @@
 ﻿using Microsoft.Build.Utilities;
 
-namespace CommunityToolkit.Maui.BindingExtensions
+namespace CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks
 {
     public static class MSBuildExtensions
     {

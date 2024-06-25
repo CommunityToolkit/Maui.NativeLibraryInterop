@@ -99,32 +99,32 @@ Install prerequisites:
 
 ## Building
 
-The binding build process is extended to obtain and build native SDK dependencies by adding the `CommunityToolkit.Maui.BindingExtensions` NuGet package to your binding project:
+The binding build process is extended to obtain and build native SDK dependencies by adding the `CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks` NuGet package to your binding project:
 
 ```xml
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre1" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
   </ItemGroup>
 ```
 
-Android binding projects will also add a `@(GradleProjectReference)` item that points to the root folder that contains their gradle project:
+Android binding projects will also add a `@(NLIGradleProjectReference)` item that points to the root folder that contains their gradle project:
 
 ```xml
   <ItemGroup>
-    <GradleProjectReference Include="../native" >
+    <NLIGradleProjectReference Include="../native" >
       <ModuleName>mauifacebook</ModuleName>
-    </GradleProjectReference>
+    </NLIGradleProjectReference>
   </ItemGroup>
 ```
 
-iOS binding projects will also add a `@(XcodeProjectReference)` item that points to their Xcode project:
+iOS binding projects will also add a `@(NLIXcodeProjectReference)` item that points to their Xcode project:
 
 ```xml
-  <XcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
+  <NLIXcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
     <SchemeName>MauiFacebook</SchemeName>
     <SharpieNamespace>Facebook</SharpieNamespace>
     <SharpieBind>true</SharpieBind>
-  </XcodeProjectReference>
+  </NLIXcodeProjectReference>
 ```
 
 In the [```src/```](/src/) folder you will find the sources for the NuGet and these custom build tasks/targets.
