@@ -8,26 +8,29 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 
+		string myName = "Community Toolkit";
+
 #if IOS || MACCATALYST
-		string labelText = NewBinding.DotnetNewBinding.GetStringWithMyString(new Foundation.NSString("Rachel"));
+		string labelText = NewBinding.DotnetNewBinding.GetStringWithMyString(new Foundation.NSString(myName));
 #elif ANDROID
 		var dotnetNewBinding = new NewBinding.DotnetNewBinding();
-		string labelText = dotnetNewBinding.GetString("Rachel") ?? string.Empty;
+		string labelText = dotnetNewBinding.GetString(myName) ?? string.Empty;
 #endif
 
-		newBindingSampleLabel.Text = "Hello, " + labelText;
+		newBindingSampleLabel.Text = "Hello, " + labelText + "!";
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private async void OnDocsButtonClicked(object sender, EventArgs e)
 	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+		try
+		{
+			Uri uri = new Uri("https://learn.microsoft.com/dotnet/communitytoolkit/maui/native-library-interop/get-started");
+			await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
+		}
+		catch (Exception ex)
+		{
+			throw new Exception("Browser failed to launch", ex);
+		}
 	}
 }
 
