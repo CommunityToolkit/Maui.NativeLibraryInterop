@@ -27,7 +27,7 @@
 
   <!-- Reference to Xcode project -->
   <ItemGroup>
-    <XcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
+    <NLIXcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
       <SchemeName>NewBinding</SchemeName>
       <SharpieNamespace>NewBinding</SharpieNamespace>
       <SharpieBind>true</SharpieBind>
@@ -35,11 +35,11 @@
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </XcodeProjectReference>
+    </NLIXcodeProjectReference>
   </ItemGroup>
 
   <!-- Reference to NuGet for building bindings -->
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre7" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
   </ItemGroup>
 </Project>

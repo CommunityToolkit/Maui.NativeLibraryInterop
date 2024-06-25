@@ -17,17 +17,17 @@
   
   <!-- Reference to Android project -->
   <ItemGroup>
-    <GradleProjectReference Include="../native" >
+    <NLIGradleProjectReference Include="../native" >
       <ModuleName>newbinding</ModuleName>
       <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
       <Bind>true</Bind>
       <Pack>true</Pack>
       -->
-    </GradleProjectReference>
+    </NLIGradleProjectReference>
   </ItemGroup>
 
   <!-- Reference to NuGet for building bindings -->
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="0.0.1-pre7" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
   </ItemGroup>
 </Project>
