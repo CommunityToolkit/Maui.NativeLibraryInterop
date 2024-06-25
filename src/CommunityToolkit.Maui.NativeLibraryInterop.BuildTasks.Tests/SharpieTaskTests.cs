@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using CommunityToolkit.Maui.BindingExtensions;
+using CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks;
 using NUnit.Framework;
 
-namespace CommunityToolkit.Maui.BindingExtensions.Tests
+namespace CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.Tests
 {
     [TestFixture]
     public class SharpieTaskTests
