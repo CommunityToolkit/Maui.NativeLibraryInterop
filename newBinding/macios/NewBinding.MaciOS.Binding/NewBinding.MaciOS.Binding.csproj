@@ -10,14 +10,6 @@
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
     -->
     <IsTrimmable>true</IsTrimmable>
-
-    <!-- Reference to Xcode project -->
-    <XcodeProject>$(MSBuildThisFileDirectory)../native/NewBinding/NewBinding.xcodeproj</XcodeProject>
-
-    <XcodeBuildXCFramework>true</XcodeBuildXCFramework>
-
-    <!-- Namespace -->
-    <ObjSharpieBindNamespace>NewBinding</ObjSharpieBindNamespace>
   </PropertyGroup>
 
   <ItemGroup>
