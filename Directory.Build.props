@@ -4,7 +4,7 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <MSBuildPackageVersion>17.9.5</MSBuildPackageVersion>
-    <NLIPackageVersion>0.0.1-pre7</NLIPackageVersion>
+    <NLIPackageVersion>0.0.1-pre1</NLIPackageVersion>
   </PropertyGroup>
 
 </Project>

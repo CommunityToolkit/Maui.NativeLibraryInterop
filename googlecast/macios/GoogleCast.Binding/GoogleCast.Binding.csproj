@@ -9,12 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(NLIPackageVersion)" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="$(NLIPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
-    <XcodeProjectReference Include="../native/MauiGoogleCast.xcodeproj">
+    <NLIXcodeProjectReference Include="../native/MauiGoogleCast.xcodeproj">
       <SchemeName>MauiGoogleCast</SchemeName>
       <SharpieNamespace>GoogleCast</SharpieNamespace>
       <SharpieBind>false</SharpieBind>
@@ -22,7 +22,7 @@
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </XcodeProjectReference>
+    </NLIXcodeProjectReference>
   </ItemGroup>
 
   <Target Name="NativeDependencies">

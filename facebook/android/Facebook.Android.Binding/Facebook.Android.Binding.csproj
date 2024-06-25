@@ -9,17 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(NLIPackageVersion)" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="$(NLIPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
-    <GradleProjectReference Include="../native" >
+    <NLIGradleProjectReference Include="../native" >
       <ModuleName>mauifacebook</ModuleName>
       <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
       <Bind>true</Bind>
       <Pack>true</Pack>
       -->
-    </GradleProjectReference>
+    </NLIGradleProjectReference>
   </ItemGroup>
 
 </Project>

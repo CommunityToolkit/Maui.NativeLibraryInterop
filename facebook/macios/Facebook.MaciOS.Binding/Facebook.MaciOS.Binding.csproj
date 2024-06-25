@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.BindingExtensions" Version="$(NLIPackageVersion)" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="$(NLIPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinitions.cs"/>
-    <XcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
+    <NLIXcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
       <SchemeName>MauiFacebook</SchemeName>
       <SharpieNamespace>Facebook</SharpieNamespace>
       <SharpieBind>true</SharpieBind>
@@ -20,7 +20,7 @@
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </XcodeProjectReference>
+    </NLIXcodeProjectReference>
   </ItemGroup>
 
 </Project>
