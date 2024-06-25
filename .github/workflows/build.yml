@@ -65,8 +65,8 @@ jobs:
           path: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release/*.nupkg
 
       - name: Build template
-        working-directory: ./newBinding
-        run: dotnet build -bl:${{ runner.temp }}/logs/newBinding.binlog
+        working-directory: ./template
+        run: dotnet build -bl:${{ runner.temp }}/logs/template.binlog
 
       - name: Build facebook
         working-directory: ./facebook

@@ -8,11 +8,12 @@
 import Foundation
 
 @objc(DotnetNewBinding)
-public class DotnetNewBinding : NSObject {
-    
+public class DotnetNewBinding : NSObject
+{
+
     @objc
-    public static func getString(myString: NSString) -> NSString {
-        return myString
+    public static func getString(myString: String) -> String {
+        return myString  + " from swift!"
     }
 
 }

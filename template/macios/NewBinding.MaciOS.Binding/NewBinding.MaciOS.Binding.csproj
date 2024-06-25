@@ -21,7 +21,7 @@
   <ItemGroup>
     <NLIXcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
       <SchemeName>NewBinding</SchemeName>
-      <SharpieNamespace>NewBinding</SharpieNamespace>
+      <SharpieNamespace>NewBindingMaciOS</SharpieNamespace>
       <SharpieBind>true</SharpieBind>
       <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
       <Kind>Framework</Kind>

@@ -1,6 +1,6 @@
 using Foundation;
 
-namespace NewBinding
+namespace NewBindingMaciOS
 {
 	// @interface DotnetNewBinding : NSObject
 	[BaseType (typeof(NSObject))]
@@ -9,6 +9,6 @@ namespace NewBinding
 		// +(NSString * _Nonnull)getStringWithMyString:(NSString * _Nonnull)myString __attribute__((warn_unused_result("")));
 		[Static]
 		[Export ("getStringWithMyString:")]
-		string GetStringWithMyString (string myString);
+		string GetString (string myString);
 	}
 }
