@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "android", "android", "{72592597-0539-499D-B672-B9885611DD34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewBinding.Android.Binding", "android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj", "{1185B3A1-3556-4AE8-8EE2-63DB271414AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "macios", "macios", "{E39BC49C-098D-4654-A387-23C3B9646953}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewBinding.MaciOS.Binding", "macios\NewBinding.MaciOS.Binding\NewBinding.MaciOS.Binding.csproj", "{D4EA2AC0-34ED-4674-B066-428DDB3DC511}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiSample", "sample\MauiSample\MauiSample.csproj", "{F812A12B-4BA1-4405-8102-B7935FD0FD9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1185B3A1-3556-4AE8-8EE2-63DB271414AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1185B3A1-3556-4AE8-8EE2-63DB271414AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1185B3A1-3556-4AE8-8EE2-63DB271414AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1185B3A1-3556-4AE8-8EE2-63DB271414AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4EA2AC0-34ED-4674-B066-428DDB3DC511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4EA2AC0-34ED-4674-B066-428DDB3DC511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4EA2AC0-34ED-4674-B066-428DDB3DC511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4EA2AC0-34ED-4674-B066-428DDB3DC511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F812A12B-4BA1-4405-8102-B7935FD0FD9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F812A12B-4BA1-4405-8102-B7935FD0FD9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F812A12B-4BA1-4405-8102-B7935FD0FD9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F812A12B-4BA1-4405-8102-B7935FD0FD9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1185B3A1-3556-4AE8-8EE2-63DB271414AF} = {72592597-0539-499D-B672-B9885611DD34}
+		{D4EA2AC0-34ED-4674-B066-428DDB3DC511} = {E39BC49C-098D-4654-A387-23C3B9646953}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94B02F3B-30A0-403F-9455-706FF31FF434}
+	EndGlobalSection
+EndGlobal

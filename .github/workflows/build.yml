@@ -64,6 +64,10 @@ jobs:
           name: nupkg
           path: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release/*.nupkg
 
+      - name: Build template
+        working-directory: ./template
+        run: dotnet build -bl:${{ runner.temp }}/logs/template.binlog
+
       - name: Build facebook
         working-directory: ./facebook
         run: dotnet build -bl:${{ runner.temp }}/logs/facebook.binlog
