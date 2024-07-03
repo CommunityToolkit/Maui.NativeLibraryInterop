@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "macios", "macios", "{E39BC4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewBinding.MaciOS.Binding", "macios\NewBinding.MaciOS.Binding\NewBinding.MaciOS.Binding.csproj", "{D4EA2AC0-34ED-4674-B066-428DDB3DC511}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiSample", "sample\MauiSample\MauiSample.csproj", "{F812A12B-4BA1-4405-8102-B7935FD0FD9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiSample", "sample\MauiSample.csproj", "{F812A12B-4BA1-4405-8102-B7935FD0FD9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

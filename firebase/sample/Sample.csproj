@@ -58,7 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Firebase.MaciOS.Binding\Firebase.MaciOS.Binding.csproj" />
+        <ProjectReference Include="..\macios\Firebase.MaciOS.Binding\Firebase.MaciOS.Binding.csproj" />
     </ItemGroup>
 
     <ItemGroup>
