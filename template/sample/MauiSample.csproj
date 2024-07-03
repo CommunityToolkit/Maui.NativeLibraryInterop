@@ -61,12 +61,12 @@
 
 	<!-- Reference to MaciOS Binding project -->
 	<ItemGroup Condition="$(TargetFramework.Contains('ios')) Or $(TargetFramework.Contains('maccatalyst'))">
-        <ProjectReference Include="..\..\macios\NewBinding.MaciOS.Binding\NewBinding.MaciOS.Binding.csproj" />
+        <ProjectReference Include="..\macios\NewBinding.MaciOS.Binding\NewBinding.MaciOS.Binding.csproj" />
     </ItemGroup>
 
 	<!-- Reference to Android Binding project -->
 	<ItemGroup Condition="$(TargetFramework.Contains('android'))">
-        <ProjectReference Include="..\..\android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj" />
+        <ProjectReference Include="..\android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj" />
     </ItemGroup>
 
 </Project>
