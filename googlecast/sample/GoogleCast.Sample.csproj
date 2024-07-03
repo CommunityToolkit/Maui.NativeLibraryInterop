@@ -55,7 +55,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\GoogleCast.Binding\GoogleCast.Binding.csproj" />
+		<ProjectReference Include="..\macios\GoogleCast.MaciOS.Binding\GoogleCast.MaciOS.Binding.csproj" />
 	</ItemGroup>
 
 </Project>

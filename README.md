@@ -2,7 +2,7 @@
 
 Native Library Interop, formerly referred to as "Slim Bindings", refers to a pattern for accessing native SDKs in .NET MAUI apps, including .NET for Android, .NET for iOS, and .NET for Mac Catalyst apps. This repository provides a starting point for developers looking to get started with creating new bindings or consuming existing bindings constructed via Native Library Interop.
 
-<img width="300" alt="Native Library Interop Binding overview" src="native-library-interop-binding-overview.png"></a>
+<img width="300" alt="Native Library Interop Binding overview" src="docs/assets/native-library-interop-binding-overview.png"></a>
 
 All Native Library Interop bindings and samples are contributed by you, our amazing .NET community, and maintained by a core set of maintainers.
 

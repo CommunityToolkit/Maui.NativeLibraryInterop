@@ -7,7 +7,7 @@ This folder contains a slim binding for the Google Cast SDK.
 ```
 
 ### Configure
-To deploy this sample to a physical iOS device you will need to open `native/MauiGoogleCast.xcodeproj`
+To deploy this sample to a physical iOS device you will need to open `macios/native/MauiGoogleCast.xcodeproj`
 in Xcode and configure the signing team/settings in Targets -> MauiGoogleCast -> Signing & Capabilities.
 
 For more details, reference the [Get Started][0] page.
