@@ -22,17 +22,17 @@ Create your own binding via native library interop by copying the contents of `t
 
 ### Quick Start: Facebook, Firebase, Google Cast samples
 
-The samples direcotry in this repo contains sample MaciOS and/or Android bindings for and sample .NET MAUI apps consuming specific libraries. Get started with Native Library Interop using the Facebook, Firebase Analytics, Firebase Messaging, and Google Cast samples in this repository:
+The top-level directories in this repo contains sample MaciOS and/or Android bindings for and sample .NET MAUI apps consuming specific libraries. Get started with Native Library Interop using the Facebook, Firebase Analytics, Firebase Messaging, and Google Cast samples in this repository:
 
 1. Submodule or clone this repo
 
 2. Navigate to the appropriate directory for the binding you're interested in using or building from, and read the README in the relevant directory for instructions on how to build and configure in your .NET app. Make modifications as you wish. <br>
-e.g. To leverage Firebase Messaging APIs on your .NET MAUI, .NET for iOS, and .NET for Mac Catalyst apps, navigate to `samples/firebase/macios/Firebase.MaciOS.Binding`.
+e.g. To leverage Firebase Messaging APIs on your .NET MAUI, .NET for iOS, and .NET for Mac Catalyst apps, navigate to `firebase/macios/Firebase.MaciOS.Binding`.
 
 3. Add a project reference to your MAUI app pointing to the path where you have cloned the repo <br>
 e.g. For Firebase Messaging, add to your csproj:
     ```xaml
-    <ProjectReference Include="<YourPathToClonedRepo>\samples\Firebase.MaciOS.Binding\Firebase.MaciOS.Binding.csproj" />
+    <ProjectReference Include="<YourPathToClonedRepo>\firebase\macios\Firebase.MaciOS.Binding\Firebase.MaciOS.Binding.csproj" />
     ```
     OR build the binding projects and consume the .dll assembly artifacts.
 
