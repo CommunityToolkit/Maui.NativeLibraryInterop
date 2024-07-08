@@ -24,7 +24,7 @@ Create your own binding via native library interop by copying the contents of `t
 
 The top-level directories in this repo contains sample MaciOS and/or Android bindings for and sample .NET MAUI apps consuming specific libraries. Get started with Native Library Interop using the Facebook, Firebase Analytics, Firebase Messaging, and Google Cast samples in this repository:
 
-1. Submodule or clone this repo
+1. Submodule or clone this repo.
 
 2. Navigate to the appropriate directory for the binding you're interested in using or building from, and read the README in the relevant directory for instructions on how to build and configure in your .NET app. Make modifications as you wish. <br>
 e.g. To leverage Firebase Messaging APIs on your .NET MAUI, .NET for iOS, and .NET for Mac Catalyst apps, navigate to `firebase/macios/Firebase.MaciOS.Binding`.
@@ -37,15 +37,18 @@ e.g. For Firebase Messaging, add to your csproj:
     OR build the binding projects and consume the .dll assembly artifacts.
 
 4. Use the binding in your .NET app! See sample usage in the `Sample` .NET MAUI apps included in each of the relevant directories.
+Note: There are no plans for shipping NuGets at this time.
 
 For more information and guidance, check out the [documentation](https://learn.microsoft.com/dotnet/communitytoolkit/maui/native-library-interop/get-started).
 
 ## Contributing
 
+If you are interested in contributing, please **open an issue** and articulate what you wish to contribute.
+
 There are two main ways in which you might consider contributing to this project:
 
-* **Expanding API Surface for existing bindings**: If you are interested in modifying an existing binding in this repository by expanding its API surface and exposing more functionality that would benefit the majority of developers, you are welcome to open a pull request.
-* **Adding new bindings**: If you are interested in sharing with the community a binding you have created for a library that is not already in this repository, you are welcome to open a pull request.
+1. **Expanding the API Surface for existing bindings**: Modify an existing binding in this repository by expanding its API surface and exposing more functionality that would benefit the majority of developers.
+2. **Adding new bindings**: Share with the community a binding you have created for a library that is not already in this repository.
 
 Please keep in mind that for a contribution to be considered, it:
 * Must be broadly applicable and beneficial to a wide audience of .NET developers (e.g., an internal company's native SDK would not be a good candidate)
