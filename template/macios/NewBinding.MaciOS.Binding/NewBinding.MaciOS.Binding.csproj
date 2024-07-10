@@ -32,6 +32,6 @@
 
   <!-- Reference to NuGet for building bindings -->
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" />
+    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" PrivateAssets="all" />
   </ItemGroup>
 </Project>
