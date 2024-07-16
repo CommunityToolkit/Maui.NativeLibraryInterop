@@ -1,5 +1,0 @@
-com.example.newbinding.test.newbinding-androidTest-0 /Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/generated/res/resValues/androidTest/debug
-com.example.newbinding.test.newbinding-mergeDebugAndroidTestResources-1 /Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
-com.example.newbinding.test.newbinding-mergeDebugAndroidTestResources-2 /Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
-com.example.newbinding.test.newbinding-merged_res-3 /Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/intermediates/merged_res/debugAndroidTest
-com.example.newbinding.test.newbinding-packaged_res-4 /Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/intermediates/packaged_res/debug

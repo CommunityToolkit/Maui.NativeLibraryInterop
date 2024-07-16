@@ -1,7 +1,0 @@
-#Tue Jul 16 11:25:01 EDT 2024
-base.0=/Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/intermediates/dex/debugAndroidTest/mergeLibDexDebugAndroidTest/0/classes.dex
-base.1=/Users/rachelkang/GitHub/Maui.NativeLibraryInterop/template/android/native/newbinding/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
-path.0=0/classes.dex
-path.1=0/classes.dex
-renamed.0=classes.dex
-renamed.1=classes2.dex
