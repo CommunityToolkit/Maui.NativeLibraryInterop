@@ -25,20 +25,27 @@ android {
     }
 }
 
+// Create configuration for copyDependencies
+configurations {
+    create("copyDependencies")
+}
+
 dependencies {
 
-    // Add package dependency for binding library. Uncomment line below and add your dependency.
+    // Add package dependency for binding library
+    // Uncomment line below and replace dependency.name.goes.here with your dependency
     // implementation("dependency.name.goes.here")
 
-    // Copy dependencies for binding library. Uncomment line below and add your dependency.
+    // Copy dependencies for binding library
+    // Uncomment line below and replace dependency.name.goes.here with your dependency
     // "copyDependencies"("dependency.name.goes.here")
 }
 
-// Copy dependencies for binding library. Uncomment code block below.
-//project.afterEvaluate {
-//    tasks.register<Copy>("copyDeps") {
-//        from(configurations["copyDependencies"])
-//        into("${projectDir}/build/outputs/deps")
-//    }
-//    tasks.named("preBuild") { finalizedBy("copyDeps") }
-//}
+// Copy dependencies for binding library
+project.afterEvaluate {
+    tasks.register<Copy>("copyDeps") {
+        from(configurations["copyDependencies"])
+        into("${projectDir}/build/outputs/deps")
+    }
+    tasks.named("preBuild") { finalizedBy("copyDeps") }
+}

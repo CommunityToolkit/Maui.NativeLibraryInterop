@@ -69,4 +69,12 @@
         <ProjectReference Include="..\android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj" />
     </ItemGroup>
 
+	<!-- Reference the Android binding dependencies -->
+	<!-- Uncomment the code block below and update the AndroidLirary path to point your library .aar -->
+	<!-- <ItemGroup Condition="$(TargetFramework.Contains('android'))">
+        <AndroidLibrary Include="..\android\native\newbinding\build\outputs\deps\yourNewBindingLibrary.aar">
+            <Bind>false</Bind>
+            <Visible>false</Visible>
+        </AndroidLibrary>
+    </ItemGroup> -->
 </Project>
