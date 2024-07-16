@@ -33,12 +33,12 @@ configurations {
 dependencies {
 
     // Add package dependency for binding library
-    // Uncomment line below and replace dependency.name.goes.here with your dependency
-    // implementation("dependency.name.goes.here")
+    // Uncomment line below and replace {dependency.name.goes.here} with your dependency
+    // implementation("{dependency.name.goes.here}")
 
     // Copy dependencies for binding library
-    // Uncomment line below and replace dependency.name.goes.here with your dependency
-    // "copyDependencies"("dependency.name.goes.here")
+    // Uncomment line below and replace {dependency.name.goes.here} with your dependency
+    // "copyDependencies"("{dependency.name.goes.here}")
 }
 
 // Copy dependencies for binding library
