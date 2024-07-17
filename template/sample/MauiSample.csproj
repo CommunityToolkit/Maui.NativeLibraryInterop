@@ -70,9 +70,9 @@
     </ItemGroup>
 
 	<!-- Reference the Android binding dependencies -->
-	<!-- Uncomment the code block below and update the AndroidLibrary path to point your library .aar -->
+	<!-- Uncomment the code block below and update the AndroidLibrary path to point your dependency .aar -->
 	<!-- <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-        <AndroidLibrary Include="..\android\native\newbinding\build\outputs\deps\{yourNewBindingLibrary.aar}">
+        <AndroidLibrary Include="..\android\native\newbinding\build\outputs\deps\{yourDependencyLibrary.aar}">
             <Bind>false</Bind>
             <Visible>false</Visible>
         </AndroidLibrary>
