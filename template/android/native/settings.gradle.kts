@@ -13,7 +13,7 @@ dependencyResolutionManagement {
 
         // Add repository here, e.g.
         // maven {
-        //    url = uri("urlGoesHere")
+        //    url = uri("{urlGoesHere}")
         // }
     }
 }
