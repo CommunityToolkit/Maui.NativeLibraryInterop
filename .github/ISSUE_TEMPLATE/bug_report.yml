@@ -47,4 +47,3 @@ body:
     attributes:
       value: |
         By opening the issue you agree to follow the .NET Foundation's [Code of Conduct](https://dotnetfoundation.org/about/policies/code-of-conduct).
-          required: true
