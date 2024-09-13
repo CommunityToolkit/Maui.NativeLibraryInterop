@@ -19,8 +19,8 @@ body:
       label: Steps to Reproduce
       description: Please indicate the steps required to reproduce the behavior you are seeing.
       placeholder: |
-      1. Open and run solution fron reproduction repository.
-      1. Click the button and observe the bug 🐞
+        1. Open and run solution from reproduction repository.
+        2. Click the button and observe the bug 🐞
     validations:
       required: true
   - type: input
@@ -38,10 +38,10 @@ body:
           - **.NET MAUI**: 6.0.408
           - **Target platforms**: Android 14, iOS 16
       value: |
-          - OS:
-          - .NET MAUI:
-          - Target platforms:
-      render: markdown
+        - OS:
+        - .NET MAUI:
+        - Target platforms:
+    render: markdown
     validations:
       required: true
   - type: markdown
