@@ -41,10 +41,10 @@ body:
         - OS:
         - .NET MAUI:
         - Target platforms:
-    render: markdown
     validations:
       required: true
   - type: markdown
     attributes:
       value: |
         By opening the issue you agree to follow the .NET Foundation's [Code of Conduct](https://dotnetfoundation.org/about/policies/code-of-conduct).
+          required: true
