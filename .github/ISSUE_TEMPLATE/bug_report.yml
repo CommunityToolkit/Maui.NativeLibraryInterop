@@ -1,0 +1,50 @@
+name: Bug Report
+description: Report a bug in Maui.NativeLibraryInterop
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please make sure to add as much detail as you can, preferably with a link to a reproduction sample. This will help us address your issue more quickly.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please give us a detailed description of the issue that you're seeing.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: reproductionSteps
+    attributes:
+      label: Steps to Reproduce
+      description: Please indicate the steps required to reproduce the behavior you are seeing.
+      placeholder: |
+      1. Open and run solution fron reproduction repository.
+      1. Click the button and observe the bug 🐞
+    validations:
+      required: true
+  - type: input
+    id: reproductionSample
+    attributes:
+      label: Link to public reproduction project repository
+      description: Please add a link to a public reproduction project. Attached zip files cannot be opened by us.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        examples:
+          - **OS**: Windows 10 Build 10.0.19041.0
+          - **.NET MAUI**: 6.0.408
+          - **Target platforms**: Android 14, iOS 16
+      value: |
+          - OS:
+          - .NET MAUI:
+          - Target platforms:
+      render: markdown
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        By opening the issue you agree to follow the .NET Foundation's [Code of Conduct](https://dotnetfoundation.org/about/policies/code-of-conduct).
