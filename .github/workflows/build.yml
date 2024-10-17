@@ -15,10 +15,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use .NET 8.x
+      - name: Use .NET 9.x
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '9.x'
+          dotnet-quality: 'preview'
+
+      # Temporarily install newer runtime for iOS binding projects
+      - name: Install .NET 9 RTM runtime
+        run: >
+         DOTNET_ROOT=~/.dotnet/ &&
+        curl -L https://dot.net/v1/dotnet-install.sh --retry 5 --retry-max-time 300 > dotnet-install.sh &&
+        chmod +x dotnet-install.sh &&
+        ./dotnet-install.sh -c 9.0 -q daily --runtime dotnet
 
       - name: Install JDK 17
         uses: actions/setup-java@v4
@@ -43,26 +52,6 @@ jobs:
 
       - name: Create logs dir
         run: mkdir -p ${{ runner.temp }}/logs/
-
-      - name: Create local nupkg dir
-        run: mkdir -p ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release
-
-      - name: Build and test build tasks
-        working-directory: ./src
-        run: >-
-          dotnet test CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.sln
-          --logger trx --results-directory ${{ runner.temp }}/logs/TestResults-build-tasks
-          -bl:${{ runner.temp }}/logs/build-tasks.binlog
-
-      - name: Pack build tasks
-        working-directory: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks
-        run: dotnet pack CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.csproj -bl:${{ runner.temp }}/logs/build-tasks-pack.binlog
-
-      - name: Upload nupkg
-        uses: actions/upload-artifact@v4
-        with:
-          name: nupkg
-          path: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release/*.nupkg
 
       - name: Build template
         working-directory: ./template

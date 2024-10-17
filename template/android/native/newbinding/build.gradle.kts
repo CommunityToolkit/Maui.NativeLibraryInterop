@@ -25,27 +25,11 @@ android {
     }
 }
 
-// Create configuration for copyDependencies
-configurations {
-    create("copyDependencies")
-}
-
 dependencies {
 
     // Add package dependency for binding library
     // Uncomment line below and replace {dependency.name.goes.here} with your dependency
     // implementation("{dependency.name.goes.here}")
 
-    // Copy dependencies for binding library
-    // Uncomment line below and replace {dependency.name.goes.here} with your dependency
-    // "copyDependencies"("{dependency.name.goes.here}")
 }
 
-// Copy dependencies for binding library
-project.afterEvaluate {
-    tasks.register<Copy>("copyDeps") {
-        from(configurations["copyDependencies"])
-        into("${buildDir}/outputs/deps")
-    }
-    tasks.named("preBuild") { finalizedBy("copyDeps") }
-}

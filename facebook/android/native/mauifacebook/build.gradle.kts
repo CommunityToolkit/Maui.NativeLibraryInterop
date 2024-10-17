@@ -25,21 +25,9 @@ android {
     }
 }
 
-configurations {
-    create("copyDependencies")
-}
-
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
-    implementation("com.facebook.android:facebook-android-sdk:latest.release")
-    "copyDependencies"("com.facebook.android:facebook-android-sdk:latest.release")
+    implementation("com.facebook.android:facebook-android-sdk:17.0.2")
 }
 
-project.afterEvaluate {
-    tasks.register<Copy>("copyDeps") {
-        from(configurations["copyDependencies"])
-        into("${buildDir}/outputs/deps")
-    }
-    tasks.named("preBuild") { finalizedBy("copyDeps") }
-}

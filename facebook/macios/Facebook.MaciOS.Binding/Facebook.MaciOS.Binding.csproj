@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-ios</TargetFramework>
+    <TargetFramework>net9.0-ios</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
+
+    <!--
+      Enable trim analyzers for class libraries.
+      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
+    -->
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="$(NLIPackageVersion)" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinitions.cs"/>
-    <NLIXcodeProjectReference Include="../native/MauiFacebook.xcodeproj">
+    <XcodeProject Include="../native/MauiFacebook.xcodeproj">
       <SchemeName>MauiFacebook</SchemeName>
-      <SharpieNamespace>Facebook</SharpieNamespace>
-      <SharpieBind>true</SharpieBind>
       <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </NLIXcodeProjectReference>
+    </XcodeProject>
   </ItemGroup>
 
 </Project>

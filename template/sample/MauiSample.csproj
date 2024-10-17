@@ -69,12 +69,11 @@
         <ProjectReference Include="..\android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj" />
     </ItemGroup>
 
-	<!-- Reference the Android binding dependencies -->
-	<!-- Uncomment the code block below and update the AndroidLibrary path to point your dependency .aar -->
-	<!-- <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-        <AndroidLibrary Include="..\android\native\newbinding\bin\Release\net8.0-android\outputs\deps\{yourDependencyLibrary.aar}">
-            <Bind>false</Bind>
-            <Visible>false</Visible>
-        </AndroidLibrary>
-    </ItemGroup> -->
+    <!-- Reference the Android binding dependencies -->
+    <!-- Uncomment the code block below and update or add AndroidMavenLibrary items for any required dependencies -->
+    <!--
+    <ItemGroup Condition="$(TargetFramework.Contains('android'))">
+        <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false" />
+    </ItemGroup>
+    -->
 </Project>
