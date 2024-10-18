@@ -35,8 +35,8 @@ jobs:
           distribution: microsoft
           java-version: 17
 
-      - name: Use Xcode 15.4
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+      - name: Use Xcode 16.0
+        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
 
       - name: Install MAUI
         run: dotnet workload install maui
