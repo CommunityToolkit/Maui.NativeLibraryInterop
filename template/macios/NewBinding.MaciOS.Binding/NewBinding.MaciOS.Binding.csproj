@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
@@ -19,19 +19,13 @@
 
   <!-- Reference to Xcode project -->
   <ItemGroup>
-    <NLIXcodeProjectReference Include="../native/NewBinding/NewBinding.xcodeproj">
+    <XcodeProject Include="../native/NewBinding/NewBinding.xcodeproj">
       <SchemeName>NewBinding</SchemeName>
-      <SharpieNamespace>NewBindingMaciOS</SharpieNamespace>
-      <SharpieBind>true</SharpieBind>
       <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </NLIXcodeProjectReference>
+    </XcodeProject>
   </ItemGroup>
 
-  <!-- Reference to NuGet for building bindings -->
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="0.0.1-pre1" PrivateAssets="all" />
-  </ItemGroup>
 </Project>

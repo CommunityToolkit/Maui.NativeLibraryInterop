@@ -3,7 +3,7 @@ This folder contains a slim binding for the Firebase SDK which demonstrates simp
 
 ### Build and Run
 ```shell
-    dotnet build sample -t:Run -f net8.0-ios
+    dotnet build sample -t:Run -f net9.0-ios
 ```
 
 ### Configure
