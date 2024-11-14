@@ -30,7 +30,7 @@ jobs:
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: 11076708
-          package: 'build-tools;35.0.0'
+          packages: 'build-tools;35.0.0'
 
       - name: Use Xcode 16.0
         run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
