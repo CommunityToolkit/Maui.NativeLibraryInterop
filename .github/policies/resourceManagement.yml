@@ -42,8 +42,11 @@ configuration:
       filters:
       - isIssue
       - isOpen
-      - hasLabel:
-          label: needs reproduction
+      - or:
+        - hasLabel:
+            label: needs info
+        - hasLabel:
+            label: needs reproduction
       - noActivitySince:
           days: 3
       actions:
@@ -71,8 +74,11 @@ configuration:
       filters:
       - isIssue
       - isOpen
-      - hasLabel:
-          label: needs reproduction
+      - or:
+        - hasLabel:
+            label: needs info
+        - hasLabel:
+            label: needs reproduction
       - hasLabel:
           label: stale
       - noActivitySince:
@@ -80,7 +86,7 @@ configuration:
       actions:
       - closeIssue
       - addReply:
-          reply: We haven't received a reproduction sample from you. The issue is closed.
+          reply: This issue has been automatically closed because it has been marked as stale.
     eventResponderTasks:
     - if:
       - payloadType: Issues
