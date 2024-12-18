@@ -32,17 +32,11 @@ jobs:
           cmdline-tools-version: 11076708
           packages: 'build-tools;35.0.0'
 
-      - name: Use Xcode 16.0
-        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+      - name: Use Xcode 16.1
+        run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
 
       - name: Install MAUI
         run: dotnet workload install maui
-
-      - name: Install boots
-        run: dotnet tool update -v:d boots --version 1.1.0.36 --add-source "https://api.nuget.org/v3/index.json" --global
-
-      - name: Install Classic XI
-        run: boots https://download.visualstudio.microsoft.com/download/pr/ceb0ea3f-4db8-46b4-8dc3-8049d27c0107/3960868aa9b1946a6c77668c3f3334ee/xamarin.ios-16.4.0.23.pkg
 
       - name: Install Sharpie
         run: brew install objectivesharpie
