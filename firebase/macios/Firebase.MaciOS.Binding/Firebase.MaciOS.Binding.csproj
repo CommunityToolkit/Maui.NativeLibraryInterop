@@ -1,27 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <IsBindingProject>true</IsBindingProject>
-    <NoBindingEmbedding>true</NoBindingEmbedding>
+
+    <!--
+      Enable trim analyzers for class libraries.
+      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
+    -->
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks" Version="$(NLIPackageVersion)" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinitions.cs" />
-    <NLIXcodeProjectReference Include="../native/MauiFirebase.xcodeproj">
+    <XcodeProject Include="../native/MauiFirebase.xcodeproj">
       <SchemeName>MauiFirebase</SchemeName>
-      <SharpieNamespace>Firebase</SharpieNamespace>
-      <SharpieBind>true</SharpieBind>
       <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
       <Kind>Framework</Kind>
       <SmartLink>true</SmartLink>
       -->
-    </NLIXcodeProjectReference>
+    </XcodeProject>
   </ItemGroup>
 
 </Project>

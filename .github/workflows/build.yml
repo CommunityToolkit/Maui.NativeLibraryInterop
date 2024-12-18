@@ -10,15 +10,15 @@ on:
 jobs:
   build:
     name: build
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use .NET 8.x
+      - name: Use .NET 9.0.x
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: 9.0.x
 
       - name: Install JDK 17
         uses: actions/setup-java@v4
@@ -26,8 +26,14 @@ jobs:
           distribution: microsoft
           java-version: 17
 
-      - name: Use Xcode 15.4
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: 11076708
+          packages: 'build-tools;35.0.0'
+
+      - name: Use Xcode 16.0
+        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
 
       - name: Install MAUI
         run: dotnet workload install maui
@@ -43,26 +49,6 @@ jobs:
 
       - name: Create logs dir
         run: mkdir -p ${{ runner.temp }}/logs/
-
-      - name: Create local nupkg dir
-        run: mkdir -p ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release
-
-      - name: Build and test build tasks
-        working-directory: ./src
-        run: >-
-          dotnet test CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.sln
-          --logger trx --results-directory ${{ runner.temp }}/logs/TestResults-build-tasks
-          -bl:${{ runner.temp }}/logs/build-tasks.binlog
-
-      - name: Pack build tasks
-        working-directory: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks
-        run: dotnet pack CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks.csproj -bl:${{ runner.temp }}/logs/build-tasks-pack.binlog
-
-      - name: Upload nupkg
-        uses: actions/upload-artifact@v4
-        with:
-          name: nupkg
-          path: ./src/CommunityToolkit.Maui.NativeLibraryInterop.BuildTasks/bin/Release/*.nupkg
 
       - name: Build template
         working-directory: ./template

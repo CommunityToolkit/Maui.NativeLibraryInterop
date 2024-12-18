@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
 		
 		<!-- Note for MacCatalyst:
 		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
@@ -30,9 +30,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">12.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -55,8 +52,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 	</ItemGroup>
 
 	<!-- Reference to MaciOS Binding project -->
@@ -69,12 +65,11 @@
         <ProjectReference Include="..\android\NewBinding.Android.Binding\NewBinding.Android.Binding.csproj" />
     </ItemGroup>
 
-	<!-- Reference the Android binding dependencies -->
-	<!-- Uncomment the code block below and update the AndroidLibrary path to point your dependency .aar -->
-	<!-- <ItemGroup Condition="$(TargetFramework.Contains('android'))">
-        <AndroidLibrary Include="..\android\native\newbinding\bin\Release\net8.0-android\outputs\deps\{yourDependencyLibrary.aar}">
-            <Bind>false</Bind>
-            <Visible>false</Visible>
-        </AndroidLibrary>
-    </ItemGroup> -->
+    <!-- Reference the Android binding dependencies -->
+    <!-- Uncomment the code block below and update or add AndroidMavenLibrary items for any required dependencies -->
+    <!--
+    <ItemGroup Condition="$(TargetFramework.Contains('android'))">
+        <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false" />
+    </ItemGroup>
+    -->
 </Project>
