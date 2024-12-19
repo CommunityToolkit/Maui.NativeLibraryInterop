@@ -118,6 +118,40 @@ configuration:
           reply: Hi @${issueAuthor}. We have added the "needs reproduction" label to this issue, which indicates that we cannot take further action. This issue will be closed automatically in 5 days if we do not hear back from you by then - please feel free to re-open it if you come back to this issue after that time.
       description: Add comment when 'needs reproduction' is applied to issue
     - if:
+      - payloadType: Issue_Comment
+      - isAction:
+          action: Created
+      - isOpen
+      - hasLabel:
+          label: needs info
+      - not:
+          activitySenderHasPermission:
+            permission: Admin
+      - not:
+          activitySenderHasPermission:
+            permission: Write
+      then:
+      - removeLabel:
+          label: needs info
+      description: Remove needs info label
+    - if:
+      - payloadType: Issue_Comment
+      - isAction:
+          action: Created
+      - isOpen
+      - hasLabel:
+          label: needs reproduction
+      - not:
+          activitySenderHasPermission:
+            permission: Admin
+      - not:
+          activitySenderHasPermission:
+            permission: Write
+      then:
+      - removeLabel:
+          label: needs reproduction
+      description: Remove needs reproduction label
+    - if:
       - payloadType: Issues
       - hasLabel:
           label: stale
