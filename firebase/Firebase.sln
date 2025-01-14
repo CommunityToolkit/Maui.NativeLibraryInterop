@@ -1,15 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firebase.Macios.Binding", "macios\Firebase.Macios.Binding\Firebase.Macios.Binding.csproj", "{3ED9CE50-B781-4DDB-831E-36544D8F9C87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firebase.MaciOS.Binding", "macios\Firebase.MaciOS.Binding\Firebase.MaciOS.Binding.csproj", "{3ED9CE50-B781-4DDB-831E-36544D8F9C87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "sample\Sample.csproj", "{1FEADCF2-520E-4B2B-AFA6-4E5291034DEC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{592F232C-CD90-49AF-A432-A164C9DD0141}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		..\..\eng\Common.macios.targets = ..\..\eng\Common.macios.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

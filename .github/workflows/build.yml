@@ -32,8 +32,8 @@ jobs:
           cmdline-tools-version: 11076708
           packages: 'build-tools;35.0.0'
 
-      - name: Use Xcode 16.1
-        run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+      - name: Use Xcode 16.2
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
       - name: Install MAUI
         run: dotnet workload install maui
