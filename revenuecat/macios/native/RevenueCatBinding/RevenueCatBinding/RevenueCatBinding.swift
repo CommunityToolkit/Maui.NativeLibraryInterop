@@ -59,20 +59,21 @@ public class RevenueCatManager : NSObject //, PaywallViewControllerDelegate
         }
     }
 
-    @objc(showPaywall:)
-    public static func showPaywall(viewController: UIViewController) {
+    @objc(showPaywall:offeringIdentifier:displayCloseButton:)
+    public static func showPaywall(viewController: UIViewController, offeringIdentifier: String, displayCloseButton: Bool) {
         let paywallManager = PaywallManager()
 
-        paywallManager.presentPaywall(viewController: viewController)
+        paywallManager.presentPaywall(viewController: viewController, offeringIdentifier: offeringIdentifier, displayCloseButton: displayCloseButton)
     }
 }
 
 public class PaywallManager {
 
-    public func presentPaywall(viewController: UIViewController) {
-        let controller = PaywallViewController()
+    public func presentPaywall(viewController: UIViewController, offeringIdentifier: String, displayCloseButton: Bool) {
+        let controller = PaywallViewController.init(offeringIdentifier: offeringIdentifier, displayCloseButton: displayCloseButton)
         controller.delegate = self
 
+    
         viewController.present(controller, animated: true, completion: nil)
     }
 

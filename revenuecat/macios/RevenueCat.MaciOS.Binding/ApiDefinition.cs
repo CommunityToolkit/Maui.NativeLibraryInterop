@@ -22,9 +22,9 @@ namespace RevenueCatBinding
 		[Export ("setEntitlementsUpdatedHandler:")]
 		void SetEntitlementsUpdatedHandler (System.Action<string[]> entitlementsHandler);
 
-		
+
 		[Static]
-		[Export ("showPaywall:")]
-		void ShowPaywall (UIKit.UIViewController viewController);
+		[Export ("showPaywall:offeringIdentifier:displayCloseButton:")]
+		void ShowPaywall (UIKit.UIViewController viewController, string offeringIdentifier, bool showCloseButton);
 	}
 }
