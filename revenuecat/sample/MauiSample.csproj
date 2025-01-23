@@ -62,13 +62,9 @@
 
 	<!-- Reference to Android Binding project -->
 	<ItemGroup Condition="$(TargetFramework.Contains('android'))">
-        <!-- <ProjectReference Include="..\android\RevenueCat.Android.Binding\RevenueCat.Android.Binding.csproj" /> -->
+    <ProjectReference Include="..\android\RevenueCat.Android.Binding\RevenueCat.Android.Binding.csproj" />
     </ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\android\RevenueCat.Android.Binding\RevenueCat.Android.Binding.csproj" />
-	</ItemGroup>
-
-    <!-- Reference the Android binding dependencies -->
+	  <!-- Reference the Android binding dependencies -->
     <!-- Uncomment the code block below and update or add AndroidMavenLibrary items for any required dependencies -->
     <!--
     <ItemGroup Condition="$(TargetFramework.Contains('android'))">

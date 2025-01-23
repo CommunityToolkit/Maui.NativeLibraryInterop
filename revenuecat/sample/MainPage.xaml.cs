@@ -3,11 +3,14 @@
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+    readonly IRevenueCatManager revenueCatManager;
+
+	public MainPage(IRevenueCatManager revenueCatManager)
 	{
 		InitializeComponent();
 
-        RevenueCatBinding.RevenueCatManager.SetEntitlementsUpdatedHandler(entitlements =>
+
+        revenueCatManager.SetEntitlementsUpdatedHandler(entitlements =>
         {
             Dispatcher.Dispatch(() =>
             {
@@ -32,7 +35,14 @@ public partial class MainPage : ContentPage
                 return;
             }
 
-            RevenueCatBinding.RevenueCatManager.Initialize(true, rcApiKey.Text, rcUserId.Text);
+            string? appStore = null;
+            object platformContext = null;
+            #if ANDROID
+            appStore = "google";
+            platformContext = this.Window.Handler.MauiContext.Context;
+            #endif
+
+            revenueCatManager.Initialize(platformContext, true, appStore, rcApiKey.Text, rcUserId.Text);
             isInitialized = true;
         }
 
@@ -42,7 +52,7 @@ public partial class MainPage : ContentPage
             return;
         }
 
-        RevenueCatBinding.RevenueCatManager.Identify(rcUserId.Text);
+        revenueCatManager.Identify(rcUserId.Text);
     }
 
 
@@ -57,10 +67,14 @@ public partial class MainPage : ContentPage
         try
         {
 
-#if IOS || MACCATALYST
-            var vc = (this.Window.Handler.PlatformView as UIKit.UIWindow).RootViewController;
-            RevenueCatBinding.RevenueCatManager.ShowPaywall(vc, rcOfferingId.Text, true);
-#endif
+            object platformView = null;
+            #if ANDROID
+            platformView = (this.Window.Handler.PlatformView as AndroidX.Activity.ComponentActivity);
+            #elif MACCATALYST || IOS
+            platformView = (this.Window.Handler.PlatformView as UIKit.UIWindow).RootViewController;
+            #endif
+
+            revenueCatManager.ShowPaywall(platformView, rcOfferingId.Text, true);
         }
         catch (Exception ex)
         {
@@ -70,7 +84,7 @@ public partial class MainPage : ContentPage
 
     private void Update_Clicked(object? sender, EventArgs e)
     {
-        RevenueCatBinding.RevenueCatManager.Update(true);
+        revenueCatManager.Update(true);
     }
 }
 
