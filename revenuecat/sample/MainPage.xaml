@@ -33,7 +33,7 @@
                 SemanticProperties.Hint="Navigates to getting started documentation"
                 Clicked="Update_Clicked"
                 HorizontalOptions="Fill" />
-
+            <Label Text="Entitlements: ?" x:Name="txtEntitlements"></Label>
 
             <Label
                 Text="RevenueCat Offering Identifier"
@@ -47,10 +47,6 @@
                 SemanticProperties.Hint="Navigates to getting started documentation"
                 Clicked="Purchase_Clicked"
                 HorizontalOptions="Fill" />
-
-
-            <Label Text="Current Entitlements:" Style="{StaticResource SubHeadline}" SemanticProperties.HeadingLevel="Level2" />
-            <Label Text="?" x:Name="txtEntitlements"></Label>
         </VerticalStackLayout>
     </ScrollView>
 
