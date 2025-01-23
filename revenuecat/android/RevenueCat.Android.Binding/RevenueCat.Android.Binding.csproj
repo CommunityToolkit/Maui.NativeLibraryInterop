@@ -18,7 +18,7 @@
   <!-- Reference to Android Gradle project -->
   <ItemGroup>
     <AndroidGradleProject Include="../native/build.gradle.kts" >
-      <ModuleName>newbinding</ModuleName>
+      <ModuleName>revenuecatbinding</ModuleName>
       <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
       <Bind>true</Bind>
       <Pack>true</Pack>
@@ -26,4 +26,8 @@
     </AndroidGradleProject>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.Activity" Version="1.9.2.1" />
+
+  </ItemGroup>
 </Project>

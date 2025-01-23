@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
-		<!-- <TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks> -->
-		
+		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+
 		<!-- Note for MacCatalyst:
 		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
 		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
@@ -65,6 +64,9 @@
 	<ItemGroup Condition="$(TargetFramework.Contains('android'))">
         <!-- <ProjectReference Include="..\android\RevenueCat.Android.Binding\RevenueCat.Android.Binding.csproj" /> -->
     </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\android\RevenueCat.Android.Binding\RevenueCat.Android.Binding.csproj" />
+	</ItemGroup>
 
     <!-- Reference the Android binding dependencies -->
     <!-- Uncomment the code block below and update or add AndroidMavenLibrary items for any required dependencies -->
