@@ -1,0 +1,4 @@
+﻿<metadata>
+    <!-- Make sure the package id and name reflects the new binding name -->
+    <attr path="/api/package[@name='com.example.newbinding']" name="managedName">NewBindingAndroid</attr>
+</metadata>

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--
+      Enable trim analyzers for Android class libraries.
+      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
+    -->
+    <IsTrimmable>true</IsTrimmable>
+    <!--
+      NOTE: you can simply add .aar or .jar files in this directory to be included in the project.
+      To learn more, see: https://learn.microsoft.com/dotnet/maui/migration/android-binding-projects
+    -->
+  </PropertyGroup>
+  
+  <!-- Reference to Android Gradle project -->
+  <ItemGroup>
+    <AndroidGradleProject Include="../native/build.gradle.kts" >
+      <ModuleName>newbinding</ModuleName>
+      <!-- Metadata applicable to @(AndroidLibrary) will be used if set, otherwise the following defaults will be used:
+      <Bind>true</Bind>
+      <Pack>true</Pack>
+      -->
+    </AndroidGradleProject>
+  </ItemGroup>
+
+</Project>

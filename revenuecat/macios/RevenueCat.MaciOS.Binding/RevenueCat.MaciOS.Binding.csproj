@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+
+    <!--
+      Enable trim analyzers for class libraries.
+      To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/prepare-libraries-for-trimming
+    -->
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+
+  <!-- Reference to Xcode project -->
+  <ItemGroup>
+    <XcodeProject Include="../native/RevenueCatBinding/RevenueCatBinding.xcodeproj">
+      <SchemeName>RevenueCatBinding</SchemeName>
+      <!-- Metadata applicable to @(NativeReference) will be used if set, otherwise the following defaults will be used:
+      <Kind>Framework</Kind>
+      <SmartLink>true</SmartLink>
+      -->
+    </XcodeProject>
+  </ItemGroup>
+
+  <Target Name="DownloadNativeDependencies">
+    <PropertyGroup>
+      <!-- TODO: Update this URL once a new official cast SDK is released.
+            The 4.8.x versions of the Google Cast SDK contains a bug that breaks the cast button on physical iOS devices:
+            https://issuetracker.google.com/issues/298066142
+
+      <GoogleCastiOSSdkVersion>4.8.1</GoogleCastiOSSdkVersion>
+      <GoogleCastiOSSdkUrl>https://dl.google.com/dl/chromecast/sdk/ios/GoogleCastSDK-ios-$(GoogleCastiOSSdkVersion)_dynamic.zip</GoogleCastiOSSdkUrl>
+      -->
+      <RevenueCatSdkVersion>5.15.0</RevenueCatSdkVersion>
+
+      <RevenueCatSdkUrl>https://github.com/RevenueCat/purchases-ios/releases/download/$(RevenueCatSdkVersion)/RevenueCat.xcframework.zip</RevenueCatSdkUrl>
+      <RevenueCatUISdkUrl>https://github.com/RevenueCat/purchases-ios/releases/download/$(RevenueCatSdkVersion)/RevenueCatUI.xcframework.zip</RevenueCatUISdkUrl>
+    </PropertyGroup>
+
+    <DownloadFile SourceUrl="$(RevenueCatSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps))">
+      <Output TaskParameter="DownloadedFile" ItemName="RevenueCatSdkArchives" />
+    </DownloadFile>
+
+    <DownloadFile SourceUrl="$(RevenueCatUISdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps))">
+      <Output TaskParameter="DownloadedFile" ItemName="RevenueCatUISdkArchives" />
+    </DownloadFile>
+
+    <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps)) @(RevenueCatSdkArchives)" />
+    <Exec Command="unzip -q -o -d $([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps)) @(RevenueCatUISdkArchives)" />
+  </Target>
+</Project>
