@@ -21,7 +21,7 @@
 		<ApplicationTitle>MauiSample</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mauisample</ApplicationId>
+		<ApplicationId>com.troublefreepool.poolmath</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -71,4 +71,8 @@
         <AndroidMavenLibrary Include="{DependencyGroupId}:{DependencyName}" Version="{DependencyVersion}" Bind="false" />
     </ItemGroup>
     -->
+
+  <ItemGroup Condition="$(TargetFramework.Contains('android'))">
+    <AndroidLibrary Include="../android/native/bin/deps/*.aar" Bind="false" />
+  </ItemGroup>
 </Project>
