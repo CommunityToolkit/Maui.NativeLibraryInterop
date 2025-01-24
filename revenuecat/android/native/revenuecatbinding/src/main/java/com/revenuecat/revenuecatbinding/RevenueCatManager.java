@@ -1,6 +1,7 @@
 package com.revenuecat.revenuecatbinding;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
@@ -10,22 +11,26 @@ import com.revenuecat.purchases.CacheFetchPolicy;
 import com.revenuecat.purchases.CustomerInfo;
 import com.revenuecat.purchases.EntitlementInfo;
 import com.revenuecat.purchases.LogLevel;
+import com.revenuecat.purchases.Offerings;
+import com.revenuecat.purchases.Package;
 import com.revenuecat.purchases.Purchases;
 import com.revenuecat.purchases.PurchasesConfiguration;
 import com.revenuecat.purchases.PurchasesError;
 import com.revenuecat.purchases.amazon.AmazonConfiguration;
 import com.revenuecat.purchases.interfaces.ReceiveCustomerInfoCallback;
+import com.revenuecat.purchases.interfaces.ReceiveOfferingsCallback;
 import com.revenuecat.purchases.interfaces.UpdatedCustomerInfoListener;
 import com.revenuecat.purchases.ui.revenuecatui.ExperimentalPreviewRevenueCatUIPurchasesAPI;
+//import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallActivity;
 import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallActivityLauncher;
 import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallResult;
 import com.revenuecat.purchases.ui.revenuecatui.activity.PaywallResultHandler;
 
+import java.util.List;
+
 @ExperimentalPreviewRevenueCatUIPurchasesAPI
 public class RevenueCatManager
 {
-    static PaywallActivityLauncher launcher;
-
     public static void initialize(Context context, boolean debugLog, String appStore, String apiKey, String userId) {
 
         if (debugLog)
@@ -69,22 +74,25 @@ public class RevenueCatManager
         entitlementsUpdatedListener = listener;
     }
 
-    @OptIn(markerClass = ExperimentalPreviewRevenueCatUIPurchasesAPI.class)
-    public static void showPaywall(ComponentActivity componentActivity, String offeringIdentifier) {
+    static PaywallActivityLauncher paywallActivityLauncher;
 
-        if (launcher == null) {
-            launcher = new PaywallActivityLauncher(componentActivity, new PaywallResultHandler() {
-                @Override
-                public void onActivityResult(PaywallResult o) {
-                    if (o instanceof PaywallResult.Purchased) {
-                        PaywallResult.Purchased purchased = (PaywallResult.Purchased) o;
-                        handleCustomerInfoUpdated(purchased.getCustomerInfo());
-                    }
+    public static void onCreate(ComponentActivity componentActivity)
+    {
+        paywallActivityLauncher = new PaywallActivityLauncher(componentActivity, new PaywallResultHandler() {
+            @Override
+            public void onActivityResult(PaywallResult o) {
+                if (o instanceof PaywallResult.Purchased) {
+                    PaywallResult.Purchased purchased = (PaywallResult.Purchased) o;
+                    handleCustomerInfoUpdated(purchased.getCustomerInfo());
                 }
-            });
-        }
+            }
+        });
+    }
 
-        launcher.launchIfNeeded(offeringIdentifier);
+    @OptIn(markerClass = ExperimentalPreviewRevenueCatUIPurchasesAPI.class)
+    public static void showPaywall(String offeringIdentifier) {
+
+        paywallActivityLauncher.launch();
     }
 
     static void handleCustomerInfoUpdated(CustomerInfo customerInfo)
