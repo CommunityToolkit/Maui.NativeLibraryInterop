@@ -14,7 +14,13 @@
       To learn more, see: https://learn.microsoft.com/dotnet/maui/migration/android-binding-projects
     -->
   </PropertyGroup>
-  
+
+  <PropertyGroup>
+    <RevenueCatSdkVersion>8.11.0</RevenueCatSdkVersion>
+    <RevenueCatSdkUrl>https://repo1.maven.org/maven2/com/revenuecat/purchases/purchases/$(RevenueCatSdkVersion)/purchases-$(RevenueCatSdkVersion).aar</RevenueCatSdkUrl>
+    <RevenueCatUISdkUrl>https://repo1.maven.org/maven2/com/revenuecat/purchases/purchases-ui/$(RevenueCatSdkVersion)/purchases-ui-$(RevenueCatSdkVersion).aar</RevenueCatUISdkUrl>
+  </PropertyGroup>
+
   <!-- Reference to Android Gradle project -->
   <ItemGroup>
     <AndroidGradleProject Include="../native/build.gradle.kts" >
@@ -24,10 +30,23 @@
       <Pack>true</Pack>
       -->
     </AndroidGradleProject>
+    <AndroidAarLibrary Include="../native/bin/deps/purchases-$(RevenueCatSdkVersion).aar" Pack="true" Bind="false" />
+    <AndroidAarLibrary Include="../native/bin/deps/purchases-ui-$(RevenueCatSdkVersion).aar" Pack="true" Bind="false" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Activity" Version="1.9.2.1" />
-
   </ItemGroup>
+
+  <Target Name="DownloadNativeDependencies">
+
+    <DownloadFile SourceUrl="$(RevenueCatSdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps))">
+      <Output TaskParameter="DownloadedFile" ItemName="RevenueCatSdkArchives" />
+    </DownloadFile>
+
+    <DownloadFile SourceUrl="$(RevenueCatUISdkUrl)" DestinationFolder="$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../native/bin/deps))">
+      <Output TaskParameter="DownloadedFile" ItemName="RevenueCatUISdkArchives" />
+    </DownloadFile>
+
+  </Target>
 </Project>
