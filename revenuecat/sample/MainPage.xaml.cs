@@ -9,8 +9,9 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 
+        this.revenueCatManager = revenueCatManager;
 
-        revenueCatManager.SetEntitlementsUpdatedHandler(entitlements =>
+        this.revenueCatManager.SetEntitlementsUpdatedHandler(entitlements =>
         {
             Dispatcher.Dispatch(() =>
             {
