@@ -1,3 +1,5 @@
+using AndroidX.Activity.Result;
+
 namespace MauiSample;
 
 public interface IRevenueCatManager
@@ -65,7 +67,7 @@ public class RevenueCatManagerAndroid : Java.Lang.Object, IRevenueCatManager, Co
 
     public void ShowPaywall(object platformView, string offeringIdentifier, bool showCloseButton)
     {
-        Com.Revenuecat.Revenuecatbinding.RevenueCatManager.ShowPaywall((AndroidX.Activity.ComponentActivity)platformView, offeringIdentifier);
+        Com.Revenuecat.Revenuecatbinding.RevenueCatManager.ShowPaywall(offeringIdentifier);
     }
 
     public void OnEntitlementsUpdated(string[] entitlements)

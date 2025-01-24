@@ -35,7 +35,46 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Activity" Version="1.9.2.1" />
+    <PackageReference Include="Dev.Drewhamilton.Poko.PokoAnnotations" Version="0.15.2" />
+    <PackageReference Include="Org.Jetbrains.Kotlinx.KotlinxSerializationJson" Version="1.7.3" />
+    <PackageReference Include="Xamarin.Android.Google.BillingClient" Version="7.1.1.2" />
+    <PackageReference Include="Xamarin.AndroidX.Activity.Compose" Version="1.9.3.2" />
+    <PackageReference Include="Xamarin.AndroidX.Compose.Material" Version="1.7.6.1" />
+    <PackageReference Include="Xamarin.AndroidX.Compose.Material3" Version="1.3.1.2" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModel.Compose" Version="2.8.7.2" />
+    <PackageReference Include="Xamarin.AndroidX.Window" Version="1.3.0.5" />
+    <PackageReference Include="Xamarin.Google.Crypto.Tink.Android" Version="1.8.0.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Ads.Identifier" Version="117.0.1.5" />
+    <PackageReference Include="Xamarin.Kotlin.Parcelize.Runtime" Version="1.9.23.3" />
+
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="2.8.7.2" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="2.0.21.2" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="2.0.21.2" />
+    <PackageReference Include="Square.OkHttp3" Version="4.12.0.8" />
+    <PackageReference Include="Square.OkIO" Version="3.9.1.2" />
+    <PackageReference Include="Xamarin.AndroidX.Core.Core.Ktx" Version="1.15.0.2" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.8.7.2" />
+
+    <PackageReference Include="Xamarin.KotlinX.Coroutines.Android" Version="1.9.0.2" />
+    <PackageReference Include="Xamarin.Google.Accompanist.DrawablePainter" Version="0.37.0.1"/>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.7.0.5" />
+    <PackageReference Include="Xamarin.AndroidX.Collection" Version="1.4.5.2" />
+    <PackageReference Include="Xamarin.AndroidX.Compose.Foundation" Version="1.7.6.1" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.9.1.2" />
+    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.3.7.9" />
+    <PackageReference Include="Xamarin.AndroidX.ProfileInstaller.ProfileInstaller" Version="1.4.1.2" />
+<!--    <PackageReference Include="Xamarin.AndroidX.Activity" Version="1.9.2.1" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+<!--    <AndroidMavenLibrary Include="io.coil-kt:coil" Version="2.4.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="io.coil-kt:coil-base" Version="2.4.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="io.coil-kt:coil-compose" Version="2.4.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="io.coil-kt:coil-compose-base" Version="2.4.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="io.coil-kt:coil-svg" Version="2.4.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="org.commonmark:commonmark-ext-gfm-strikethrough" Version="0.21.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="org.commonmark:commonmark" Version="0.21.0" Bind="false" />-->
+<!--    <AndroidMavenLibrary Include="com.caverock:androidsvg-aar" Version="1.4" Bind="false" />-->
   </ItemGroup>
 
   <Target Name="DownloadNativeDependencies">
