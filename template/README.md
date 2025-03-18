@@ -8,5 +8,5 @@ This template provides the boilerplate needed to get started with creating a new
     - **native** - the Android project with Java/Kotlin code exposing the API you will use
 - **macios**
     - **NewBinding.MaciOS.Binding** - the .NET API you will use
-    - **native** - the Xcode project with Java/Kotlin code exposing the API you will use
+    - **native** - the Xcode project with Objective-C code exposing the API you will use
 - **sample** - the .NET MAUI app showing the library in use
